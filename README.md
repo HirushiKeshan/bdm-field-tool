@@ -69,6 +69,17 @@ The source CSVs don't say these things directly, so here's what I decided and wh
 - **Tamil language** — reps likely want this in Tamil, not English. Not done yet.
 - **Merging duplicate shops** — 20 shops in the data look like the same shop registered twice. Flagged with a warning, not auto-merged, since that's a decision for the client to make, not a script.
 
+## What I'd do next
+
+In order of what matters most:
+
+1. **Real login for the 12 BDMs.** Everything else here assumes you actually know who's submitting a visit.
+2. **Sort out the 20 duplicate shops with the client.** Right now each one is quietly splitting its real revenue and visit history across two codes.
+3. **A real dues ledger**, if the client has one anywhere — the manual entry here is a stopgap.
+4. **Route planning** once shop coordinates are reliable enough to trust (108 of 820 shops currently have none).
+5. **An offline queue**, so a visit isn't lost if a BDM has no signal at the counter.
+6. **Re-check the segmentation numbers (30% slip, median valuable-bar) with the client** once they've used the tool for real — they're reasonable defaults, not confirmed thresholds.
+
 ## Why GPS isn't used to identify which shop was visited
 
 The brief describes shops sitting a few metres apart, too close for GPS to tell apart. That's true — a phone's GPS is accurate to about 10-50 metres, and shops sharing a wall can be 3-5 metres apart. So GPS alone can't prove which shop a rep is standing in.
