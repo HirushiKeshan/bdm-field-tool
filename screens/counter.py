@@ -68,11 +68,18 @@ def render(conn, bdm_code, outlet_code):
                 continue  # already captured above as the universal order/collection inputs
             st.markdown(f'**{item["label"]}**')
             if item["type"] == "blocker":
-                choice = st.radio(item["label"], item["options"], key=f'item_{item["key"]}', label_visibility="collapsed")
+                # index=None so nothing is pre-selected -- a radio with a
+                # default selection would count as "answered" the moment
+                # the form renders, before the BDM touches anything, which
+                # would make Partial/Verified reachable without a real
+                # conversation happening. See docs/ai-log.md.
+                choice = st.radio(item["label"], item["options"], index=None, key=f'item_{item["key"]}',
+                                   label_visibility="collapsed")
                 note = st.text_input("Note (optional)", key=f'note_{item["key"]}', label_visibility="collapsed",
                                       placeholder="Optional note")
+                response_value = (f"{choice}" + (f" — {note}" if note else "")) if choice is not None else None
                 responses.append({"item_key": item["key"], "item_label": item["label"],
-                                   "response_type": "blocker", "response_value": f"{choice}" + (f" — {note}" if note else "")})
+                                   "response_type": "blocker", "response_value": response_value})
             elif item["type"] == "action":
                 text = st.text_input(item["label"], key=f'item_{item["key"]}', label_visibility="collapsed",
                                       placeholder="e.g. Will visit again after Diwali stock lands")

@@ -61,20 +61,11 @@ def fetch_visit_recency(conn) -> dict:
         cur.execute("""
             SELECT outlet_code, MAX(visit_date) FROM visits WHERE visit_date IS NOT NULL GROUP BY outlet_code
         """)
-        today = _latest_known_date(conn)
+        today = date.today()
         out = {}
         for code, last_date in cur.fetchall():
             out[code] = {"last_visit_date": last_date, "days_since": (today - last_date).days}
         return out
-
-
-def _latest_known_date(conn) -> date:
-    """The dataset is historical (fixed 3-month window), so 'today' for
-    recency math is the latest visit date on record, not the wall clock."""
-    with conn.cursor() as cur:
-        cur.execute("SELECT MAX(visit_date) FROM visits")
-        result = cur.fetchone()[0]
-        return result or date.today()
 
 
 def fetch_latest_agreed_action(conn, outlet_code: str):

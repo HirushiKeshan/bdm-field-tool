@@ -42,6 +42,7 @@ def render(conn):
     c1, c2, c3 = st.columns(3)
     c1.metric("Visits logged", cq["total_visits"])
     c2.metric("No outcome recorded", f'{cq["pct_no_outcome"]}%')
+    c2.caption("No remarks, and not an Order/Collection visit — a stricter cut than Phase 0's raw 38.3% blank-Remarks number in docs/data-notes.md.")
     if cq["pct_checklist_complete"] is None:
         c3.metric("Checklist complete", "—")
         c3.caption("No app-recorded visits yet")

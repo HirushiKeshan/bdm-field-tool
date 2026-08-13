@@ -7,4 +7,5 @@ venv/
 .streamlit/secrets.toml
 .pytest_cache/
 scripts/_pgdata*/
+scripts/_pg_uri*.txt
 
