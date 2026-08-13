@@ -10,7 +10,7 @@ from datetime import date
 
 from logic import scoring
 from logic.checklist import get_checklist_for_type, load_checklist_config
-from logic.confidence import compute_confidence, flag_outside_territory
+from logic.confidence import compute_confidence, flag_location_mismatch, flag_outside_territory
 from logic.geo import assign_area, compute_centroids
 from logic.segmentation import compute_valuable_threshold, segment_outlet
 
@@ -209,12 +209,22 @@ def get_outlet_counter_context(conn, outlet_code: str) -> dict:
 # --- writes ---
 
 def submit_visit(conn, *, bdm_code, outlet_code, entered_code, responses, order_value, collection_amount,
-                  agreed_action_text, dues_amount, photo_taken, latitude, longitude, is_complete) -> str:
-    """responses: list of {item_key, item_label, response_type, response_value}"""
+                  agreed_action_text, dues_amount, photo_taken, captured_latitude, captured_longitude,
+                  captured_accuracy, is_complete) -> str:
+    """responses: list of {item_key, item_label, response_type, response_value}
+
+    captured_latitude/longitude/accuracy come from the BDM's own phone via
+    the browser geolocation capture on the Counter Conversation screen
+    (logic.confidence.flag_location_mismatch is what this feeds). This is
+    an anomaly/audit signal only -- it is never used to decide which of
+    two nearby outlets a visit was at (see README "The Madurai decision"):
+    typical phone GPS error (10-50m) is larger than the gap between two
+    adjacent counters (3-5m), so no threshold here can safely do that.
+    """
     with conn.cursor() as cur:
-        cur.execute("SELECT visit_code, territory FROM outlets WHERE outlet_code = %s", (outlet_code,))
+        cur.execute("SELECT visit_code, territory, latitude, longitude FROM outlets WHERE outlet_code = %s", (outlet_code,))
         row = cur.fetchone()
-        visit_code_on_file, outlet_territory = (row if row else (None, None))
+        visit_code_on_file, outlet_territory, outlet_lat, outlet_lon = row if row else (None, None, None, None)
         cur.execute("SELECT territory FROM bdms WHERE bdm_code = %s", (bdm_code,))
         bdm_row = cur.fetchone()
         bdm_territory = bdm_row[0] if bdm_row else None
@@ -223,8 +233,16 @@ def submit_visit(conn, *, bdm_code, outlet_code, entered_code, responses, order_
     has_outcome = bool(order_value) or bool(collection_amount) or any(
         r["response_type"] == "blocker" and r["response_value"] for r in responses
     )
-    gps_anomaly = flag_outside_territory(outlet_territory, bdm_territory)
+    gps_anomaly = (
+        flag_outside_territory(outlet_territory, bdm_territory)
+        or flag_location_mismatch(captured_latitude, captured_longitude, captured_accuracy, outlet_lat, outlet_lon)
+    )
     confidence = compute_confidence(code_match=code_match, has_outcome_evidence=has_outcome, gps_anomaly=gps_anomaly)
+
+    if captured_latitude is not None and captured_longitude is not None:
+        stored_lat, stored_lon, location_source = captured_latitude, captured_longitude, "device"
+    else:
+        stored_lat, stored_lon, location_source = outlet_lat, outlet_lon, ("outlet_registered" if outlet_lat is not None else None)
 
     # uuid4, not a timestamp: two visits submitted in rapid succession can
     # land in the same tick on Windows (clock resolution ~15ms), which
@@ -235,10 +253,11 @@ def submit_visit(conn, *, bdm_code, outlet_code, entered_code, responses, order_
         cur.execute("""
             INSERT INTO visits (visit_id, bdm_code, outlet_code, visit_date, check_in_time, source,
                                  entered_code, code_match, photo_taken, latitude, longitude,
+                                 location_accuracy_m, location_source,
                                  gps_anomaly, confidence, is_complete)
-            VALUES (%s, %s, %s, CURRENT_DATE, CURRENT_TIME, 'app', %s, %s, %s, %s, %s, %s, %s, %s)
+            VALUES (%s, %s, %s, CURRENT_DATE, CURRENT_TIME, 'app', %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
         """, (visit_id, bdm_code, outlet_code, entered_code, code_match, photo_taken,
-              latitude, longitude, gps_anomaly, confidence.level, is_complete))
+              stored_lat, stored_lon, captured_accuracy, location_source, gps_anomaly, confidence.level, is_complete))
 
         for r in responses:
             cur.execute("""

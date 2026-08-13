@@ -18,6 +18,8 @@ Confidence levels, strongest signal first:
 from dataclasses import dataclass
 from typing import Optional
 
+from logic.geo import haversine_meters
+
 
 @dataclass
 class ConfidenceResult:
@@ -76,4 +78,30 @@ def flag_tight_pacing(gap_minutes: Optional[float], same_outlet: bool) -> Option
 def flag_outside_territory(outlet_territory: Optional[str], bdm_territory: Optional[str]) -> Optional[str]:
     if outlet_territory and bdm_territory and outlet_territory != bdm_territory:
         return f"Outlet is in {outlet_territory}, BDM is assigned to {bdm_territory}"
+    return None
+
+
+# Deliberately generous. Phone GPS error is commonly 10-50m, so this is
+# not a precision check and MUST NOT be tightened to try to identify
+# which of two adjacent outlets a visit was at -- that is exactly the
+# Madurai case the README says GPS cannot solve. This only catches gross
+# mismatches: checking in from home, or a code copied from a colleague.
+LOCATION_MISMATCH_METERS = 500
+# A device-reported accuracy worse than this makes the reading itself
+# untrustworthy (e.g. no GPS lock, Wi-Fi-only positioning indoors) --
+# skip the mismatch check rather than flag noise as an anomaly.
+UNRELIABLE_ACCURACY_METERS = 1000
+
+
+def flag_location_mismatch(
+    captured_lat: Optional[float], captured_lon: Optional[float], captured_accuracy: Optional[float],
+    outlet_lat: Optional[float], outlet_lon: Optional[float],
+) -> Optional[str]:
+    if None in (captured_lat, captured_lon, outlet_lat, outlet_lon):
+        return None
+    if captured_accuracy is not None and captured_accuracy > UNRELIABLE_ACCURACY_METERS:
+        return None
+    dist = haversine_meters(captured_lat, captured_lon, outlet_lat, outlet_lon)
+    if dist > LOCATION_MISMATCH_METERS:
+        return f"Phone was {dist / 1000:.1f} km from the outlet's registered address at check-in"
     return None

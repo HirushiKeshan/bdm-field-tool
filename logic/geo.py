@@ -7,8 +7,20 @@ relative to its territory's centroid, purely so a BDM can plan a
 realistic day without covering an entire district on foot. This is an
 inferred grouping, not a real locality name -- labelled as such in the UI.
 """
+import math
 from collections import defaultdict
 from statistics import mean
+
+
+def haversine_meters(lat1, lon1, lat2, lon2) -> float:
+    """Great-circle distance in metres. Shared by seed.py's duplicate-outlet
+    detection and logic/confidence.py's location-mismatch check -- one
+    implementation, not two copies drifting apart."""
+    R = 6371000
+    p1, p2 = math.radians(lat1), math.radians(lat2)
+    dphi, dlmb = math.radians(lat2 - lat1), math.radians(lon2 - lon1)
+    a = math.sin(dphi / 2) ** 2 + math.cos(p1) * math.cos(p2) * math.sin(dlmb / 2) ** 2
+    return 2 * R * math.asin(min(1, a ** 0.5))
 
 
 def compute_centroids(outlets: list) -> dict:

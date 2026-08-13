@@ -19,7 +19,9 @@ visit_id = submit_visit(
                 "response_type": "blocker", "response_value": "No"}],
     order_value=50000, collection_amount=20000,
     agreed_action_text="Will push the new iPhone bundle next visit",
-    dues_amount=15000, photo_taken=False, latitude=10.9, longitude=77.99, is_complete=True,
+    dues_amount=15000, photo_taken=False,
+    captured_latitude=ctx["outlet"]["latitude"], captured_longitude=ctx["outlet"]["longitude"], captured_accuracy=15,
+    is_complete=True,
 )
 print("created visit:", visit_id)
 
@@ -44,7 +46,7 @@ print("\n--- submit_visit: no code entered, no outcome -> should be Unverified -
 visit_id2 = submit_visit(
     conn, bdm_code="BDM004", outlet_code="OA0363", entered_code=None, responses=[],
     order_value=None, collection_amount=None, agreed_action_text=None, dues_amount=None,
-    photo_taken=False, latitude=None, longitude=None, is_complete=False,
+    photo_taken=False, captured_latitude=None, captured_longitude=None, captured_accuracy=None, is_complete=False,
 )
 with conn.cursor() as cur:
     cur.execute("SELECT confidence, is_complete FROM visits WHERE visit_id = %s", (visit_id2,))
@@ -54,10 +56,21 @@ print("\n--- submit_visit: wrong code entered but outcome recorded -> should be 
 visit_id3 = submit_visit(
     conn, bdm_code="BDM004", outlet_code="OA0363", entered_code="0000", responses=[],
     order_value=10000, collection_amount=None, agreed_action_text=None, dues_amount=None,
-    photo_taken=False, latitude=None, longitude=None, is_complete=True,
+    photo_taken=False, captured_latitude=None, captured_longitude=None, captured_accuracy=None, is_complete=True,
 )
 with conn.cursor() as cur:
     cur.execute("SELECT confidence, code_match FROM visits WHERE visit_id = %s", (visit_id3,))
+    print("stored:", cur.fetchone())
+
+print("\n--- submit_visit: code matches but captured GPS is 400km away -> location mismatch anomaly ---")
+visit_id4 = submit_visit(
+    conn, bdm_code="BDM004", outlet_code="OA0363", entered_code=ctx["outlet"]["visit_code"], responses=[],
+    order_value=None, collection_amount=None, agreed_action_text=None, dues_amount=None,
+    photo_taken=False, captured_latitude=13.0827, captured_longitude=80.2707, captured_accuracy=10,
+    is_complete=True,
+)
+with conn.cursor() as cur:
+    cur.execute("SELECT confidence, gps_anomaly, location_source FROM visits WHERE visit_id = %s", (visit_id4,))
     print("stored:", cur.fetchone())
 
 print("\n--- fetch_week_summary for BDM004 ---")

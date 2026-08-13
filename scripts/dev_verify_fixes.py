@@ -18,7 +18,7 @@ print(f"{sample_code} days_since before:", before[sample_code]["days_since"])
 submit_visit(
     conn, bdm_code="BDM001", outlet_code="OA0001", entered_code=None, responses=[],
     order_value=None, collection_amount=None, agreed_action_text=None, dues_amount=None,
-    photo_taken=False, latitude=None, longitude=None, is_complete=False,
+    photo_taken=False, captured_latitude=None, captured_longitude=None, captured_accuracy=None, is_complete=False,
 )
 
 after = fetch_visit_recency(conn)
@@ -31,7 +31,7 @@ visit_id = submit_visit(
     conn, bdm_code="BDM002", outlet_code="OA0006", entered_code=None,
     responses=[],  # simulates every blocker radio left at index=None, filtered out before reaching here
     order_value=None, collection_amount=None, agreed_action_text=None, dues_amount=None,
-    photo_taken=False, latitude=None, longitude=None, is_complete=True,
+    photo_taken=False, captured_latitude=None, captured_longitude=None, captured_accuracy=None, is_complete=True,
 )
 with conn.cursor() as cur:
     cur.execute("SELECT confidence FROM visits WHERE visit_id = %s", (visit_id,))

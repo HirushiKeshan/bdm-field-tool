@@ -1,10 +1,72 @@
 from datetime import datetime
 
 import streamlit as st
+import streamlit.components.v1 as components
 
 from db.queries import get_outlet_counter_context, submit_visit
 from logic.charts import render_trend_sparkline
 from logic.scoring import format_inr
+
+_GPS_CAPTURE_HTML = """
+<div style="font-family:sans-serif;">
+<button id="gpsBtn" style="width:100%; min-height:2.8rem; border-radius:8px; border:1px solid #0B2D6B;
+    background:#0B2D6B; color:white; font-size:1rem; font-weight:600; cursor:pointer;">
+    \U0001F4CD Capture my location
+</button>
+<div id="gpsStatus" style="font-size:0.78rem; color:#8892a6; margin-top:0.4rem;"></div>
+</div>
+<script>
+document.getElementById('gpsBtn').onclick = function() {
+    var statusEl = document.getElementById('gpsStatus');
+    statusEl.innerText = 'Getting your location...';
+    if (!navigator.geolocation) {
+        statusEl.innerText = 'This browser cannot share location.';
+        return;
+    }
+    navigator.geolocation.getCurrentPosition(
+        function(pos) {
+            var params = new URLSearchParams(window.parent.location.search);
+            params.set('cap_lat', pos.coords.latitude);
+            params.set('cap_lon', pos.coords.longitude);
+            params.set('cap_acc', Math.round(pos.coords.accuracy));
+            window.parent.location.search = params.toString();
+        },
+        function(err) {
+            statusEl.innerText = 'Could not get location (' + err.message + '). You can still submit without it.';
+        },
+        {enableHighAccuracy: true, timeout: 10000}
+    );
+};
+</script>
+"""
+
+
+def _read_captured_location(outlet_code):
+    """Session state, keyed to the outlet currently open -- a capture from
+    a previously-viewed outlet must never leak onto this one."""
+    if st.session_state.get("captured_gps_outlet") != outlet_code:
+        for key in ("captured_lat", "captured_lon", "captured_acc"):
+            st.session_state.pop(key, None)
+        st.session_state.captured_gps_outlet = outlet_code
+
+    cap_lat = st.query_params.get("cap_lat")
+    if cap_lat is not None:
+        try:
+            st.session_state.captured_lat = float(cap_lat)
+            st.session_state.captured_lon = float(st.query_params.get("cap_lon"))
+            acc = st.query_params.get("cap_acc")
+            st.session_state.captured_acc = float(acc) if acc else None
+        except (TypeError, ValueError):
+            pass
+        finally:
+            for key in ("cap_lat", "cap_lon", "cap_acc"):
+                st.query_params.pop(key, None)
+
+    return (
+        st.session_state.get("captured_lat"),
+        st.session_state.get("captured_lon"),
+        st.session_state.get("captured_acc"),
+    )
 
 
 def render(conn, bdm_code, outlet_code):
@@ -24,6 +86,16 @@ def render(conn, bdm_code, outlet_code):
     if outlet.get("possible_duplicate_of"):
         st.warning(f'⚠ Possible duplicate of outlet {outlet["possible_duplicate_of"]} — same location, similar name. '
                    f'Verify with the owner before treating this as a separate account.')
+
+    cap_lat, cap_lon, cap_acc = _read_captured_location(outlet_code)
+    st.markdown('<div class="section-label">Location</div>', unsafe_allow_html=True)
+    if cap_lat is not None:
+        acc_note = f' (±{cap_acc:.0f}m)' if cap_acc else ""
+        st.success(f"📍 Location captured{acc_note}. This confirms roughly where your phone was, "
+                   f"not which of two adjacent counters you were in — that's still the outlet code below.")
+    else:
+        components.html(_GPS_CAPTURE_HTML, height=80)
+        st.caption("Optional, like the photo — it strengthens the audit trail but never blocks a submission.")
 
     # --- give before you ask ---
     st.markdown('<div class="section-label">This month vs last month</div>', unsafe_allow_html=True)
@@ -111,7 +183,7 @@ def render(conn, bdm_code, outlet_code):
                 agreed_action_text=agreed_action_text,
                 dues_amount=dues_amount_input or None,
                 photo_taken=photo is not None,
-                latitude=outlet.get("latitude"), longitude=outlet.get("longitude"),
+                captured_latitude=cap_lat, captured_longitude=cap_lon, captured_accuracy=cap_acc,
                 is_complete=bool(submit_full),
             )
             if submit_full:

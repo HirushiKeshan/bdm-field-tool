@@ -142,6 +142,8 @@ def _classify_anomaly(reason: str) -> str:
         return "Impossibly tight pacing between outlets"
     if "Outlet is in" in reason:
         return "Visit outside assigned territory"
+    if "km from the outlet's registered address" in reason:
+        return "Device GPS far from outlet address"
     return "Other"
 
 

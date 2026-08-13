@@ -22,6 +22,7 @@ from dotenv import load_dotenv
 
 from db.connection import apply_schema, get_connection
 from logic import normalize as norm
+from logic.geo import haversine_meters
 
 load_dotenv()
 
@@ -48,15 +49,6 @@ def make_visit_code(outlet_code: str) -> str:
     return str(int(digest[:8], 16) % 10000).zfill(4)
 
 
-def haversine_m(lat1, lon1, lat2, lon2):
-    import math
-    R = 6371000
-    p1, p2 = math.radians(lat1), math.radians(lat2)
-    dphi, dlmb = math.radians(lat2 - lat1), math.radians(lon2 - lon1)
-    a = math.sin(dphi / 2) ** 2 + math.cos(p1) * math.cos(p2) * math.sin(dlmb / 2) ** 2
-    return 2 * R * math.asin(min(1, a ** 0.5))
-
-
 def _name_key(name):
     return (name or "").lower().replace("- branch", "").replace("-branch", "").strip().replace(" ", "")
 
@@ -78,7 +70,7 @@ def find_possible_duplicates(outlets):
                 continue
             if not _name_key(a["outlet_name"]):
                 continue
-            dist = haversine_m(a["latitude"], a["longitude"], b["latitude"], b["longitude"])
+            dist = haversine_meters(a["latitude"], a["longitude"], b["latitude"], b["longitude"])
             if dist <= 50:
                 lo, hi = sorted([a["outlet_code"], b["outlet_code"]])
                 dup_of[hi] = lo

@@ -50,13 +50,19 @@ CREATE TABLE IF NOT EXISTS visits (
     entered_code   TEXT,                 -- code the BDM typed in at the counter (Phase 3)
     code_match     BOOLEAN,              -- entered_code == outlets.visit_code
     photo_taken    BOOLEAN NOT NULL DEFAULT FALSE,
-    latitude       DOUBLE PRECISION,
+    latitude       DOUBLE PRECISION,     -- device GPS at check-in if captured, else the outlet's registered coordinate
     longitude      DOUBLE PRECISION,
     gps_anomaly    TEXT,                 -- reason string if the pace/location looks impossible, else NULL
     confidence     TEXT,                 -- 'Verified' | 'Partial' | 'Unverified', computed at write time
     is_complete    BOOLEAN NOT NULL DEFAULT FALSE,  -- checklist fully submitted vs partial-saved
     created_at     TIMESTAMPTZ NOT NULL DEFAULT now()
 );
+
+-- Added after the initial launch: real device GPS capture (see
+-- docs/ai-log.md). ALTER ... IF NOT EXISTS so this also applies to
+-- already-seeded databases, not just a fresh CREATE TABLE.
+ALTER TABLE visits ADD COLUMN IF NOT EXISTS location_accuracy_m DOUBLE PRECISION;  -- device-reported GPS accuracy in metres, NULL if not captured
+ALTER TABLE visits ADD COLUMN IF NOT EXISTS location_source TEXT;  -- 'device' | 'outlet_registered' | NULL
 
 CREATE TABLE IF NOT EXISTS visit_checklist_responses (
     id              SERIAL PRIMARY KEY,
