@@ -106,9 +106,24 @@ def render_brand_header():
 
 
 @st.cache_resource
-def _conn():
+def _make_conn():
     conn = get_connection()
     _ensure_seeded(conn)
+    return conn
+
+
+def _get_live_conn():
+    """@st.cache_resource hands back the SAME connection object for the
+    life of the process. A pooled connection (Supabase's Session pooler,
+    in particular) can be closed server-side after sitting idle -- .closed
+    only reflects client-initiated closes, so this is a best-effort
+    proactive check; the except psycopg2.InterfaceError branch in main()
+    is what actually catches a connection that died silently on the
+    server side and only surfaces on the next query."""
+    conn = _make_conn()
+    if conn.closed:
+        _make_conn.clear()
+        conn = _make_conn()
     return conn
 
 
@@ -135,7 +150,7 @@ NAV_TABS = [("beat", "\U0001F4CD My Visits"), ("week", "\U0001F4C5 This Week"), 
 
 
 def main():
-    conn = _conn()
+    conn = _get_live_conn()
     render_brand_header()
 
     if "bdm_code" not in st.session_state:
@@ -168,6 +183,15 @@ def main():
             week.render(conn, st.session_state.bdm_code)
         else:
             beat.render(conn, st.session_state.bdm_code)
+    except psycopg2.InterfaceError:
+        # "connection already closed" -- the pooled connection died
+        # server-side (Supabase's Session pooler recycling an idle
+        # connection is the common case) since it was last cached.
+        # conn.rollback() on an already-dead connection raises this exact
+        # same error again, so don't call it; drop the cache and retry
+        # once with a fresh connection instead of crashing the session.
+        _make_conn.clear()
+        st.rerun()
     except psycopg2.Error:
         # The connection is cached and reused across reruns (st.cache_resource) --
         # without this, one bad query leaves every later query on this
