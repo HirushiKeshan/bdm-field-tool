@@ -43,7 +43,28 @@ st.markdown(MOBILE_CSS, unsafe_allow_html=True)
 
 @st.cache_resource
 def _conn():
-    return get_connection()
+    conn = get_connection()
+    _ensure_seeded(conn)
+    return conn
+
+
+def _ensure_seeded(conn):
+    """Runs once per app process (guarded by @st.cache_resource on _conn).
+    Lets a fresh deploy (e.g. a brand-new Supabase database) come up ready
+    to use with nothing more than DATABASE_URL set -- no separate manual
+    `python seed.py` step needed. Safe to call on an already-seeded
+    database too: apply_schema is idempotent, and the row-count check
+    below skips reloading if data is already present."""
+    from db.connection import apply_schema
+
+    apply_schema(conn)
+    with conn.cursor() as cur:
+        cur.execute("SELECT COUNT(*) FROM outlets")
+        already_seeded = cur.fetchone()[0] > 0
+    if not already_seeded:
+        with st.spinner("First-time setup: loading outlet, billing, and visit data..."):
+            import seed
+            seed.main()
 
 
 def main():

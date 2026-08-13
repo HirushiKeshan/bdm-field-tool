@@ -19,11 +19,10 @@ This starts Postgres, seeds it from the four CSVs, and starts the app. Open **ht
 ```bash
 pip install -r requirements.txt
 cp .env.example .env        # edit DATABASE_URL if you're not using the docker-compose Postgres
-python seed.py
 streamlit run app.py
 ```
 
-`.env.example` has a working default for a local Postgres matching `docker-compose.yml`'s service (`postgresql://bdm:bdm@localhost:5432/bdm_tool`) — if you don't already have Postgres running locally, `docker compose up postgres` starts just the database and leaves the app to you.
+The app seeds the database itself on first load if it's empty (schema + all four CSVs) — no separate `python seed.py` step needed, though `python seed.py` still works standalone if you'd rather run it explicitly (e.g. to see the coercion summary printed to a terminal, or to re-run it after editing a CSV). `.env.example` has a working default matching `docker-compose.yml`'s Postgres service (`postgresql://bdm:bdm@localhost:5432/bdm_tool`) — if you don't already have Postgres running locally, `docker compose up postgres` starts just the database and leaves the app to you.
 
 ### Running the tests
 
@@ -36,8 +35,9 @@ pytest
 
 ### Deploying it live
 
-1. Create a free Supabase project, run `db/schema.sql` in its SQL editor (or point `seed.py` at it and let it apply the schema itself), then `DATABASE_URL=<supabase-uri> python seed.py`.
-2. Push this repo to GitHub, deploy `app.py` on Streamlit Community Cloud, and add `DATABASE_URL` under the app's Secrets.
+1. Create a free Supabase project. Use its **Session pooler** connection string (Project Settings → Database → Connect → Session pooler), not the direct connection — the direct one is IPv6-only unless you pay for Supabase's IPv4 add-on, and Streamlit Community Cloud's network is IPv4.
+2. Push this repo to GitHub, deploy `app.py` on Streamlit Community Cloud, and paste that connection string as `DATABASE_URL` under the app's Secrets.
+3. That's it — first load seeds the empty database automatically (see `app.py::_ensure_seeded`), the same idempotent path `seed.py` uses standalone.
 
 ## Who this is for
 
