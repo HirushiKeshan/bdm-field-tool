@@ -37,14 +37,19 @@ def render(conn):
 
     st.header("2. Time allocation")
     st.caption("Share of each BDM's visits going to outlets that actually matter (Core / Slipping / Dormant-valuable).")
-    if bdm_code:
-        st.caption(f'This chart always compares everyone — **{view_choice}** is outlined below so you can see where they stand.')
     alloc = time_allocation_by_bdm(conn)
-    sort_choice = st.selectbox("Sort by", list(_SORT_LABELS.keys()), key="time_alloc_sort")
-    st.plotly_chart(
-        build_time_allocation_figure(alloc, sort_by=_SORT_LABELS[sort_choice], highlight_bdm_code=bdm_code),
-        use_container_width=True, config=_CHART_CONFIG, key="time_alloc_chart",
-    )
+    if bdm_code:
+        alloc = [r for r in alloc if r["bdm_code"] == bdm_code]
+        st.plotly_chart(
+            build_time_allocation_figure(alloc, sort_by="lowest"),
+            use_container_width=True, config=_CHART_CONFIG, key="time_alloc_chart",
+        )
+    else:
+        sort_choice = st.selectbox("Sort by", list(_SORT_LABELS.keys()), key="time_alloc_sort")
+        st.plotly_chart(
+            build_time_allocation_figure(alloc, sort_by=_SORT_LABELS[sort_choice]),
+            use_container_width=True, config=_CHART_CONFIG, key="time_alloc_chart",
+        )
     st.markdown(
         '<div style="font-size:0.72rem; color:#98a0b3; margin-top:-0.6rem;">'
         '<span style="color:#D6266E;">■</span> under 30% &nbsp; '
