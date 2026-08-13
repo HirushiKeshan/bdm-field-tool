@@ -7,13 +7,8 @@ from logic.scoring import format_inr
 
 def render(conn):
     st.title("Manager view")
-    st.caption("A byproduct of the BDM tool being used, not the point of it. "
-               "Every number here traces back to the same outlets/billing/visit tables the BDM app reads.")
-
-    if st.button("← Back to BDM app"):
-        st.session_state.screen = "beat"
-        st.query_params.clear()
-        st.rerun()
+    st.caption("Every number here traces back to the same outlets/billing/visit tables the BDM app reads "
+               "-- nothing here is a separate rollup.")
 
     st.header("1. Coverage")
     st.caption("Of the outlets that bill, who hasn't been visited in 30 days? Named, not a percentage.")

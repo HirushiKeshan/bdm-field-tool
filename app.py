@@ -1,7 +1,12 @@
 """
-BDM Field Tool -- entrypoint. Three screens for the BDM (My Beat, Counter
-Conversation, My Week), one manager view reached through a low-key link
-at the bottom since it's a byproduct, not the point (see README).
+BDM Field Tool -- entrypoint. My Beat, Counter Conversation, and My Week
+are the BDM's screens; Manager view is a top-level tab alongside them.
+
+Note on that last point: the brief this app was originally built against
+argued Manager view should be a low-key, secondary link rather than an
+equal nav tab ("manager visibility is a byproduct... never the primary
+design goal") -- promoting it to a full tab, as done here, was an
+explicit choice made after flagging that tradeoff. See docs/ai-log.md.
 
 No login: a BDM picks their own name from a list on first load. This is a
 deliberate, named cut -- see README "What I left out and why".
@@ -36,6 +41,14 @@ input, select, textarea {font-size: 1.05rem !important;}
 .section-label {font-size:0.85rem; text-transform:uppercase; letter-spacing:0.04em;
                  color:#888; margin-top:0.8rem; margin-bottom:0.2rem;}
 footer {visibility: hidden;}
+
+/* Equal-weight tab bar: My Beat / My Week / Manager. The active tab is a
+   plain button (Streamlit's default styling reads as "selected" against
+   the other two, which are ghost/outline via kind=secondary). */
+.nav-row .stButton>button[kind="secondary"] {
+    background: transparent; border: 1px solid rgba(128,128,128,0.35);
+}
+.switch-bdm-link {font-size:0.82rem; color:#888; text-decoration:none;}
 </style>
 """
 st.markdown(MOBILE_CSS, unsafe_allow_html=True)
@@ -67,35 +80,42 @@ def _ensure_seeded(conn):
             seed.main()
 
 
+NAV_TABS = [("beat", "\U0001F4CD My Beat"), ("week", "\U0001F4C5 My Week"), ("manager", "\U0001F4CA Manager")]
+
+
 def main():
     conn = _conn()
 
     if "bdm_code" not in st.session_state:
         st.session_state.bdm_code = st.query_params.get("bdm")
     if "screen" not in st.session_state:
-        st.session_state.screen = st.query_params.get("screen", "beat")
+        screen = st.query_params.get("screen", "beat")
+        st.session_state.screen = "manager" if st.query_params.get("manager") == "1" else screen
     if "selected_outlet" not in st.session_state:
         st.session_state.selected_outlet = st.query_params.get("outlet")
         if st.session_state.selected_outlet:
             st.session_state.screen = "counter"
 
     try:
+        if st.session_state.screen == "counter" and st.session_state.selected_outlet:
+            counter.render(conn, st.session_state.bdm_code, st.session_state.selected_outlet)
+            return
+
         if st.session_state.screen == "manager":
+            render_nav_bar(active="manager")
             manager.render(conn)
             return
 
+        # My Beat / My Week both need a BDM identity; Manager does not.
         if not st.session_state.bdm_code:
             render_bdm_picker(conn)
             return
 
-        if st.session_state.screen == "counter" and st.session_state.selected_outlet:
-            counter.render(conn, st.session_state.bdm_code, st.session_state.selected_outlet)
-        elif st.session_state.screen == "week":
+        render_nav_bar(active=st.session_state.screen)
+        if st.session_state.screen == "week":
             week.render(conn, st.session_state.bdm_code)
-            render_bottom_nav()
         else:
             beat.render(conn, st.session_state.bdm_code)
-            render_bottom_nav()
     except psycopg2.Error:
         # The connection is cached and reused across reruns (st.cache_resource) --
         # without this, one bad query leaves every later query on this
@@ -107,6 +127,7 @@ def main():
 
 def render_bdm_picker(conn):
     from db.queries import fetch_bdms
+    render_nav_bar(active="beat")
     st.title("BDM Field Tool")
     st.caption("No login yet -- pick your name to see your beat.")
     bdms = fetch_bdms(conn)
@@ -114,32 +135,36 @@ def render_bdm_picker(conn):
     choice = st.selectbox("Who are you?", options=range(len(bdms)), format_func=lambda i: names[i])
     if st.button("Start my day", type="primary"):
         st.session_state.bdm_code = bdms[choice]["bdm_code"]
+        if st.session_state.screen not in ("beat", "week"):
+            st.session_state.screen = "beat"
         st.rerun()
 
 
-def render_bottom_nav():
+def render_nav_bar(active: str):
+    """My Beat / My Week / Manager as three equal-weight tabs. Switching
+    BDM is a separate, secondary action (small link, not a tab) since
+    it's rare compared to moving between these three sections."""
+    st.markdown('<div class="nav-row">', unsafe_allow_html=True)
+    cols = st.columns(3)
+    for col, (key, label) in zip(cols, NAV_TABS):
+        with col:
+            is_active = key == active
+            if st.button(label, key=f"nav_{key}", type="primary" if is_active else "secondary"):
+                # My Beat/My Week need a BDM identity; if none is set yet,
+                # this still records the intended tab so render_bdm_picker
+                # can land there right after "Start my day".
+                st.session_state.screen = key
+                st.rerun()
+    st.markdown('</div>', unsafe_allow_html=True)
+
+    if active in ("beat", "week") and st.session_state.get("bdm_code"):
+        _, col_b = st.columns([3, 1])
+        with col_b:
+            if st.button("Switch BDM", key="switch_bdm"):
+                st.session_state.bdm_code = None
+                st.session_state.screen = "beat"
+                st.rerun()
     st.divider()
-    col1, col2, col3 = st.columns(3)
-    with col1:
-        if st.button("\U0001F4CD My Beat"):
-            st.session_state.screen = "beat"
-            st.rerun()
-    with col2:
-        if st.button("\U0001F4C5 My Week"):
-            st.session_state.screen = "week"
-            st.rerun()
-    with col3:
-        if st.button("\U0001F504 Switch BDM"):
-            st.session_state.bdm_code = None
-            st.rerun()
-    st.markdown(
-        '<div style="text-align:center; margin-top:0.5rem;">'
-        '<a href="?manager=1" style="font-size:0.8rem; color:#888;">Manager view</a></div>',
-        unsafe_allow_html=True,
-    )
 
-
-if st.query_params.get("manager") == "1":
-    st.session_state.screen = "manager"
 
 main()

@@ -1,6 +1,8 @@
 # BDM Field Tool
 
-A field-sales tool for an iPhone distributor's 12 BDMs and ~800 outlets across Tamil Nadu. It ranks each BDM's beat by what actually needs attention, gives them the outlet's numbers and last agreed action before they open their mouth at the counter, and turns the checklist outcome into the manager's evidence for whether a visit really happened. Built for the BDM first — the manager view is a byproduct of the same data, not a separate dashboard.
+A field-sales tool for an iPhone distributor's 12 BDMs and ~800 outlets across Tamil Nadu. It ranks each BDM's beat by what actually needs attention, gives them the outlet's numbers and last agreed action before they open their mouth at the counter, and turns the checklist outcome into the manager's evidence for whether a visit really happened. Built for the BDM first — every number the manager sees traces back to the same data the BDM screens already use, not a separate rollup.
+
+**A note on scope, for anyone comparing this against the original brief**: that brief argued the manager view should be a low-key, secondary link rather than an equal navigation tab ("manager visibility is a byproduct... never the primary design goal"). It shipped that way initially. It was then explicitly promoted to a full tab alongside My Beat and My Week at the requester's direction, after that tradeoff was flagged — logged here for anyone auditing the decision trail, not as a disagreement with the reasoning.
 
 ## Run it in under 15 minutes
 
