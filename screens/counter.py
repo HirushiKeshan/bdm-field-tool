@@ -25,11 +25,22 @@ document.getElementById('gpsBtn').onclick = function() {
     }
     navigator.geolocation.getCurrentPosition(
         function(pos) {
-            var params = new URLSearchParams(window.parent.location.search);
+            // Streamlit Community Cloud wraps the app in its own sandboxed
+            // iframe (an extra layer local `streamlit run` doesn't have).
+            // Assigning window.parent.location.search directly throws
+            // SecurityError there ("does not have permission to navigate
+            // the target frame") even though it works fine locally --
+            // a real <a target="_top"> click sidesteps that restriction.
+            // See docs/ai-log.md.
+            var params = new URLSearchParams(window.top.location.search);
             params.set('cap_lat', pos.coords.latitude);
             params.set('cap_lon', pos.coords.longitude);
             params.set('cap_acc', Math.round(pos.coords.accuracy));
-            window.parent.location.search = params.toString();
+            var link = document.createElement('a');
+            link.href = window.top.location.pathname + '?' + params.toString();
+            link.target = '_top';
+            document.body.appendChild(link);
+            link.click();
         },
         function(err) {
             statusEl.innerText = 'Could not get location (' + err.message + '). You can still submit without it.';
