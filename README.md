@@ -45,7 +45,7 @@ pytest
 
 ## Who this is for
 
-The field executive opening it on their phone before a counter visit, and — only because that rep is now actually using it — the manager who couldn't previously tell who was visited, whether the conversation happened, or which of three outlets on the same street a visit log entry actually meant.
+The field executive opening it on their phone before a counter visit, and — only because that rep is now actually using it — the manager who couldn't previously tell who was visited, whether the conversation happened, or which of two identically-registered outlets a visit log entry actually meant (see "The Madurai decision" below for the specific 20 pairs this turned out to be).
 
 ## What I assumed
 
@@ -76,7 +76,7 @@ Every one of these is a real inference the source data forced, not a guess made 
 2. **Resolve the 20 possible-duplicate outlets** with the client directly — every one of them is currently billing and being visited under two separate codes, which means the manager's revenue and coverage numbers are already slightly wrong in a specific, findable way.
 3. **A real dues ledger**, if one exists anywhere in the client's systems (it wasn't in the four files given) — manual entry is a stopgap, not a fix.
 4. **Route sequencing** once outlet coordinates are complete enough to trust (currently 108 of 820 have none).
-5. **Offline queue** for the Counter Conversation form — the outlets that most need a visit are often the ones with the worst signal.
+5. **Offline queue** for the Counter Conversation form — a written visit currently either reaches Postgres or is lost outright; no dataset here tells me connectivity is worse at the dormant/rural end of the beat, but it's the failure mode most worth insuring against before assuming it away.
 6. Re-run the segmentation thresholds (30% slip, median valuable-bar) past the client once they've seen the tool live — both are defensible defaults, not numbers the client confirmed.
 
 ## The Madurai decision

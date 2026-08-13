@@ -3,15 +3,8 @@ from datetime import datetime
 import streamlit as st
 
 from db.queries import get_outlet_counter_context, submit_visit
+from logic.charts import render_trend_sparkline
 from logic.scoring import format_inr
-
-
-def _trend_chip(point):
-    if not point["has_record"]:
-        return f'<span style="color:#aaa; border:1px dashed #ccc; border-radius:6px; padding:2px 6px; font-size:0.75rem;">{point["month"][-2:]}: no record</span>'
-    if point["value"] == 0:
-        return f'<span style="color:#8a1f1f; border:1px solid #f3c; background:#fde2e2; border-radius:6px; padding:2px 6px; font-size:0.75rem;">{point["month"][-2:]}: ₹0 (billed nothing)</span>'
-    return f'<span style="border:1px solid #ccc; border-radius:6px; padding:2px 6px; font-size:0.75rem;">{point["month"][-2:]}: {format_inr(point["value"])}</span>'
 
 
 def render(conn, bdm_code, outlet_code):
@@ -38,7 +31,14 @@ def render(conn, bdm_code, outlet_code):
     c1, c2 = st.columns(2)
     c1.metric("This month", format_inr(latest) if latest is not None else "No record")
     c2.metric("Last month", format_inr(prior) if prior is not None else "No record")
-    st.markdown(" ".join(_trend_chip(p) for p in ctx["trend"]), unsafe_allow_html=True)
+    st.markdown(render_trend_sparkline(ctx["trend"]), unsafe_allow_html=True)
+    st.markdown(
+        '<div style="font-size:0.72rem; color:#98a0b3; margin-top:-0.3rem;">'
+        '<span style="color:#0B2D6B;">●</span> billed &nbsp; '
+        '<span style="color:#D6266E;">●</span> billed nothing &nbsp; '
+        '<span style="color:#b6bcc9;">○</span> no record</div>',
+        unsafe_allow_html=True,
+    )
 
     st.markdown('<div class="section-label">Outstanding dues</div>', unsafe_allow_html=True)
     if ctx["dues"]:

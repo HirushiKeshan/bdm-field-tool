@@ -33,10 +33,26 @@ MOBILE_CSS = f"""
 div.block-container {{padding-top: 3.2rem; padding-bottom: 5rem; max-width: 480px;}}
 button[kind], .stButton>button, .stDownloadButton>button {{
     min-height: 3rem; font-size: 1.05rem; width: 100%; border-radius: 8px;
+    transition: transform 0.12s ease, box-shadow 0.12s ease;
 }}
+.stButton>button:hover, .stDownloadButton>button:hover {{
+    transform: translateY(-1px); box-shadow: 0 4px 10px rgba(11,45,107,0.18);
+}}
+.stButton>button:active {{transform: translateY(0); box-shadow: none;}}
 div[data-testid="stRadio"] label, div[data-testid="stSelectbox"] label {{font-size: 1rem;}}
 input, select, textarea {{font-size: 1.05rem !important;}}
-h1 {{color: {BRAND_NAVY} !important; font-weight: 800 !important;}}
+h1 {{color: {BRAND_NAVY} !important; font-weight: 800 !important; letter-spacing: -0.01em;}}
+[data-testid="stMetricValue"] {{color: {BRAND_NAVY};}}
+hr {{border-color: rgba(11,45,107,0.12) !important;}}
+
+/* Expander sections in My Visits: rounded, subtle hover so a collapsed
+   section reads as clickable, not just a label. */
+div[data-testid="stExpander"] {{
+    border: 1px solid rgba(11,45,107,0.12) !important; border-radius: 10px !important;
+    margin-bottom: 0.5rem; transition: box-shadow 0.12s ease;
+}}
+div[data-testid="stExpander"]:hover {{box-shadow: 0 2px 8px rgba(11,45,107,0.08);}}
+div[data-testid="stExpander"] summary {{font-weight: 600; color: {BRAND_NAVY};}}
 
 .brand-header {{display:flex; align-items:center; gap:0.5rem; margin-bottom:0.6rem;}}
 .brand-swoosh {{width:22px; height:22px; border-radius:6px; flex-shrink:0;
@@ -51,8 +67,10 @@ h1 {{color: {BRAND_NAVY} !important; font-weight: 800 !important;}}
     border-bottom: 3px solid transparent;
     border-image: linear-gradient(90deg, #D6266E, #7B3FA0, #F5821F, #1EBFAE) 1;}}
 
-.beat-card {{border: 1px solid rgba(11,45,107,0.15); border-radius: 10px; padding: 0.9rem;
-            margin-bottom: 0.6rem;}}
+.beat-card {{border: 1px solid rgba(11,45,107,0.12); border-radius: 10px; padding: 0.9rem;
+            margin-bottom: 0.6rem; box-shadow: 0 1px 3px rgba(11,45,107,0.06);
+            transition: box-shadow 0.15s ease, transform 0.15s ease;}}
+.beat-card:hover {{box-shadow: 0 4px 14px rgba(11,45,107,0.12); transform: translateY(-1px);}}
 .badge {{display:inline-block; padding: 0.15rem 0.55rem; border-radius: 999px; font-size: 0.78rem;
         font-weight: 600; margin-right: 0.3rem;}}
 .badge-slipping {{background:#fde2e2; color:#8a1f1f;}}
