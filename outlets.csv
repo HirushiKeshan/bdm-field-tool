@@ -1,0 +1,821 @@
+Outlet Code,Outlet Name,Type,Town,Owner Name,Phone,Onboarded,Credit Days,Latitude,Longitude,Status
+OA0001,Bharath Traders,Premium Reseller,Thanjavur,Rajesh Babu,6786043810,22/12/2024,0,10.795153,79.1015,Active
+OA0002,Sakthi Telecom,General Trade,KARUR,Senthil Krishnan,8623459260,01/10/2022,COD,10.92787,78.046961,Active
+OA0003,Anandha Enterprises,General Trade,Madras,Rajesh S,8598196185,2020-11-17,30 days,13.07667,80.301298,ACTIVE
+OA0004,Bharath Digital,Mobile Specialist,dindigul,Bala Kumar,+91 88889 93434,18/11/2024,30 days,10.400017,77.999507,active
+OA0005,Meenakshi Agencies,Premium Reseller,Tiruchirappalli,Vignesh R,8219009933,23/05/2022,,,,Active
+OA0006,Bharath Telecom,Premium Reseller,trichy,Muthu Murugan,9984247143,24/06/2024,15,,,ACTIVE
+OA0007,Modern Communications,Mobile Specialist,TIRUNELVELI,Manoj R,7944411442,2022-08-07,30 days,8.739713,77.734022,Active
+OA0008,Sri Krishna Communications,General Trade,SALEM,Vignesh Kumar,8696735474,27/10/2023,45,11.620388,78.120714,Active
+OA0009,Jeyam Enterprises,Multi-Yard,Madras,Senthil S,8464416115,2025-05-20,30,13.068817,80.262777,Active
+OA0010,City Infotech,General Trade,Dindigul,Sathish Babu,7907094151,26/01/2023,,10.401456,77.984082,Active
+OA0011,Universal Electronics,Mobile Specialist,VELLORE,Ravi Nathan,0,22-Jul-21,,12.876519,79.138094,Inactive
+OA0012,Ram Enterprises,Mobile Specialist,Dindigul,Karthik Raj,6073507339,2020-02-28,30 days,10.368651,77.935239,
+OA0013,Ganesh Digital,General Trade,TRICHY,Arun M,916495562933,14/09/2022,15,10.766224,78.707512,Dormant
+OA0014,Ganesh Cellpoint,Multi-Yard,COIMBATORE,Bala M,9380009986,2020-02-23,15,11.005653,76.946729,
+OA0015,Saravana Gadgets,General Trade,VELLORE,Naveen Nathan,6388100516,2020-03-11,30,12.903375,79.130052,Hold
+OA0016,Universal Infotech,General Trade,Coimbatore,Suresh Babu,8640337631,01/01/2025,30 days,11.038879,76.973836,dormant
+OA0017,Mobile World Infotech,General Trade,Cbe,Senthil Murugan,,2019-12-29,0,10.991151,76.947716,Dormant
+OA0018,Amman Agencies,General Trade,dindigul,Vignesh Krishnan,+91 86287 99892,14/04/2022,45,10.338432,77.979414,ACTIVE
+OA0019,Poorvika Gadgets,General Trade,Tirupur,Saravanan Nathan,60934-07894,14-Mar-20,COD,11.090596,77.380146,Dormant
+OA0020,Jeyam Agencies,General Trade,COIMBATORE,Dinesh Kumar,6989257965,2021-10-19,COD,,,active
+OA0021,Ram Cellpoint,General Trade,VELLORE,Vignesh Kumar,0,01/03/2024,45,12.93038,79.160487,ACTIVE
+OA0022,Chennai Silks Mobiles,General Trade,Mdu,Bala R,8629813863,25/05/2023,COD,,,Active
+OA0023,Thangam Traders,Mobile Specialist,COIMBATORE,Bala V,7824143723,2021-05-23,30 days,,,Active
+OA0024,Amman Electronics,Multi-Yard,ERODE,Rajesh Murugan,93659-19943,25/01/2023,30 days,11.307264,77.75043,Inactive
+OA0025,Sangeetha Agencies,General Trade,Tiruppur,Ravi S,7662711891,2024-04-03,15,11.152195,77.35596,dormant
+OA0026,Meenakshi Infotech,Mobile Specialist,Salem,Muthu M,9325882586,29-Mar-21,COD,,,Dormant
+OA0027,Universal Cellpoint,General Trade,DINDIGUL,Bala S,6502354583,2020-09-28,0,,,active
+OA0028,Anandha Enterprises,Mobile Specialist,COIMBATORE,Karthik Nathan,88505-92959,08/06/2024,30,11.056789,76.912661,Inactive
+OA0029,Lakshmi Traders,General Trade,chennai,Ravi Murugan,917295768288,06/06/2024,30,,,Active
+OA0030,Big C Mobile,Premium Reseller,Cbe,Gopal Krishnan,917025754932,2020-02-16,30 days,11.014507,76.997189,Dormant
+OA0031,City Mobile,General Trade,VELLORE,Gopal Babu,916996951784,25/11/2023,,12.883977,79.09969,Active
+OA0032,Modern Cellpoint,General Trade,TIRUPUR,Prabhu Krishnan,9102555837,19-Dec-19,45,11.071131,77.382931,Active
+OA0033,Sri Balaji Mobile,Mobile Specialist,VELLORE,Saravanan Raj,8872743349,17-Sep-20,15,12.946138,79.100009,Dormant
+OA0034,Poorvika Digital,Mobile Specialist,Salem,Rajesh V,8982422421,27/04/2022,COD,11.632509,78.123645,Dormant
+OA0035,Selvam Electronics,General Trade,MADURAI,Senthil Murugan,9698931011,2022-03-05,15,,,dormant
+OA0036,Jeyam Digital,Premium Reseller,Tiruppur,Bala Murugan,9373215888,2023-12-24,30 days,11.14601,77.310479,Active
+OA0037,Karpagam Infotech,General Trade,Dindigul,Arun Krishnan,8536596084,08/12/2019,15,10.359146,77.982574,active
+OA0038,Royal Communications,Mobile Specialist,tirupur,Muthu Babu,8092153945,27/11/2020,30,11.122262,77.302993,Active
+OA0039,Big C Electronics,Mobile Specialist,Dindigul,Prabhu Babu,+91 82410 73552,21-Apr-21,15,10.348947,77.965629,Active
+OA0040,Modern Mobile,Mobile Specialist,ERODE,Karthik Babu,9974832851,08/04/2025,45,11.344849,77.739804,dormant
+OA0041,Poorvika Infotech,General Trade,CHENNAI,Arun Kumar,7596585913,13-Mar-20,COD,13.124978,80.271623,Dormant
+OA0042,Anandha Mobiles,General Trade,Salem,Ravi R,7150638642,18/08/2020,15,11.626501,78.108453,Active
+OA0043,Jeyam Electronics,General Trade,Vellore,Ramesh S,+91 95765 21508,22/11/2023,30,,,Dormant
+OA0044,Muthu Mobiles,General Trade,Thanjavur,Arun M,+91 96126 88706,07-May-23,0,10.797327,79.161963,
+OA0045,Amman Agencies,General Trade,COIMBATORE,Senthil S,85274-84423,12/09/2019,30,11.004571,76.932049,
+OA0046,Selvam Infotech,Premium Reseller,salem,Arun R,91125-57889,16/11/2020,45,,,Hold
+OA0047,Sakthi Infotech,Mobile Specialist,Tanjore,Vijay R,9131491104,03/06/2019,,10.769662,79.117236,Inactive
+OA0048,Thangam Communications,General Trade,dindigul,Vignesh Raj,6373828329,23/06/2020,0,10.380893,77.929221,Active
+OA0049,Anandha Infotech,General Trade,VELLORE,Muthu Nathan,7807769487,13/10/2019,COD,12.901795,79.09969,Hold
+OA0050,Big C Electronics,General Trade,KARUR,Senthil Kumar,+91 64331 24807,29/05/2021,30 days,,,Hold
+OA0051,Muthu Cellpoint,General Trade,chennai,Karthik Murugan,87943-41893,26/03/2020,COD,13.046665,80.315365,Hold
+OA0052,Kumaran Agencies,General Trade,MADURAI,Gopal R,9238473469,2021-02-23,30 days,9.897641,78.157541,dormant
+OA0053,Big C Agencies,General Trade,Karur,Vignesh Raj,9684807481,01/02/2024,COD,,,ACTIVE
+OA0054,Lakshmi Gadgets,Mobile Specialist,CHENNAI,Rajesh Krishnan,+91 93479 47338,23/01/2023,45,13.092421,80.263285,Hold
+OA0055,Saravana Digital,General Trade,chennai,Prabhu Raj,7403259576,10-Jan-21,30,13.03847,80.248482,dormant
+OA0056,City Communications,Mobile Specialist,dindigul,Ramesh R,9328100655,02/03/2021,45,10.389105,77.964526,Active
+OA0057,Vinayaga Agencies,General Trade,Karur,Naveen Kumar,6740974219,01/11/2023,45,10.989326,78.046763,Active
+OA0058,New Star Telecom,General Trade,THANJAVUR,Manoj S,6710615617,12-Feb-21,30 days,10.803737,79.170688,ACTIVE
+OA0059,Selvam Cellpoint,General Trade,COIMBATORE,Hari Krishnan,9763211397,2022-06-26,30,10.986835,76.995405,Active
+OA0060,,Mobile Specialist,ERODE,Gopal Kumar,9882705407,11-May-24,30 days,11.301717,77.700582,Dormant
+OA0061,Sri Balaji Communications,General Trade,Dindigul,Gopal Kumar,6652266475,2020-07-31,30,10.388078,77.946409,Dormant
+OA0062,Jeyam Telecom,General Trade,SALEM,Hari Kumar,6726396338,03/05/2021,45,11.69472,78.117536,Inactive
+OA0063,Amman Mobile,Mobile Specialist,Trichy,Naveen R,7912629621,2020-06-21,30,10.832045,78.732802,Hold
+OA0064,Sakthi Cellpoint,General Trade,Karur,Bala Raj,7443971202,28/10/2023,45,10.966222,78.03447,Active
+OA0065,Anandha Traders,Mobile Specialist,Chennai,Karthik Murugan,8304469245,11/02/2025,30,13.075308,80.25298,Active
+OA0066,Universal Traders,Mobile Specialist,TIRUPUR,Anand Krishnan,+91 60925 85006,2021-06-18,30,,,Active
+OA0067,Galaxy Traders,General Trade,trichy,Ravi R,,23-Sep-22,30,10.833825,78.716689,Dormant
+OA0068,Saravana Mobile,Mobile Specialist,trichy,Dinesh Raj,9884951305,05/10/2022,45,,,Active
+OA0069,Mobile World Infotech,General Trade,Vellore,Arun Kumar,7101777919,14/01/2022,30,12.934833,79.146606,Dormant
+OA0070,Big C Digital,Premium Reseller,Tanjore,Muthu Nathan,+91 67931 54010,29-Apr-22,0,10.798985,79.093877,Active
+OA0071,Lakshmi Mobile,General Trade,erode,Suresh Nathan,6598378852,01/09/2020,0,11.35227,77.745606,Active
+OA0072,Meenakshi Enterprises,General Trade,KARUR,Manoj Murugan,+91 84136 91685,23-Sep-21,COD,10.955863,78.071028,Active
+OA0073,Universal Communications,General Trade,Karur,Karthik Babu,0,01/10/2023,COD,10.993068,78.075805,Hold
+OA0074,Poorvika Cellpoint,General Trade,KARUR,Gopal M,+91 79717 69686,16/07/2019,0,,,
+OA0075,Ram Electronics,General Trade,TIRUPUR,Vijay M,9755135996,2022-01-28,,11.121243,77.307818,Dormant
+OA0076,Royal Agencies,General Trade,Nellai,Vignesh Nathan,+91 69915 46615,22/08/2023,30,8.725059,77.727141,Inactive
+OA0077,City Enterprises,Mobile Specialist,Erode,Saravanan Kumar,9424070028,17-Sep-23,30 days,11.370074,77.739124,
+OA0078,,Premium Reseller,Erode,Naveen Murugan,8959167665,19/03/2021,30,11.367531,77.762118,Hold
+OA0079,Vasanth Electronics,General Trade,Erode,Vijay R,7227091666,15/08/2022,15,11.364501,77.690195,Inactive
+OA0080,Chennai Silks Enterprises,General Trade,THANJAVUR,Anand Krishnan,,05/06/2023,30,,,Active
+OA0081,Devi Communications,Mobile Specialist,dindigul,Vignesh Kumar,8722319870,29/04/2024,45,10.370281,77.97879,Inactive
+OA0082,Royal Electronics,Premium Reseller,salem,Vignesh V,+91 92949 29645,05-Dec-21,,11.685962,78.154721,Inactive
+OA0083,Amman Digital,General Trade,Vellore,Manoj Krishnan,8298594952,10/11/2022,0,12.916556,79.1574,dormant
+OA0084,Galaxy Mobile,Mobile Specialist,VELLORE,Ramesh R,75738-36726,2019-11-30,0,,,Hold
+OA0085,Prime Enterprises,General Trade,Thanjavur,Ramesh V,9893262864,2023-07-28,30,10.787696,79.151452,Active
+OA0086,New Star Gadgets,General Trade,Trichy,Manoj Babu,92658-91281,28-Oct-22,COD,10.800348,78.72487,Active
+OA0087,Galaxy Mobile,Mobile Specialist,KARUR,Dinesh M,6453288365,05/08/2020,15,10.967277,78.040067,Active
+OA0088,Saravana Telecom,General Trade,Vellore,Muthu Krishnan,0,11/01/2021,30,12.951673,79.101654,active
+OA0089,iStore Enterprises,Premium Reseller,Thanjavur,Arun Krishnan,9553102777,12/05/2024,30 days,10.812988,79.150317,dormant
+OA0090,Devi Traders,Mobile Specialist,TIRUNELVELI,Suresh Babu,96723-57234,2024-02-17,0,8.685028,77.743381,
+OA0091,Bharath Mobile,General Trade,Tanjore,Suresh Krishnan,7556018106,04-Mar-21,30 days,10.804924,79.097888,Hold
+OA0092,Poorvika Enterprises,Premium Reseller,DINDIGUL,Bala Krishnan,89795-52665,2020-06-21,30,,,Active
+OA0093,Vinayaga Cellpoint,General Trade,VELLORE,Arun Babu,6194426808,24-Jul-24,,,,Hold
+OA0094,Vinayaga Mobiles,Premium Reseller,erode,Hari S,,10/04/2020,30 days,11.33488,77.706486,Hold
+OA0095,iStore Traders,Mobile Specialist,VELLORE,Anand S,0,05/09/2022,45,12.95011,79.101962,Active
+OA0096,New Star Traders,Mobile Specialist,Tirunelveli,Arun Kumar,6149957569,07/01/2022,30,8.739134,77.793831,ACTIVE
+OA0097,Saravana Traders,General Trade,trichy,Karthik S,8426473451,11/10/2022,COD,10.749351,78.688038,Active
+OA0098,Vasanth Enterprises,General Trade,Madras,Anand Raj,7989462149,2019-09-11,30,13.120699,80.245748,Hold
+OA0099,Selvam Agencies,General Trade,madurai,Dinesh S,6543231102,2023-12-31,COD,9.922172,78.075348,Active
+OA0100,Ram Agencies,Mobile Specialist,Tirunelveli,Karthik Babu,6094800880,24/09/2022,30,,,
+OA0101,Lakshmi Cellpoint,Mobile Specialist,dindigul,Naveen Nathan,8133063905,06/05/2023,45,10.396315,77.972709,Inactive
+OA0102,Thangam Enterprises,General Trade,ERODE,Vijay Kumar,,06/08/2024,15,,,Active
+OA0103,New Star Enterprises,General Trade,dindigul,Sathish Nathan,919616447409,31-May-20,45,10.321784,77.987819,active
+OA0104,Galaxy Telecom,General Trade,SALEM,Senthil V,7528659260,28/07/2024,30,11.702195,78.187654,ACTIVE
+OA0105,Chennai Silks Agencies,General Trade,COIMBATORE,Dinesh Nathan,,23/10/2021,30 days,10.98683,76.952813,ACTIVE
+OA0106,Sri Krishna Mobile,Premium Reseller,DINDIGUL,Ravi Murugan,0,13/03/2024,15,10.388095,77.950065,
+OA0107,Sri Krishna Traders,General Trade,CBE,Senthil S,7554845500,11-May-24,0,10.988888,76.927713,Dormant
+OA0108,Anandha Mobiles,General Trade,coimbatore,Naveen Raj,6530155709,2024-03-16,COD,10.985096,76.959938,Active
+OA0109,Bharath Infotech,General Trade,ERODE,Saravanan R,65503-11335,23/06/2019,30,,,Active
+OA0110,Modern Traders,Multi-Yard,Vellore,Ramesh Murugan,9556914976,22/08/2023,30 days,12.953207,79.129787,ACTIVE
+OA0111,City Infotech,General Trade,dindigul,Bala V,9079042618,12-Oct-19,,,,Dormant
+OA0112,Karpagam Infotech,General Trade,Madras,Prabhu Kumar,7796889447,23/02/2020,30 days,13.116871,80.238031,Active
+OA0113,Sakthi Infotech,Mobile Specialist,Cbe,Arun Murugan,7445030562,05/02/2023,0,,,ACTIVE
+OA0114,Selvam Electronics,General Trade,Salem,Manoj Raj,,29-Sep-20,30,11.667596,78.184206,
+OA0115,Bharath Electronics,General Trade,dindigul,Ravi V,7926547666,2023-11-02,30 days,10.35033,77.939502,Active
+OA0116,Chennai Silks Communications,General Trade,Tiruppur,Ramesh R,9131107367,09/08/2019,15,11.139626,77.325557,Active
+OA0117,Anandha Enterprises,Premium Reseller,Dindigul,Ravi Nathan,6009603060,2024-12-31,45,10.375491,77.981723,
+OA0118,Selvam Mobile,Multi-Yard,Tiruchirappalli,Bala Raj,93539-08114,29/09/2023,0,,,Active
+OA0119,City Communications,General Trade,TIRUPUR,Senthil Kumar,8003972040,01-Dec-19,15,11.124642,77.379373,Active
+OA0120,City Gadgets,General Trade,Cbe,Bala Raj,7967987374,07-May-23,30,10.98166,76.95077,Inactive
+OA0121,Devi Digital,General Trade,salem,Ravi Raj,7613541171,2023-12-26,0,11.630633,78.190678,Active
+OA0122,Big C Digital,General Trade,Madras,Hari R,7025690664,02-Jan-25,15,13.057387,80.258945,Inactive
+OA0123,Muthu Mobiles,Mobile Specialist,trichy,Vijay V,9410483510,02/05/2022,COD,10.796141,78.719938,ACTIVE
+OA0124,Vasanth Electronics,Mobile Specialist,Tanjore,Muthu S,,2023-08-27,30 days,10.756774,79.099181,active
+OA0125,Devi Communications,General Trade,KARUR,Muthu R,6503771066,13/06/2022,30,11.000745,78.109196,
+OA0126,iStore Electronics,Premium Reseller,Tirunelveli,Ravi V,,25/12/2024,45,8.697042,77.75635,Active
+OA0127,Sangeetha Agencies,Premium Reseller,Dindigul,Saravanan Murugan,9286514980,21/12/2021,,10.391347,78.008859,ACTIVE
+OA0128,Prime Infotech,General Trade,Tirunelveli,Ramesh Murugan,9212215872,16/02/2024,30,8.702455,77.729028,Dormant
+OA0129,Vasanth Traders,General Trade,KARUR,Gopal Murugan,0,31/12/2019,45,10.995667,78.088102,Active
+OA0130,iStore Electronics,Mobile Specialist,KARUR,Manoj Kumar,7785324804,2022-02-03,45,10.936779,78.094595,ACTIVE
+OA0131,Thangam Digital,Mobile Specialist,Coimbatore,Rajesh S,7001202186,2024-04-03,30,10.997796,76.967188,active
+OA0132,Big C Agencies,General Trade,Tiruchirappalli,Ravi Kumar,+91 60422 96990,2023-08-01,45,10.808394,78.712845,Dormant
+OA0133,Devi Electronics,Premium Reseller,VELLORE,Anand Krishnan,9942968533,2023-11-25,30,12.900639,79.101618,Active
+OA0134,Jeyam Enterprises,General Trade,Nellai,Suresh Babu,7180755391,16/04/2020,,8.748716,77.721058,active
+OA0135,Selvam Mobiles,Mobile Specialist,TIRUNELVELI,Saravanan V,8562913952,27/12/2024,45,8.716858,77.718986,active
+OA0136,Thangam Mobile,General Trade,KARUR,Saravanan R,9100764429,2024-05-07,30,10.915958,78.038096,Inactive
+OA0137,Vasanth Enterprises,General Trade,Tiruppur,Hari Murugan,7637783543,26-Aug-21,30,11.081187,77.364408,dormant
+OA0138,Prime Electronics,Multi-Yard,chennai,Muthu Murugan,9496945795,2020-07-24,COD,13.124597,80.264056,ACTIVE
+OA0139,Galaxy Infotech,General Trade,chennai,Dinesh Babu,8287907809,13/02/2021,15,13.08327,80.23781,Hold
+OA0140,Thangam Mobile,Premium Reseller,CBE,Ravi M,7352625659,19/10/2019,15,11.05128,76.980118,Hold
+OA0141,Muthu Electronics,General Trade,CHENNAI,Senthil V,9324141780,28/12/2022,,13.038759,80.227518,ACTIVE
+OA0142,Bharath Agencies,Multi-Yard,KARUR,Vijay Kumar,68816-85983,10/11/2022,0,,,Hold
+OA0143,Chennai Silks Communications,General Trade,COIMBATORE,Rajesh Babu,7558595378,15/01/2021,0,11.040638,76.947762,Hold
+OA0144,Modern Telecom,General Trade,KARUR,Sathish Krishnan,6183142622,2020-10-13,30,10.988817,78.033731,Hold
+OA0145,Ganesh Agencies,General Trade,THANJAVUR,Saravanan Krishnan,8806925203,02/03/2023,15,10.794471,79.14756,Active
+OA0146,Kumaran Telecom,General Trade,Dindigul,Sathish Kumar,6937052215,13/06/2019,45,10.335697,77.924915,Hold
+OA0147,Jeyam Enterprises,Mobile Specialist,Madurai,Ravi Raj,9002156339,12/06/2019,30 days,9.922397,78.124718,active
+OA0148,Ganesh Communications,Premium Reseller,TRICHY,Dinesh Krishnan,9724224980,26/02/2025,30 days,10.751227,78.666425,active
+OA0149,New Star Telecom,General Trade,Tirupur,Arun Nathan,8081523511,14/08/2019,45,,,Active
+OA0150,Universal Communications,General Trade,VELLORE,Dinesh R,7071460925,14/05/2021,45,12.919331,79.10479,Inactive
+OA0151,Chennai Silks Communications,General Trade,madurai,Muthu Kumar,0,2021-12-13,,9.96767,78.084186,dormant
+OA0152,Meenakshi Gadgets,General Trade,salem,Rajesh M,8918669647,19/04/2023,COD,11.68137,78.189041,Dormant
+OA0153,Galaxy Infotech,General Trade,DINDIGUL,Ramesh Babu,6461849810,29-Jan-24,,10.332654,77.947554,Active
+OA0154,Karpagam Enterprises,Mobile Specialist,Chennai,Arun Raj,,2022-05-23,COD,13.056078,80.253157,Active
+OA0155,Sakthi Electronics,General Trade,Erode,Dinesh M,6522102970,15/11/2020,0,11.363614,77.7305,Active
+OA0156,Sakthi Mobiles,Mobile Specialist,KARUR,Prabhu Murugan,77118-22163,21/08/2019,45,10.993835,78.050625,dormant
+OA0157,Vasanth Gadgets,General Trade,chennai,Saravanan M,8833760480,29-Feb-20,0,13.095722,80.28205,Active
+OA0158,Ganesh Electronics,Mobile Specialist,Vellore,Vijay Krishnan,+91 82899 29056,27/10/2023,45,,,ACTIVE
+OA0159,Meenakshi Mobiles,General Trade,chennai,Dinesh V,8901805171,25-Jun-19,30 days,,,Inactive
+OA0160,Jeyam Electronics,General Trade,Madurai,Rajesh Raj,7484791168,24/09/2021,30,9.918311,78.138474,active
+OA0161,New Star Infotech,General Trade,KARUR,Senthil Raj,+91 60173 33779,31/03/2020,45,10.961541,78.081031,Active
+OA0162,Ram Mobile,General Trade,madurai,Rajesh R,0,2020-09-19,0,9.958759,78.106982,dormant
+OA0163,Sri Krishna Communications,Multi-Yard,Chennai,Hari V,7418956462,01/04/2023,30,13.074168,80.248136,Active
+OA0164,Ganesh Electronics,General Trade,Cbe,Manoj Nathan,7834157122,22/05/2021,,10.97917,76.92695,Active
+OA0165,Chennai Silks Cellpoint,Mobile Specialist,CHENNAI,Senthil Krishnan,8793989465,20-Feb-23,30,13.109041,80.2458,dormant
+OA0166,Big C Infotech,General Trade,Thanjavur,Dinesh Nathan,0,19/08/2019,,10.831861,79.128153,Active
+OA0167,Meenakshi Telecom,General Trade,madurai,Rajesh Raj,8354724770,30/05/2020,30 days,9.88546,78.139204,Dormant
+OA0168,Jeyam Traders,Premium Reseller,Tiruppur,Karthik Kumar,6973906912,01-Aug-19,45,11.072468,77.352985,Dormant
+OA0169,Meenakshi Traders,Mobile Specialist,MADURAI,Arun Babu,+91 63779 91158,21/08/2020,15,9.886453,78.094188,
+OA0170,Saravana Enterprises,Mobile Specialist,Dindigul,Anand Raj,9085247309,30/05/2023,15,10.39457,78.007999,Inactive
+OA0171,Kumaran Traders,General Trade,CBE,Arun Krishnan,6961881752,2022-02-02,45,,,ACTIVE
+OA0172,iStore Electronics,General Trade,Erode,Vignesh V,7126179980,30/12/2019,15,11.32416,77.706892,Active
+OA0173,Bharath Mobile,General Trade,VELLORE,Suresh R,+91 80245 69529,27-Nov-22,30,12.888549,79.098307,dormant
+OA0174,Universal Enterprises,General Trade,Tirupur,Dinesh S,9539300811,22/05/2022,COD,11.151729,77.303363,
+OA0175,Lakshmi Communications,Mobile Specialist,Tiruchirappalli,Senthil V,73434-54163,16/01/2024,COD,10.747105,78.727258,Inactive
+OA0176,Sri Krishna Cellpoint,General Trade,KARUR,Vijay Babu,7836275542,29-Jun-24,45,10.992886,78.094595,Hold
+OA0177,Thangam Mobiles,Mobile Specialist,VELLORE,Saravanan Krishnan,76008-96228,02-Jan-23,15,12.933426,79.132834,Dormant
+OA0178,Prime Communications,General Trade,THANJAVUR,Bala Nathan,9312756695,16/03/2021,COD,10.821351,79.131006,Active
+OA0179,Ram Agencies,General Trade,Nellai,Bala Krishnan,7887882666,25-Sep-19,45,8.74453,77.761194,Dormant
+OA0180,Vinayaga Telecom,Multi-Yard,Dindigul,Dinesh V,+91 75450 37210,2024-07-24,30 days,10.359856,77.948489,ACTIVE
+OA0181,Mobile World Telecom,General Trade,SALEM,Saravanan Raj,7128552222,07-Feb-21,30,11.635361,78.101809,Dormant
+OA0182,Devi Telecom,Mobile Specialist,VELLORE,Muthu Babu,7837365278,17/09/2024,30,12.926274,79.169841,Dormant
+OA0183,Anandha Communications,General Trade,Tiruchirappalli,Naveen Murugan,9487450237,09/07/2024,,,,Active
+OA0184,Big C Agencies,Mobile Specialist,Erode,Ravi S,6562044283,2020-02-07,30,11.346648,77.735917,
+OA0185,New Star Cellpoint,General Trade,dindigul,Vijay M,919836449624,20-Mar-22,,10.337465,77.974244,
+OA0186,Ram Communications,General Trade,Tiruppur,Senthil V,+91 70921 76505,07/03/2022,,11.122647,77.32178,active
+OA0187,Sakthi Electronics,General Trade,TRICHY,Arun Kumar,6433059967,26/09/2021,COD,10.755135,78.673959,active
+OA0188,Muthu Cellpoint,General Trade,Karur,Senthil M,+91 61374 35341,19/06/2024,30,,,Active
+OA0189,Muthu Cellpoint,Premium Reseller,VELLORE,Gopal M,8830863631,15/09/2020,0,,,Active
+OA0190,Sangeetha Agencies,General Trade,KARUR,Karthik V,8717875008,03-Dec-22,45,10.973272,78.037155,Hold
+OA0191,Devi Mobile,General Trade,ERODE,Karthik V,+91 89426 85649,2021-05-01,,11.309185,77.686336,ACTIVE
+OA0192,Vinayaga Traders,Premium Reseller,Vellore,Karthik Murugan,+91 74515 11596,2022-02-11,COD,12.956789,79.144555,Hold
+OA0193,Ganesh Infotech,General Trade,VELLORE,Muthu R,8723579359,2023-10-31,COD,12.960942,79.172304,Inactive
+OA0194,Karpagam Traders,Mobile Specialist,madurai,Arun Nathan,0,07/07/2021,,,,Inactive
+OA0195,Prime Cellpoint,General Trade,Karur,Manoj R,9845714821,27/11/2019,30,10.971632,78.049236,Hold
+OA0196,Universal Gadgets,General Trade,COIMBATORE,Karthik V,9019825575,2020-10-17,0,,,Inactive
+OA0197,Prime Digital,General Trade,Salem,Manoj Murugan,+91 92243 91448,22/09/2019,30 days,11.643442,78.181591,
+OA0198,Devi Mobile,Premium Reseller,Karur,Vignesh R,7012194374,10-Apr-22,0,10.956759,78.08139,Inactive
+OA0199,Muthu Enterprises,Multi-Yard,Trichy,Naveen Raj,8881933460,06/02/2024,COD,10.777348,78.6788,dormant
+OA0200,Devi Gadgets,Multi-Yard,Erode,Ravi Krishnan,0,23/09/2021,,11.355905,77.701855,Dormant
+OA0201,Sakthi Mobile,General Trade,Karur,Prabhu R,9401392206,2022-03-17,,,,Dormant
+OA0202,Karpagam Communications,Premium Reseller,TIRUPUR,Muthu V,+91 99219 92222,22/06/2023,0,,,Hold
+OA0203,Karpagam Traders,Mobile Specialist,VELLORE,Senthil Nathan,7403769973,16/12/2021,30,12.907997,79.092959,active
+OA0204,Sangeetha Mobiles,General Trade,Madurai,Naveen M,7969812400,01-Jul-22,,9.907699,78.100245,Dormant
+OA0205,Royal Mobiles,General Trade,coimbatore,Prabhu Kumar,9173283365,2020-08-23,30,10.97768,76.947408,dormant
+OA0206,City Digital,General Trade,Salem,Naveen R,6336900372,25/06/2024,,11.660983,78.113227,active
+OA0207,Muthu Telecom,Mobile Specialist,salem,Anand M,8321699400,05/07/2022,30,11.642561,78.126578,Inactive
+OA0208,Universal Mobile,Mobile Specialist,SALEM,Manoj S,7513203548,22-Apr-20,45,11.674167,78.124369,dormant
+OA0209,Anandha Traders,Premium Reseller,Trichy,Bala Kumar,8170102641,07/05/2020,45,10.820464,78.695343,Hold
+OA0210,Mobile World Enterprises,General Trade,Nellai,Vijay Murugan,6858305674,12/06/2020,30 days,8.679053,77.747718,dormant
+OA0211,Poorvika Gadgets,General Trade,Tiruppur,Bala M,7323951292,03-Mar-23,0,11.137274,77.385775,Active
+OA0212,Sangeetha Agencies,General Trade,Vellore,Karthik Krishnan,+91 79048 36665,2025-03-31,,12.93007,79.099532,Active
+OA0213,Prime Electronics,Premium Reseller,TIRUNELVELI,Saravanan R,9291932748,2021-10-22,COD,8.686911,77.759735,ACTIVE
+OA0214,Sri Krishna Telecom,General Trade,Madras,Ramesh Babu,,2024-02-02,COD,13.068041,80.244544,Inactive
+OA0215,Sri Krishna Electronics,Mobile Specialist,Mdu,Karthik Murugan,+91 63773 25855,2023-06-29,30,9.891916,78.153823,ACTIVE
+OA0216,iStore Gadgets,Premium Reseller,CHENNAI,Anand Krishnan,80667-29639,15/06/2023,15,13.083203,80.260592,active
+OA0217,Devi Electronics,General Trade,Tirunelveli,Suresh Nathan,7456043607,20/07/2024,30 days,8.731683,77.777542,Active
+OA0218,Meenakshi Communications,Mobile Specialist,ERODE,Ramesh V,8416840209,26-Jun-21,15,11.344735,77.696328,Active
+OA0219,Vinayaga Communications,General Trade,Nellai,Arun V,6162819266,2025-06-07,0,8.677123,77.755993,
+OA0220,Chennai Silks Enterprises,Mobile Specialist,COIMBATORE,Vijay Murugan,7944145526,21/06/2021,30,11.007398,76.920279,Inactive
+OA0221,Thangam Mobile,Premium Reseller,TRICHY,Rajesh Nathan,7681905379,15/07/2023,30,10.772545,78.706349,ACTIVE
+OA0222,Karpagam Cellpoint,General Trade,Karur,Ramesh Krishnan,9287372197,2022-05-13,30 days,,,Dormant
+OA0223,Mobile World Traders,General Trade,Trichy,Muthu R,69325-96116,2023-02-15,45,10.758133,78.679773,Active
+OA0224,Selvam Electronics,Premium Reseller,chennai,Anand V,7528954220,13/10/2022,45,13.044586,80.307589,dormant
+OA0225,Karpagam Cellpoint,Multi-Yard,Tiruppur,Hari Raj,6574284665,20/08/2019,15,11.092957,77.331263,Active
+OA0226,Poorvika Gadgets,General Trade,salem,Dinesh Raj,7345596740,2022-06-13,0,11.708724,78.142337,Hold
+OA0227,Devi Cellpoint,Mobile Specialist,coimbatore,Hari Babu,,21/06/2022,30,11.045701,76.946579,dormant
+OA0228,Amman Agencies,General Trade,KARUR,Prabhu Murugan,7620881878,03/10/2024,0,10.922441,78.064675,ACTIVE
+OA0229,Sri Krishna Digital,Mobile Specialist,Cbe,Naveen R,93185-40521,15-Jul-21,30,10.97373,76.938226,Hold
+OA0230,Ram Digital,General Trade,CBE,Anand S,7563483151,15/01/2021,30,11.018079,76.939289,dormant
+OA0231,Lakshmi Gadgets,General Trade,Dindigul,Naveen Kumar,+91 72362 30781,30-May-23,45,10.325965,78.004717,ACTIVE
+OA0232,Meenakshi Electronics,Mobile Specialist,trichy,Vijay S,9213165994,10/12/2019,0,10.831761,78.712948,Active
+OA0233,Galaxy Agencies,General Trade,Vellore,Muthu Babu,8561477781,30/12/2020,15,12.933013,79.141856,ACTIVE
+OA0234,Big C Infotech,Premium Reseller,Madras,Rajesh Babu,,22-Oct-20,0,13.099908,80.308437,Inactive
+OA0235,Muthu Gadgets,General Trade,coimbatore,Dinesh M,7993536145,02-Jun-22,30 days,11.046092,76.97803,
+OA0236,Galaxy Mobiles,Multi-Yard,COIMBATORE,Muthu Murugan,8944358861,16/04/2023,30,11.001274,76.919417,ACTIVE
+OA0237,Jeyam Traders,General Trade,Thanjavur,Rajesh Raj,+91 77424 14644,03/12/2024,30,10.79231,79.1612,Active
+OA0238,Vinayaga Electronics,General Trade,dindigul,Manoj Kumar,6190097148,2021-05-01,,10.370172,77.945096,active
+OA0239,Selvam Traders,General Trade,Tiruppur,Sathish Kumar,9748208661,22-Aug-24,15,11.1101,77.381701,Inactive
+OA0240,Sangeetha Mobile,Mobile Specialist,Vellore,Ramesh Raj,6804476723,04/06/2019,COD,12.879153,79.15848,Active
+OA0241,Muthu Digital,Mobile Specialist,coimbatore,Karthik Babu,6117096980,2020-12-20,30,11.016508,76.970685,active
+OA0242,Mobile World Electronics,General Trade,Mdu,Arun Raj,6521313228,21/12/2023,30,9.911863,78.085541,Active
+OA0243,Jeyam Digital,Mobile Specialist,Karur,Gopal Murugan,9947364208,27/12/2024,COD,10.976408,78.080931,Inactive
+OA0244,Sri Balaji Mobile,General Trade,coimbatore,Gopal Babu,8573506373,21-Mar-22,0,11.035363,76.956109,
+OA0245,Karpagam Infotech,Mobile Specialist,Nellai,Vijay M,68823-39626,06-Aug-21,30,8.757598,77.759787,active
+OA0246,,General Trade,ERODE,Vijay S,917958136864,26-Jul-23,30,,,Active
+OA0247,iStore Infotech,General Trade,Thanjavur,Naveen S,7238996289,06/06/2019,30 days,10.79134,79.115022,Active
+OA0248,Big C Telecom,General Trade,VELLORE,Bala S,8041140222,05/12/2022,0,12.927795,79.124297,ACTIVE
+OA0249,Lakshmi Mobile,General Trade,Tirupur,Sathish Raj,8922167326,22/04/2022,0,11.110895,77.364511,Active
+OA0250,Ram Enterprises,Mobile Specialist,Vellore,Vignesh M,7823636456,2022-03-07,30 days,12.882377,79.093065,active
+OA0251,Thangam Infotech,General Trade,Tiruchirappalli,Dinesh Babu,9809811352,30/06/2022,,,,Active
+OA0252,Saravana Gadgets,Mobile Specialist,Salem,Arun Murugan,8008216520,21/04/2025,15,11.66309,78.105017,
+OA0253,Amman Gadgets,General Trade,dindigul,Manoj S,9923649071,2021-10-09,30,,,Dormant
+OA0254,Vinayaga Infotech,Premium Reseller,TRICHY,Prabhu Nathan,6645056512,23/12/2023,15,10.755528,78.667568,dormant
+OA0255,Selvam Gadgets,General Trade,ERODE,Naveen M,68242-60618,23-Jan-25,30,,,Active
+OA0256,Muthu Gadgets,Premium Reseller,Nellai,Manoj M,7328939455,13/12/2019,15,,,Active
+OA0257,Vinayaga Mobiles,General Trade,trichy,Gopal S,8673585556,2021-03-13,15,10.747277,78.734983,Hold
+OA0258,Sangeetha Electronics,Mobile Specialist,Vellore,Saravanan R,918009891508,12-Jan-25,30 days,12.884461,79.146495,
+OA0259,Karpagam Mobiles,General Trade,Vellore,Suresh Murugan,9768984852,08-Mar-23,COD,12.955754,79.132851,Active
+OA0260,iStore Telecom,Multi-Yard,COIMBATORE,Vignesh Nathan,7255364444,24/05/2021,COD,,,Active
+OA0261,City Mobile,Premium Reseller,Dindigul,Saravanan Krishnan,8288436870,2019-06-18,0,10.392205,77.936775,Active
+OA0262,Muthu Enterprises,General Trade,Dindigul,Naveen M,917941629220,21-Dec-23,30 days,10.322384,77.968653,Active
+OA0263,Meenakshi Cellpoint,Premium Reseller,Cbe,Ravi Raj,+91 61363 17488,2021-07-14,COD,10.992589,76.93634,Active
+OA0264,Thangam Enterprises,General Trade,TIRUPUR,Gopal Nathan,6747671559,13/04/2022,0,11.094286,77.307378,Hold
+OA0265,Chennai Silks Cellpoint,Premium Reseller,Nellai,Suresh Nathan,0,10/08/2019,30,8.669096,77.793426,Inactive
+OA0266,Anandha Cellpoint,Mobile Specialist,KARUR,Sathish Babu,6354812401,17/04/2025,30,10.998854,78.043128,ACTIVE
+OA0267,Vasanth Communications,General Trade,MADURAI,Ramesh R,,28-Aug-20,COD,9.881872,78.128392,
+OA0268,Devi Mobiles,Premium Reseller,trichy,Sathish Raj,6223595058,08/12/2019,30 days,10.805785,78.717121,Active
+OA0269,Amman Cellpoint,General Trade,Tirupur,Rajesh Murugan,8556713849,18-May-25,15,11.083483,77.296788,Active
+OA0270,Lakshmi Cellpoint,General Trade,Cbe,Suresh M,917145215366,2024-08-25,COD,11.023734,76.931444,Dormant
+OA0271,Amman Telecom,General Trade,KARUR,Vignesh S,6636368644,11/06/2023,30,10.989158,78.054778,dormant
+OA0272,Amman Telecom,General Trade,CBE,Manoj Kumar,9496152989,14/06/2023,COD,,,Dormant
+OA0273,Royal Enterprises,General Trade,Thanjavur,Saravanan R,8823541745,02/10/2023,COD,10.824082,79.13412,Dormant
+OA0274,Muthu Electronics,General Trade,Erode,Dinesh S,8070655122,17-Jul-20,45,11.381571,77.712406,Inactive
+OA0275,Poorvika Electronics,General Trade,Vellore,Vignesh Babu,9943374656,23-Sep-19,45,12.950188,79.10846,active
+OA0276,,Mobile Specialist,trichy,Senthil Babu,7466413150,17/01/2024,30,10.820579,78.744531,Dormant
+OA0277,,General Trade,Karur,Suresh S,9407248679,2021-06-22,45,10.933008,78.065631,dormant
+OA0278,Big C Mobiles,Mobile Specialist,ERODE,Senthil V,9793367487,15/10/2024,15,11.304822,77.684222,active
+OA0279,Sangeetha Communications,General Trade,Tiruppur,Prabhu S,8081259788,19/11/2023,,11.068373,77.307631,Dormant
+OA0280,Poorvika Cellpoint,Mobile Specialist,Erode,Naveen Murugan,,13/06/2022,,11.346109,77.688572,dormant
+OA0281,iStore Communications,General Trade,Vellore,Bala V,,04-Jan-25,30,,,Active
+OA0282,Big C Mobile,Mobile Specialist,Salem,Manoj Raj,8915494386,05/09/2021,30,11.701151,78.101266,Active
+OA0283,Modern Mobile,General Trade,ERODE,Bala Kumar,65322-45571,06-Jan-22,,11.361379,77.740728,
+OA0284,Anandha Digital,Mobile Specialist,TIRUNELVELI,Naveen M,61550-75927,10/12/2021,,8.738943,77.74083,active
+OA0285,Sakthi Mobiles,Mobile Specialist,Tiruchirappalli,Sathish Nathan,9223440865,01/04/2021,,10.827156,78.726067,dormant
+OA0286,Poorvika Telecom,Mobile Specialist,Tirupur,Anand Kumar,66542-02699,2020-06-26,45,,,active
+OA0287,Royal Mobile,General Trade,TRICHY,Bala Murugan,7642958980,28/08/2024,30,10.826234,78.690384,
+OA0288,Modern Telecom,Mobile Specialist,Karur,Dinesh R,6511067283,2020-01-26,COD,10.929719,78.078866,Active
+OA0289,Meenakshi Agencies,General Trade,KARUR,Vignesh S,8871106743,2022-08-26,30 days,10.941063,78.105453,Active
+OA0290,iStore Communications,General Trade,salem,Vignesh R,6336609462,03-Sep-21,30 days,,,dormant
+OA0291,Big C Mobiles,Mobile Specialist,Tiruchirappalli,Saravanan Raj,918145880050,2022-05-05,0,10.808801,78.691233,Inactive
+OA0292,Saravana Digital,General Trade,TIRUPUR,Ravi Kumar,6261784680,2021-09-05,30,11.108173,77.336497,Inactive
+OA0293,Mobile World Gadgets,General Trade,Salem,Saravanan M,7936419175,09/07/2024,30 days,11.678088,78.151275,
+OA0294,Sri Balaji Infotech,Mobile Specialist,Mdu,Anand Krishnan,8816671854,11/09/2024,30,9.903169,78.128176,Active
+OA0295,Sakthi Communications,Multi-Yard,salem,Hari Murugan,9621159289,29/04/2023,15,11.622201,78.103525,Active
+OA0296,Galaxy Gadgets,General Trade,trichy,Ravi Krishnan,7851327666,08/09/2019,45,10.825121,78.714176,Hold
+OA0297,New Star Mobiles,General Trade,CHENNAI,Manoj S,0,19-Mar-20,,13.085863,80.292174,Inactive
+OA0298,Sri Krishna Electronics,Premium Reseller,Chennai,Sathish Babu,6140253568,2024-03-26,30,13.079379,80.273496,Hold
+OA0299,Vinayaga Gadgets,General Trade,Thanjavur,Karthik Krishnan,8407725748,09/07/2022,30,10.818587,79.131714,Hold
+OA0300,Sri Krishna Gadgets,General Trade,ERODE,Saravanan M,6657002419,27/06/2023,30,11.319728,77.746788,Active
+OA0301,Amman Enterprises,General Trade,VELLORE,Rajesh Kumar,919227239451,13-Jun-24,COD,12.960135,79.175287,Active
+OA0302,Saravana Telecom,General Trade,salem,Hari M,8203550110,2019-10-14,30,11.697599,78.19054,active
+OA0303,Sangeetha Enterprises,General Trade,ERODE,Anand Babu,7748931954,01/12/2024,COD,11.303623,77.745248,Dormant
+OA0304,Chennai Silks Enterprises,General Trade,Tanjore,Manoj V,8873326850,2025-03-28,,10.771413,79.097172,
+OA0305,iStore Telecom,General Trade,Dindigul,Dinesh S,8448513558,2024-08-07,,10.387602,77.942617,Inactive
+OA0306,City Telecom,General Trade,coimbatore,Ramesh Murugan,,22/07/2020,,11.049745,76.997658,
+OA0307,Ram Infotech,General Trade,Tiruppur,Vijay S,6415491604,04/06/2022,45,11.091542,77.339586,active
+OA0308,Prime Cellpoint,Mobile Specialist,Trichy,Muthu Raj,8372589915,03/07/2024,,10.80586,78.699471,
+OA0309,Ganesh Cellpoint,Multi-Yard,Erode,Rajesh M,6927823176,2024-06-12,30 days,11.340421,77.686864,Active
+OA0310,Devi Digital,General Trade,Tirunelveli,Sathish M,6102522709,03/02/2025,,8.745164,77.727574,Active
+OA0311,Mobile World Traders,General Trade,CBE,Arun Krishnan,6785756062,20/04/2024,30,,,Inactive
+OA0312,Meenakshi Traders,Premium Reseller,CBE,Anand Murugan,6620920702,26-May-25,45,11.025451,76.951871,Inactive
+OA0313,Chennai Silks Digital,General Trade,Salem,Bala Murugan,+91 86692 23758,27-Feb-24,30,,,dormant
+OA0314,Muthu Enterprises,General Trade,Nellai,Ramesh V,7285499656,05/02/2021,45,8.732334,77.745844,Active
+OA0315,Ganesh Enterprises,General Trade,Karur,Anand Nathan,8322806398,2024-05-06,0,10.937483,78.119308,Active
+OA0316,Saravana Cellpoint,General Trade,SALEM,Karthik Babu,7516442251,2022-01-29,COD,11.668866,78.171727,Inactive
+OA0317,Jeyam Digital,General Trade,Tirunelveli,Rajesh R,7748077147,16/11/2019,,8.707954,77.713911,Active
+OA0318,Ram Gadgets,General Trade,Vellore,Vijay Kumar,9203292353,30/05/2023,30,12.907818,79.159497,Hold
+OA0319,Sri Krishna Mobile,Premium Reseller,Salem,Muthu Babu,7267430598,03/01/2023,,11.670735,78.109222,Hold
+OA0320,Modern Gadgets,Premium Reseller,trichy,Prabhu Murugan,,2021-08-02,45,10.775003,78.669768,Active
+OA0321,Vasanth Enterprises,Mobile Specialist,Tirunelveli,Rajesh M,6901140143,24/07/2022,45,8.704147,77.739231,Active
+OA0322,Saravana Enterprises,General Trade,Erode,Sathish Kumar,919006853143,21-Jul-22,0,11.29895,77.726182,Active
+OA0323,Vinayaga Traders,General Trade,COIMBATORE,Manoj Nathan,9377765682,2024-07-16,15,,,active
+OA0324,Sri Balaji Traders,General Trade,Tirunelveli,Hari V,9293945244,05/06/2020,0,,,Active
+OA0325,Meenakshi Telecom,General Trade,TIRUNELVELI,Rajesh R,6781920585,18-Dec-23,30 days,,,Dormant
+OA0326,Selvam Communications,General Trade,Chennai,Suresh M,9056364173,2024-08-31,,13.052083,80.234128,Inactive
+OA0327,Prime Digital,General Trade,erode,Vijay Babu,8115841925,2020-12-04,30,,,active
+OA0328,New Star Telecom,Mobile Specialist,MADURAI,Arun Babu,68255-62087,20/04/2022,COD,9.944887,78.082396,Dormant
+OA0329,Sangeetha Digital,General Trade,Madurai,Ravi Krishnan,+91 68376 18979,18/12/2024,0,,,Active
+OA0330,Chennai Silks Infotech,Premium Reseller,Vellore,Suresh Kumar,74201-63928,05-Jul-21,30,12.878636,79.136608,Active
+OA0331,Kumaran Electronics,General Trade,TRICHY,Vignesh Krishnan,6989964358,29/05/2024,0,10.77532,78.735744,Active
+OA0332,Sri Krishna Gadgets,General Trade,Thanjavur,Prabhu S,9484907447,2024-05-27,,10.744196,79.145346,active
+OA0333,City Communications,General Trade,Karur,Muthu Murugan,90018-61789,03-Feb-24,,10.978302,78.114689,Dormant
+OA0334,Bharath Electronics,General Trade,Karur,Hari Raj,9310683711,18/08/2023,30,,,dormant
+OA0335,Amman Communications,General Trade,Tanjore,Prabhu S,6571483920,27/03/2021,45,10.744155,79.126,ACTIVE
+OA0336,Sri Balaji Traders,General Trade,trichy,Vignesh S,8395946773,17-Aug-19,30,10.749009,78.746667,Active
+OA0337,Ram Gadgets,Mobile Specialist,Dindigul,Arun Babu,8882451046,05-Jun-21,30 days,,,active
+OA0338,Universal Communications,General Trade,Trichy,Muthu Kumar,9119527553,18/03/2023,0,10.751655,78.724163,Inactive
+OA0339,Ram Infotech,General Trade,Coimbatore,Arun Kumar,6551114407,2019-08-02,30,10.994595,76.930751,Active
+OA0340,Devi Agencies,General Trade,Karur,Vignesh Babu,7005765357,2022-03-03,30,10.967208,78.095302,Inactive
+OA0341,Prime Electronics,General Trade,Karur,Hari Nathan,9755162701,26/04/2023,45,10.983345,78.046641,Active
+OA0342,Selvam Telecom,Mobile Specialist,VELLORE,Prabhu M,7998200888,20-Mar-22,30,12.940175,79.152413,active
+OA0343,Galaxy Infotech,General Trade,Trichy,Gopal Kumar,9022325514,27-Aug-20,15,10.797115,78.687552,Active
+OA0344,Galaxy Electronics,Mobile Specialist,Trichy,Hari M,9700132936,21-Dec-22,30,10.82988,78.701489,Active
+OA0345,,General Trade,KARUR,Gopal Nathan,7084592514,25/10/2024,30,10.937183,78.082566,Active
+OA0346,Amman Communications,General Trade,TIRUPUR,Arun S,8706567230,2025-01-03,30 days,11.138817,77.308739,Inactive
+OA0347,Thangam Mobiles,Mobile Specialist,VELLORE,Bala Nathan,82049-81263,06/04/2022,30,12.873052,79.112003,Hold
+OA0348,Poorvika Mobile,Mobile Specialist,TIRUNELVELI,Karthik Murugan,8267644640,2023-08-18,COD,8.719632,77.765175,Active
+OA0349,iStore Enterprises,Mobile Specialist,VELLORE,Suresh Raj,6645472351,01-Jul-21,30 days,12.916474,79.142118,active
+OA0350,Big C Communications,General Trade,dindigul,Muthu Nathan,,07/08/2023,15,10.353069,77.94204,Active
+OA0351,Devi Infotech,General Trade,madurai,Dinesh Raj,8217516559,09/12/2023,15,9.927041,78.157579,dormant
+OA0352,Chennai Silks Mobiles,Premium Reseller,erode,Hari S,9479672756,12-Nov-20,15,11.350576,77.717953,Hold
+OA0353,New Star Agencies,Mobile Specialist,Madurai,Saravanan R,8022830406,2019-09-03,30,9.913392,78.106406,Dormant
+OA0354,Universal Cellpoint,Mobile Specialist,coimbatore,Sathish Babu,,2019-06-28,45,11.035934,76.965382,Active
+OA0355,Muthu Digital,General Trade,COIMBATORE,Gopal Nathan,7421382336,2024-04-25,,11.04218,76.96479,dormant
+OA0356,Ganesh Agencies,Mobile Specialist,Vellore,Saravanan V,919120360437,19/11/2024,45,12.896121,79.14729,ACTIVE
+OA0357,Universal Mobile,General Trade,Tiruppur,Suresh S,8516289336,28/07/2022,30,11.064597,77.361186,dormant
+OA0358,Royal Enterprises,General Trade,salem,Prabhu Murugan,9570186013,06-Oct-22,45,11.645203,78.165846,dormant
+OA0359,Amman Mobiles,Mobile Specialist,Salem,Gopal R,918440073945,25/09/2019,0,11.698792,78.17274,Inactive
+OA0360,Lakshmi Communications,Mobile Specialist,Vellore,Sathish Kumar,7413054771,16-Sep-24,30,12.907676,79.113289,ACTIVE
+OA0361,Universal Mobile,Mobile Specialist,Tiruchirappalli,Bala Nathan,9783640618,10/12/2023,,,,
+OA0362,Big C Telecom,General Trade,Karur,Rajesh Raj,+91 84394 49337,20-Mar-22,0,10.952914,78.102284,Active
+OA0363,Saravana Mobiles,Mobile Specialist,Tiruppur,Suresh M,8862631826,16/12/2019,30 days,11.070167,77.316953,ACTIVE
+OA0364,Galaxy Electronics,Premium Reseller,THANJAVUR,Senthil V,6590375475,09/07/2020,0,10.778222,79.097914,ACTIVE
+OA0365,Meenakshi Telecom,General Trade,salem,Vijay Murugan,6388557054,09-Feb-25,30 days,,,Active
+OA0366,Jeyam Agencies,Mobile Specialist,trichy,Anand Raj,7376866461,2022-11-26,COD,10.774007,78.711121,Active
+OA0367,Devi Gadgets,Premium Reseller,Salem,Senthil R,7206076716,09-Aug-24,45,11.63985,78.185459,Active
+OA0368,Anandha Telecom,General Trade,SALEM,Rajesh Babu,9331881292,16/08/2021,30,11.640993,78.172962,Dormant
+OA0369,Universal Mobiles,Mobile Specialist,erode,Prabhu Raj,8820546089,19-Jul-24,COD,11.343443,77.754031,
+OA0370,Muthu Electronics,General Trade,Tiruchirappalli,Gopal Murugan,9963633841,05/07/2023,COD,10.773429,78.712657,Active
+OA0371,Amman Traders,General Trade,KARUR,Saravanan R,6523900666,30-May-24,15,,,ACTIVE
+OA0372,Universal Communications,Mobile Specialist,trichy,Naveen Kumar,,21-Dec-22,0,10.834108,78.690142,ACTIVE
+OA0373,Sri Balaji Mobiles,General Trade,coimbatore,Vijay Krishnan,8371991833,04-Jun-25,15,10.998458,76.910963,ACTIVE
+OA0374,Karpagam Telecom,Mobile Specialist,Erode,Manoj V,7547719497,24/03/2025,30,11.345948,77.727744,Active
+OA0375,,Mobile Specialist,TIRUNELVELI,Sathish Raj,0,03-Aug-20,30 days,8.719548,77.755854,active
+OA0376,Selvam Agencies,Mobile Specialist,DINDIGUL,Ramesh Raj,8271153412,16/09/2019,COD,,,Active
+OA0377,New Star Mobiles,General Trade,dindigul,Hari S,9933226402,02/10/2021,30,10.384175,77.983413,
+OA0378,Universal Telecom,Mobile Specialist,madurai,Manoj Nathan,917403717094,15-Apr-25,,,,active
+OA0379,iStore Communications,General Trade,VELLORE,Manoj S,7223965393,2020-12-17,30,12.876652,79.144023,Active
+OA0380,Modern Traders,Mobile Specialist,Nellai,Karthik S,+91 91541 00723,15/12/2023,COD,,,Hold
+OA0381,Galaxy Mobile,Premium Reseller,ERODE,Senthil Babu,9429711735,12/12/2019,30 days,11.36566,77.709205,dormant
+OA0382,iStore Traders,General Trade,chennai,Ramesh M,,2020-04-13,30,13.046943,80.31088,dormant
+OA0383,Bharath Mobile,General Trade,TIRUNELVELI,Muthu Kumar,7419153712,2023-05-29,30 days,8.746255,77.763032,dormant
+OA0384,Bharath Mobile,Mobile Specialist,Thanjavur,Muthu V,0,20/07/2019,30,10.804329,79.148157,dormant
+OA0385,Ganesh Mobile,Mobile Specialist,coimbatore,Ramesh Murugan,7589532904,20-Sep-24,15,11.060106,76.91295,dormant
+OA0386,Prime Mobiles,Mobile Specialist,TRICHY,Rajesh Krishnan,7974107468,12/07/2022,COD,10.757445,78.698624,Dormant
+OA0387,Ganesh Electronics,Mobile Specialist,Salem,Vignesh Kumar,6409588298,27-Jan-20,15,11.6322,78.106561,
+OA0388,Galaxy Telecom,Premium Reseller,trichy,Ravi R,9357121056,05/06/2019,45,10.792629,78.666226,Dormant
+OA0389,Lakshmi Enterprises,Mobile Specialist,COIMBATORE,Senthil V,63866-86670,10-Aug-20,COD,,,dormant
+OA0390,Vasanth Enterprises,Mobile Specialist,Thanjavur,Sathish M,0,06/09/2024,0,10.743901,79.110684,ACTIVE
+OA0391,Vasanth Communications,Mobile Specialist,Nellai,Karthik Raj,+91 61548 38944,31-Oct-20,45,8.749656,77.77968,Active
+OA0392,Karpagam Communications,Mobile Specialist,THANJAVUR,Sathish Kumar,6410836821,23/10/2019,30 days,10.797867,79.152601,Active
+OA0393,Sangeetha Electronics,General Trade,Vellore,Gopal Nathan,,2025-03-05,,12.899024,79.124739,Active
+OA0394,Prime Mobile,General Trade,Vellore,Vignesh Murugan,7538794492,2024-01-31,45,12.91598,79.096306,Active
+OA0395,Thangam Infotech,General Trade,Dindigul,Vijay Kumar,60682-65558,02/02/2024,COD,10.397542,77.99518,Hold
+OA0396,Saravana Agencies,General Trade,chennai,Vignesh S,8480801995,14/08/2021,0,13.059589,80.23545,Active
+OA0397,Vasanth Traders,General Trade,trichy,Prabhu S,7962851167,19-Jul-20,15,10.830371,78.660289,Active
+OA0398,Chennai Silks Mobile,Mobile Specialist,Tirunelveli,Bala R,8792961745,05/10/2023,45,8.723225,77.758774,Active
+OA0399,Muthu Electronics,General Trade,CBE,Suresh S,8251673243,12/08/2019,0,11.005777,76.994127,
+OA0400,Sri Balaji Traders,General Trade,chennai,Manoj V,6292053393,17/09/2024,30,,,Hold
+OA0401,Sakthi Traders,Mobile Specialist,trichy,Gopal Babu,+91 86040 06951,2025-05-19,30 days,10.784336,78.683714,dormant
+OA0402,Kumaran Digital,General Trade,Nellai,Senthil Raj,8278847873,23/08/2023,,8.700888,77.785361,Active
+OA0403,Mobile World Digital,General Trade,Tiruppur,Arun Babu,+91 66231 85647,2022-12-21,COD,,,
+OA0404,Saravana Gadgets,Premium Reseller,TIRUNELVELI,Suresh V,+91 80418 08037,24-Feb-24,30,8.679269,77.72587,ACTIVE
+OA0405,Galaxy Digital,Multi-Yard,salem,Senthil V,75863-58697,01/08/2019,30,,,Active
+OA0406,Saravana Communications,General Trade,Chennai,Vignesh Nathan,9825847770,10/11/2020,15,13.043503,80.281182,Active
+OA0407,Meenakshi Enterprises,General Trade,salem,Hari S,8460981103,2020-04-04,30,,,Active
+OA0408,Galaxy Infotech,General Trade,chennai,Gopal Kumar,7611859757,16/12/2022,30 days,13.058623,80.255654,ACTIVE
+OA0409,Amman Mobile,General Trade,ERODE,Naveen S,6319460410,27/02/2020,30,11.337508,77.722668,
+OA0410,Amman Telecom,Premium Reseller,Nellai,Anand Raj,7593631387,2020-08-30,COD,8.746556,77.768414,dormant
+OA0411,Lakshmi Digital,General Trade,Mdu,Rajesh V,+91 65047 43780,30/04/2020,45,9.943853,78.154087,
+OA0412,Big C Enterprises,Multi-Yard,ERODE,Anand R,8542432255,21/05/2023,45,11.372206,77.73545,active
+OA0413,Big C Digital,Mobile Specialist,ERODE,Dinesh Nathan,6707257542,04/01/2025,45,11.312231,77.746495,Inactive
+OA0414,iStore Agencies,Premium Reseller,Tirunelveli,Suresh M,9743202126,01-Oct-19,30,8.702082,77.775902,Dormant
+OA0415,Jeyam Electronics,Multi-Yard,Tanjore,Vijay R,7180176798,2019-08-15,COD,,,ACTIVE
+OA0416,Devi Agencies,General Trade,Karur,Rajesh Murugan,9890232741,2022-12-11,30,10.933252,78.106508,active
+OA0417,Muthu Enterprises,General Trade,Salem,Ravi Murugan,8632262197,19-Nov-20,30 days,11.638124,78.123165,active
+OA0418,Prime Digital,Mobile Specialist,Trichy,Manoj Babu,83298-46663,04-Nov-24,30,10.759147,78.668452,
+OA0419,New Star Telecom,General Trade,dindigul,Gopal S,6103977276,21/08/2024,30,10.351167,77.940142,Active
+OA0420,Saravana Mobile,Mobile Specialist,madurai,Rajesh M,7512560891,01/01/2025,COD,9.957453,78.1471,dormant
+OA0421,Meenakshi Enterprises,Mobile Specialist,Madras,Prabhu Raj,8956241133,23/10/2023,COD,13.03931,80.24188,active
+OA0422,Anandha Agencies,General Trade,MADURAI,Senthil Raj,+91 63966 56620,19/12/2019,45,,,Hold
+OA0423,Bharath Electronics,General Trade,Thanjavur,Muthu Krishnan,,25/07/2020,0,10.775065,79.11462,Dormant
+OA0424,Sri Krishna Cellpoint,Premium Reseller,coimbatore,Muthu S,9726059544,01/04/2023,COD,11.055598,76.918741,Active
+OA0425,Ram Gadgets,General Trade,Trichy,Ravi M,8107628849,16/07/2021,COD,10.813288,78.722428,active
+OA0426,Modern Digital,General Trade,DINDIGUL,Gopal Krishnan,8420846934,16/07/2021,30,10.38544,77.960058,Dormant
+OA0427,Vinayaga Mobile,General Trade,DINDIGUL,Naveen Krishnan,85070-72671,25/12/2023,,10.371017,77.986436,Hold
+OA0428,Ganesh Communications,General Trade,MADURAI,Muthu M,9248463144,2023-10-06,45,,,Active
+OA0429,Sri Balaji Telecom,Premium Reseller,THANJAVUR,Gopal V,6527321637,2019-12-20,30,10.808103,79.173761,dormant
+OA0430,Amman Digital,Premium Reseller,Karur,Sathish Babu,917287571974,07/09/2019,45,10.929161,78.071858,active
+OA0431,Amman Communications,General Trade,Mdu,Naveen Raj,8485694965,2019-07-22,45,9.887636,78.135587,Active
+OA0432,Ram Electronics,General Trade,Coimbatore,Arun M,8035458439,29/04/2025,0,11.016219,76.985834,Active
+OA0433,Vinayaga Cellpoint,Mobile Specialist,madurai,Rajesh Krishnan,,22-Feb-20,30,9.934266,78.142548,Active
+OA0434,Galaxy Agencies,Mobile Specialist,SALEM,Suresh V,6147358489,26/04/2021,30,11.650354,78.147268,
+OA0435,Muthu Mobile,Mobile Specialist,Tirunelveli,Arun R,8168714050,04-Jun-23,0,8.754216,77.742358,Active
+OA0436,Vinayaga Agencies,Mobile Specialist,chennai,Suresh Raj,7995153432,11-Nov-23,,13.059303,80.307494,dormant
+OA0437,Thangam Mobile,General Trade,chennai,Hari Murugan,9313909926,28/03/2023,30,13.090222,80.310937,Dormant
+OA0438,Galaxy Electronics,Premium Reseller,Nellai,Ramesh Nathan,6000358569,21/02/2023,COD,8.687808,77.712168,Active
+OA0439,Sakthi Enterprises,Mobile Specialist,Tanjore,Sathish Murugan,99881-28803,05-Sep-20,15,10.750374,79.159357,Active
+OA0440,Vasanth Telecom,General Trade,Thanjavur,Bala Babu,8554783933,26/02/2021,15,10.82597,79.133973,dormant
+OA0441,Bharath Enterprises,General Trade,dindigul,Bala S,7073625867,17/05/2021,30 days,10.350768,77.956135,dormant
+OA0442,Big C Telecom,General Trade,salem,Prabhu Babu,+91 96619 57325,28-Jul-21,,11.626052,78.183491,dormant
+OA0443,Lakshmi Electronics,General Trade,Salem,Rajesh Kumar,9746913798,21/11/2019,,11.653857,78.130996,Inactive
+OA0444,Meenakshi Mobile,General Trade,coimbatore,Dinesh Krishnan,8269747364,01/05/2021,30 days,11.00439,76.97927,dormant
+OA0445,Amman Gadgets,Mobile Specialist,Tanjore,Hari V,6232165445,2020-02-21,45,10.772944,79.173295,Hold
+OA0446,Galaxy Telecom,Mobile Specialist,Trichy,Prabhu Babu,9906525455,27/12/2023,30,10.784376,78.727969,Dormant
+OA0447,Devi Enterprises,Multi-Yard,TIRUNELVELI,Dinesh M,917284772315,11-Mar-22,30,8.738542,77.749327,Active
+OA0448,Devi Enterprises,General Trade,Thanjavur,Prabhu Kumar,92808-80999,27-Sep-22,,,,Hold
+OA0449,Muthu Mobile,General Trade,salem,Prabhu S,0,09-Jun-21,0,11.670685,78.186939,Dormant
+OA0450,Sangeetha Enterprises,General Trade,VELLORE,Rajesh V,9525795359,13/10/2023,COD,12.906552,79.138402,Active
+OA0451,Kumaran Mobiles,Mobile Specialist,dindigul,Ravi R,8500323939,2024-11-12,30,10.327975,78.005805,Active
+OA0452,Sri Balaji Enterprises,Mobile Specialist,dindigul,Anand Kumar,71713-66789,04/10/2019,0,10.399511,78.008162,
+OA0453,Sri Krishna Digital,General Trade,Tanjore,Sathish Kumar,918903200407,20/06/2022,,10.789468,79.176059,active
+OA0454,Muthu Electronics,Premium Reseller,Erode,Karthik M,6693240141,22-Apr-21,30,11.354056,77.69079,Hold
+OA0455,Ram Mobiles,General Trade,Chennai,Vignesh Babu,98059-34537,2023-05-04,30,13.045534,80.245103,Inactive
+OA0456,Lakshmi Digital,Mobile Specialist,COIMBATORE,Vijay Krishnan,6878936376,15-Aug-19,0,11.009008,76.982772,Active
+OA0457,Jeyam Traders,Premium Reseller,MADURAI,Rajesh Raj,0,11-Oct-20,45,9.882748,78.086115,Hold
+OA0458,Saravana Agencies,Premium Reseller,Tiruchirappalli,Ramesh R,,2019-11-12,0,10.766114,78.727176,Active
+OA0459,Amman Mobiles,Premium Reseller,trichy,Prabhu Murugan,,28/06/2019,,10.781044,78.683406,dormant
+OA0460,Big C Electronics,General Trade,Mdu,Ramesh Nathan,81369-23645,2021-04-30,0,9.959469,78.144624,Active
+OA0461,Chennai Silks Traders,General Trade,SALEM,Muthu Nathan,9014210690,2024-06-25,COD,11.67686,78.134577,ACTIVE
+OA0462,Royal Digital,General Trade,salem,Muthu Kumar,0,10/03/2020,0,11.65944,78.150183,ACTIVE
+OA0463,Royal Cellpoint,Premium Reseller,TIRUNELVELI,Rajesh Murugan,7648648706,2022-06-16,30,8.674649,77.734936,Active
+OA0464,Saravana Mobiles,Mobile Specialist,KARUR,Vijay Krishnan,7698911995,31-Dec-23,30 days,10.994306,78.114154,Active
+OA0465,Vasanth Electronics,General Trade,VELLORE,Ramesh Murugan,6472262981,21-May-23,,12.888076,79.107847,Active
+OA0466,Vinayaga Communications,General Trade,Karur,Prabhu Krishnan,+91 65251 05935,2019-10-05,30,,,Hold
+OA0467,Devi Enterprises,Mobile Specialist,Erode,Suresh M,8848460275,16/07/2019,30,11.361148,77.680512,Dormant
+OA0468,Ram Enterprises,General Trade,DINDIGUL,Anand Nathan,6679261150,2022-06-24,15,10.391915,77.980298,ACTIVE
+OA0469,Sri Balaji Infotech,Premium Reseller,Tanjore,Karthik M,9367851048,12-Sep-22,45,10.776369,79.147347,
+OA0470,Sangeetha Mobiles,General Trade,Vellore,Suresh Krishnan,8848226230,2021-05-08,30 days,12.941498,79.141354,dormant
+OA0471,Amman Cellpoint,General Trade,KARUR,Dinesh Kumar,6091067043,02/03/2025,15,10.968052,78.073425,Active
+OA0472,Big C Gadgets,General Trade,Coimbatore,Rajesh R,73085-89420,10-Nov-24,45,10.999346,76.979612,Active
+OA0473,Ganesh Cellpoint,Multi-Yard,TIRUPUR,Ramesh Krishnan,9532884700,11/11/2022,45,11.085799,77.363615,
+OA0474,Mobile World Electronics,General Trade,madurai,Arun Murugan,7259568535,30-Sep-20,0,9.928772,78.114673,Inactive
+OA0475,Ganesh Infotech,General Trade,TIRUPUR,Saravanan Krishnan,7857088512,07-Jan-22,30 days,11.10858,77.37366,active
+OA0476,Anandha Telecom,General Trade,Karur,Suresh Nathan,9515275261,17/02/2024,45,,,Dormant
+OA0477,Mobile World Cellpoint,Mobile Specialist,KARUR,Prabhu V,6130797279,22-Nov-21,30 days,10.938615,78.043663,Hold
+OA0478,Big C Mobile,Mobile Specialist,tirupur,Dinesh V,8908789570,09/10/2024,15,11.102097,77.3545,Hold
+OA0479,Vasanth Cellpoint,General Trade,Trichy,Saravanan Kumar,7086865721,21/09/2023,30 days,10.771899,78.728024,Active
+OA0480,Mobile World Digital,General Trade,Tirunelveli,Rajesh V,+91 98002 14628,11/09/2020,,8.713044,77.799461,Active
+OA0481,Muthu Traders,General Trade,chennai,Prabhu Kumar,85125-35554,09-Feb-24,30 days,13.058596,80.310073,
+OA0482,New Star Digital,Premium Reseller,Mdu,Rajesh Murugan,8620206874,05/02/2022,30 days,9.899645,78.126804,Active
+OA0483,Ram Gadgets,General Trade,CHENNAI,Dinesh Babu,79808-01232,2022-01-17,COD,13.078118,80.307623,Active
+OA0484,Sangeetha Gadgets,General Trade,THANJAVUR,Rajesh M,7523061041,19/05/2021,45,10.813723,79.104744,ACTIVE
+OA0485,Ram Traders,Multi-Yard,TIRUPUR,Dinesh Krishnan,7655770180,29/01/2020,,11.083287,77.335072,active
+OA0486,Jeyam Infotech,Premium Reseller,Tiruppur,Hari Raj,9865255973,11/09/2021,30,11.126609,77.336949,ACTIVE
+OA0487,Sri Krishna Enterprises,General Trade,Madras,Gopal V,6389624770,17/05/2025,0,13.095065,80.26091,Hold
+OA0488,Karpagam Gadgets,General Trade,COIMBATORE,Suresh Babu,6892600707,23/07/2020,COD,11.036178,76.940128,ACTIVE
+OA0489,Anandha Telecom,Mobile Specialist,CBE,Rajesh R,7009978357,29/06/2019,,11.030219,76.932263,active
+OA0490,Amman Mobiles,Mobile Specialist,tirupur,Ramesh Nathan,9240849614,2021-10-13,COD,11.067397,77.29786,
+OA0491,Royal Communications,Mobile Specialist,TIRUNELVELI,Ramesh Babu,+91 74566 47689,2021-11-01,30,8.722769,77.7176,ACTIVE
+OA0492,Muthu Agencies,Premium Reseller,Vellore,Rajesh V,6026893017,30/10/2024,30,12.876551,79.108047,Active
+OA0493,Bharath Traders,Mobile Specialist,SALEM,Arun M,+91 90098 42715,2020-03-20,,11.628942,78.109246,Active
+OA0494,New Star Telecom,Mobile Specialist,Vellore,Vignesh Nathan,9611360924,01/06/2025,45,12.927708,79.090789,Dormant
+OA0495,iStore Gadgets,Premium Reseller,erode,Dinesh Raj,7154821759,2023-05-28,30 days,11.37707,77.694625,
+OA0496,Saravana Communications,Mobile Specialist,Nellai,Sathish M,+91 95933 49568,19/11/2023,30,8.674476,77.776018,Inactive
+OA0497,New Star Mobile,General Trade,Coimbatore,Dinesh V,9777831539,21-Jun-24,30,,,Dormant
+OA0498,Sangeetha Cellpoint,General Trade,Mdu,Arun Krishnan,75064-70294,2019-09-02,45,9.933334,78.110812,Dormant
+OA0499,Selvam Digital,General Trade,Thanjavur,Karthik V,6548101180,01-Apr-21,45,10.793983,79.109957,Active
+OA0500,Karpagam Infotech,Multi-Yard,madurai,Prabhu Babu,9363994281,26/04/2022,30,,,Inactive
+OA0501,Big C Cellpoint,Premium Reseller,Coimbatore,Rajesh V,7505834063,2023-07-11,COD,11.021363,76.926371,Inactive
+OA0502,Lakshmi Gadgets,General Trade,KARUR,Hari R,+91 90866 18663,2025-01-08,,10.981601,78.073004,dormant
+OA0503,Sri Balaji Infotech,General Trade,Madurai,Anand Kumar,7179589216,2024-06-04,15,9.916377,78.153015,
+OA0504,Karpagam Traders,General Trade,erode,Anand M,8027809015,01-May-21,0,11.369028,77.72137,Dormant
+OA0505,Meenakshi Mobiles,Multi-Yard,KARUR,Arun R,9672676547,22-Jul-22,,10.98218,78.066089,Inactive
+OA0506,Galaxy Cellpoint,Premium Reseller,dindigul,Suresh Kumar,9139836669,23/08/2024,30 days,,,Active
+OA0507,Galaxy Traders,General Trade,VELLORE,Vijay Nathan,0,06/01/2024,45,12.948718,79.128027,Active
+OA0508,Saravana Mobile,Multi-Yard,CHENNAI,Ramesh V,+91 67731 90102,29/07/2023,0,13.051168,80.247745,Inactive
+OA0509,Saravana Digital,Mobile Specialist,VELLORE,Gopal Krishnan,8667843697,20/08/2022,30,12.955107,79.139504,Active
+OA0510,Prime Cellpoint,Mobile Specialist,VELLORE,Prabhu Nathan,6391784826,10/09/2019,30,12.878823,79.172305,Dormant
+OA0511,Thangam Telecom,General Trade,Tirupur,Vijay S,6216778949,21/04/2024,,11.127896,77.333357,Active
+OA0512,Universal Mobiles,Mobile Specialist,Dindigul,Sathish Nathan,9775200240,2022-07-17,0,10.347807,77.947239,Hold
+OA0513,Devi Telecom,General Trade,Thanjavur,Muthu Murugan,7871685248,09/07/2023,COD,10.81909,79.169181,Dormant
+OA0514,Jeyam Digital,Mobile Specialist,Coimbatore,Vignesh M,6455082884,2021-11-27,15,11.012971,76.936431,Hold
+OA0515,New Star Infotech,Mobile Specialist,Karur,Gopal Raj,6093099492,2021-02-26,COD,10.941666,78.115418,
+OA0516,Meenakshi Agencies,General Trade,DINDIGUL,Sathish S,,2020-08-29,,10.387182,78.002802,Active
+OA0517,Sri Balaji Gadgets,General Trade,THANJAVUR,Prabhu Kumar,+91 65787 03321,20/05/2023,0,10.768687,79.148047,Active
+OA0518,Thangam Mobile,General Trade,Thanjavur,Prabhu M,8211365589,21/10/2021,30,10.764203,79.140027,Active
+OA0519,Sakthi Cellpoint,Mobile Specialist,Cbe,Anand R,+91 77918 65921,2024-09-28,30,11.009293,76.918435,ACTIVE
+OA0520,Sangeetha Agencies,General Trade,TIRUNELVELI,Bala Krishnan,,2024-01-05,30,8.747317,77.738351,Dormant
+OA0521,Meenakshi Mobile,Mobile Specialist,TIRUPUR,Sathish R,8313240199,2023-02-18,30,,,active
+OA0522,Galaxy Telecom,Multi-Yard,SALEM,Bala S,8848477167,2021-02-27,30 days,11.62078,78.176659,ACTIVE
+OA0523,Mobile World Mobiles,Premium Reseller,CBE,Sathish S,7857132280,2022-09-24,30 days,11.050688,76.937727,Active
+OA0524,Vasanth Electronics,General Trade,Tirunelveli,Sathish Murugan,9295827538,31/12/2020,0,8.736996,77.717668,Active
+OA0525,Meenakshi Electronics,Mobile Specialist,Madurai,Dinesh M,,03/01/2021,15,9.936869,78.096356,dormant
+OA0526,Galaxy Cellpoint,General Trade,DINDIGUL,Vijay Nathan,,25/04/2021,30 days,10.328442,77.974713,Hold
+OA0527,Devi Mobile,Multi-Yard,Cbe,Anand Raj,,29-Oct-20,,11.059081,76.978886,Active
+OA0528,Mobile World Infotech,General Trade,madurai,Sathish Krishnan,6689442228,13-Sep-21,30,9.928704,78.120348,Active
+OA0529,iStore Enterprises,Multi-Yard,chennai,Ravi M,6267355228,2020-11-01,15,,,Dormant
+OA0530,Selvam Agencies,Premium Reseller,Tiruchirappalli,Hari Krishnan,6852791795,08/02/2023,30,10.803293,78.733443,active
+OA0531,Prime Cellpoint,Mobile Specialist,Madurai,Hari Babu,+91 87917 41542,24/07/2024,,9.920901,78.081548,Dormant
+OA0532,City Communications,General Trade,KARUR,Sathish Krishnan,+91 74723 42490,06/01/2021,15,10.981808,78.039451,Active
+OA0533,Universal Mobile,Mobile Specialist,Vellore,Naveen V,7059094737,01/09/2022,15,12.880363,79.128197,Inactive
+OA0534,Royal Traders,Mobile Specialist,Erode,Senthil M,9478669432,01-Dec-24,0,11.301015,77.721842,dormant
+OA0535,Ram Traders,General Trade,DINDIGUL,Hari M,7406399449,2020-09-22,0,10.401148,77.953396,ACTIVE
+OA0536,Bharath Traders,General Trade,THANJAVUR,Hari M,0,05-Jan-25,0,,,dormant
+OA0537,Selvam Digital,Mobile Specialist,Trichy,Saravanan Krishnan,+91 69323 00001,15-May-24,30,10.778437,78.73514,
+OA0538,Royal Infotech,General Trade,TIRUNELVELI,Karthik Raj,9084141591,19/12/2019,30,8.727129,77.768006,active
+OA0539,Ram Infotech,Multi-Yard,Madras,Sathish R,63158-57553,2024-09-24,30,13.062512,80.306845,dormant
+OA0540,Karpagam Mobile,General Trade,Coimbatore,Prabhu S,9982642269,25/10/2022,30 days,11.026468,76.941392,ACTIVE
+OA0541,Chennai Silks Mobiles,General Trade,Karur,Karthik Raj,9361467298,2024-10-15,COD,10.917414,78.119986,Active
+OA0542,Kumaran Traders,Multi-Yard,Thanjavur,Gopal S,,18/04/2024,30,10.763136,79.165676,ACTIVE
+OA0543,Poorvika Agencies,General Trade,VELLORE,Ramesh Nathan,919061623338,2020-05-31,,12.946122,79.151028,
+OA0544,Sri Balaji Telecom,Mobile Specialist,ERODE,Arun Krishnan,6905177265,17/07/2024,15,11.342309,77.730306,ACTIVE
+OA0545,Vasanth Agencies,Premium Reseller,tirupur,Hari R,7150857068,24/09/2023,0,11.15307,77.334591,Active
+OA0546,Ganesh Agencies,General Trade,madurai,Prabhu Kumar,82062-19533,2023-05-22,30 days,9.967229,78.121377,Active
+OA0547,Vinayaga Gadgets,General Trade,Vellore,Karthik V,93818-20722,29/11/2023,30,12.937341,79.146525,Active
+OA0548,Lakshmi Gadgets,Mobile Specialist,trichy,Ramesh Krishnan,9536841038,17/02/2024,30 days,10.764231,78.718942,
+OA0549,Royal Gadgets,General Trade,Dindigul,Senthil Murugan,7579571140,25/07/2024,30 days,10.326962,77.98906,dormant
+OA0550,Galaxy Mobile,Mobile Specialist,Salem,Naveen Babu,+91 98997 11498,26/10/2023,45,11.659676,78.109943,Inactive
+OA0551,Meenakshi Enterprises,General Trade,chennai,Suresh Babu,7674823366,2023-03-10,,13.085557,80.268362,Active
+OA0552,Poorvika Mobile,Mobile Specialist,madurai,Bala Raj,918609405818,15/04/2025,30,9.923074,78.150476,Dormant
+OA0553,Anandha Agencies,General Trade,chennai,Arun R,+91 87380 98358,22/10/2022,15,,,Active
+OA0554,Modern Digital,General Trade,Vellore,Sathish Murugan,6132773706,21/06/2019,COD,12.901788,79.089605,
+OA0555,Big C Infotech,General Trade,erode,Ramesh Raj,8658617124,2021-08-04,30,11.321323,77.72679,Inactive
+OA0556,Amman Traders,Mobile Specialist,Erode,Suresh R,8883040980,2025-03-26,45,11.328383,77.677177,Dormant
+OA0557,Modern Mobiles,General Trade,KARUR,Karthik Murugan,7134974944,2020-02-14,30 days,10.993755,78.048418,Inactive
+OA0558,Mobile World Agencies,Mobile Specialist,Mdu,Karthik R,,2020-01-19,COD,9.944367,78.089854,Active
+OA0559,Karpagam Cellpoint,General Trade,Vellore,Sathish R,7564758072,11/09/2021,,,,dormant
+OA0560,Sri Krishna Communications,Mobile Specialist,erode,Vignesh R,8369843083,13/05/2020,45,,,dormant
+OA0561,Muthu Cellpoint,General Trade,VELLORE,Saravanan V,8785610021,16/08/2022,30 days,12.930341,79.12938,dormant
+OA0562,Big C Gadgets,General Trade,Mdu,Muthu Babu,,19/07/2023,COD,9.896236,78.150969,dormant
+OA0563,Anandha Traders,Multi-Yard,DINDIGUL,Rajesh Kumar,,2021-09-06,,10.334086,77.951264,Active
+OA0564,Sakthi Mobile,Multi-Yard,Tirupur,Bala Kumar,0,10-Oct-21,30,11.139931,77.368208,active
+OA0565,Ram Traders,Mobile Specialist,erode,Suresh V,+91 62545 23998,01/04/2023,0,11.300001,77.74125,
+OA0566,Ganesh Gadgets,Premium Reseller,COIMBATORE,Arun Babu,,2023-10-29,30,11.01308,76.947187,Active
+OA0567,City Gadgets,General Trade,coimbatore,Rajesh R,7162495792,31/05/2023,COD,10.986389,76.946774,Hold
+OA0568,Vinayaga Mobiles,General Trade,Karur,Manoj R,6890167601,23-Feb-21,15,11.001161,78.081594,ACTIVE
+OA0569,Bharath Gadgets,Mobile Specialist,Madurai,Saravanan Murugan,9069687827,20-Sep-21,0,9.913299,78.153729,dormant
+OA0570,New Star Infotech,General Trade,Chennai,Vijay V,9548207930,23/11/2022,30,13.040172,80.248949,ACTIVE
+OA0571,Amman Telecom,General Trade,TIRUNELVELI,Gopal R,8035591429,2019-10-29,45,8.712457,77.762661,active
+OA0572,Galaxy Traders,Multi-Yard,Erode,Arun Kumar,7553854471,19/08/2019,30 days,,,
+OA0573,Muthu Communications,Premium Reseller,Vellore,Saravanan S,7059185028,12/03/2024,,12.873062,79.154893,active
+OA0574,Amman Digital,Mobile Specialist,Tiruchirappalli,Senthil Raj,8628892104,31/07/2020,45,10.822728,78.737759,
+OA0575,Ganesh Gadgets,Mobile Specialist,TIRUPUR,Anand R,8160809190,14/06/2023,,11.14219,77.314619,Active
+OA0576,Lakshmi Digital,General Trade,salem,Ramesh Kumar,86433-31961,2024-07-20,30,11.687512,78.178319,Active
+OA0577,Saravana Digital,Premium Reseller,Erode,Ramesh R,0,2019-07-25,,11.335706,77.72204,dormant
+OA0578,Sri Krishna Cellpoint,General Trade,Karur,Senthil Kumar,9919333961,01/05/2022,30 days,10.980725,78.07231,
+OA0579,Saravana Telecom,General Trade,KARUR,Arun Murugan,0,30/05/2025,30,10.94458,78.07693,Hold
+OA0580,iStore Mobiles,General Trade,DINDIGUL,Bala Kumar,6985670174,30-Mar-20,COD,,,
+OA0581,Mobile World Telecom,General Trade,Tirunelveli,Vijay Babu,9688912452,30-Jan-22,30 days,8.688879,77.712839,Active
+OA0582,Vasanth Digital,General Trade,Dindigul,Prabhu R,7549530361,26/09/2020,COD,10.374449,77.960513,Inactive
+OA0583,Anandha Mobile,Multi-Yard,Karur,Gopal Kumar,0,2019-08-26,45,10.997552,78.086066,Dormant
+OA0584,iStore Electronics,Mobile Specialist,COIMBATORE,Dinesh Murugan,7230622489,25-Dec-19,30,11.052389,76.951891,Active
+OA0585,Meenakshi Cellpoint,Premium Reseller,Vellore,Arun Nathan,7574566211,16/12/2020,30,12.959234,79.157399,Hold
+OA0586,Lakshmi Infotech,General Trade,Tanjore,Vignesh Kumar,+91 70374 03793,18/07/2022,COD,,,Active
+OA0587,Big C Communications,General Trade,ERODE,Sathish Nathan,919137410445,01/09/2024,0,11.314773,77.714455,
+OA0588,Sri Balaji Electronics,Multi-Yard,coimbatore,Ramesh M,8494966310,09-Oct-21,45,10.994182,76.987727,Dormant
+OA0589,Sakthi Electronics,General Trade,salem,Rajesh Nathan,+91 84846 08435,2021-03-12,,11.656939,78.117539,Dormant
+OA0590,Selvam Electronics,General Trade,coimbatore,Senthil Raj,9089312189,2022-12-20,30,11.048019,76.979005,Hold
+OA0591,City Traders,General Trade,Vellore,Muthu S,+91 98480 45866,25/12/2020,0,12.949301,79.094265,dormant
+OA0592,iStore Electronics,Multi-Yard,Mdu,Dinesh R,917419465449,12/10/2020,,,,
+OA0593,New Star Digital,General Trade,ERODE,Muthu S,+91 84445 51948,2024-08-29,COD,11.370285,77.717124,active
+OA0594,Sangeetha Cellpoint,General Trade,Trichy,Muthu S,0,19/10/2022,30 days,10.774687,78.696454,Active
+OA0595,Sangeetha Cellpoint,Mobile Specialist,trichy,Vijay Kumar,,17/10/2020,,10.815987,78.738045,Active
+OA0596,Saravana Mobile,General Trade,Trichy,Manoj Nathan,8785268242,08-Feb-24,30,10.776364,78.691181,
+OA0597,Selvam Electronics,General Trade,erode,Gopal Murugan,6938728137,2019-06-26,30,11.356869,77.748599,Active
+OA0598,Devi Gadgets,General Trade,Erode,Ramesh Kumar,66002-77322,07/05/2021,COD,11.299977,77.704412,Active
+OA0599,Saravana Cellpoint,General Trade,Vellore,Hari Raj,9539905619,19/08/2023,0,12.895894,79.107956,Inactive
+OA0600,Muthu Gadgets,General Trade,VELLORE,Senthil Raj,8943863719,21/10/2020,0,12.886254,79.12558,ACTIVE
+OA0601,Prime Agencies,General Trade,KARUR,Karthik R,,18/12/2024,30 days,10.985282,78.052783,active
+OA0602,Sangeetha Electronics,Mobile Specialist,Tirunelveli,Gopal Kumar,,09/06/2025,30,8.755435,77.714238,ACTIVE
+OA0603,Amman Enterprises,General Trade,Trichy,Vijay Raj,6356476579,2025-01-05,,10.80119,78.679022,ACTIVE
+OA0604,Meenakshi Enterprises,General Trade,salem,Karthik Babu,6861991933,2022-06-05,30,11.680337,78.167231,Active
+OA0605,Sri Krishna Infotech,Premium Reseller,erode,Senthil V,6011681928,05/03/2023,45,11.320076,77.69972,dormant
+OA0606,Big C Electronics,Multi-Yard,TIRUNELVELI,Prabhu V,7738098818,19/07/2021,COD,8.723078,77.719318,active
+OA0607,Jeyam Digital,Mobile Specialist,Tiruchirappalli,Vijay M,84152-73357,25-Sep-22,0,10.75793,78.659869,ACTIVE
+OA0608,Devi Gadgets,Mobile Specialist,CHENNAI,Manoj Raj,8683262033,2023-02-06,15,13.126957,80.239457,Dormant
+OA0609,Kumaran Infotech,General Trade,trichy,Vijay R,6612054318,09-Mar-20,,10.768518,78.687545,Active
+OA0610,Vasanth Gadgets,Mobile Specialist,Karur,Ramesh Babu,98608-54374,01/01/2023,30,10.970155,78.041411,
+OA0611,Royal Traders,Premium Reseller,Thanjavur,Rajesh V,74650-16563,2020-10-10,30,10.807555,79.142063,
+OA0612,Sri Balaji Infotech,General Trade,KARUR,Ravi S,64433-96980,2021-06-22,COD,10.986168,78.120824,
+OA0613,Devi Infotech,General Trade,Chennai,Dinesh R,9249502777,20/12/2023,15,13.057306,80.288936,Active
+OA0614,Sri Balaji Traders,Mobile Specialist,trichy,Suresh R,9643656283,2020-01-21,45,10.75316,78.717947,dormant
+OA0615,Selvam Electronics,Premium Reseller,Tiruppur,Prabhu Babu,8908964308,2022-03-22,30 days,11.072642,77.329532,ACTIVE
+OA0616,,General Trade,Salem,Dinesh R,8195016914,06/10/2024,,,,Dormant
+OA0617,Bharath Agencies,General Trade,CHENNAI,Vignesh Kumar,,2024-09-27,,13.125331,80.24411,Dormant
+OA0618,City Telecom,General Trade,Chennai,Gopal V,+91 71274 33554,2023-02-22,,13.049131,80.24571,Active
+OA0619,Muthu Infotech,Mobile Specialist,erode,Arun Raj,7282970427,30/03/2020,15,11.296111,77.724293,active
+OA0620,Ganesh Infotech,Premium Reseller,erode,Gopal R,919057825982,17-May-22,0,11.345916,77.688938,Active
+OA0621,Mobile World Enterprises,General Trade,Erode,Ramesh M,8708460978,09-Oct-20,30 days,11.3223,77.699207,dormant
+OA0622,Ganesh Enterprises,Premium Reseller,COIMBATORE,Karthik R,9465742990,03/11/2019,30 days,10.977144,76.988266,ACTIVE
+OA0623,Sakthi Traders,General Trade,CBE,Hari M,8363642106,26/06/2023,0,11.003063,76.963886,Active
+OA0624,Saravana Enterprises,Mobile Specialist,CBE,Anand V,6038142289,17/01/2022,15,11.027485,76.96995,Active
+OA0625,Karpagam Agencies,Premium Reseller,dindigul,Karthik Babu,8597745078,13/03/2025,,10.369548,77.943381,dormant
+OA0626,Galaxy Cellpoint,General Trade,VELLORE,Prabhu Nathan,7863096170,03/06/2019,COD,12.879032,79.116438,active
+OA0627,Jeyam Digital,General Trade,trichy,Muthu Nathan,,2023-02-23,0,10.760292,78.735889,Active
+OA0628,Selvam Infotech,General Trade,Tanjore,Vijay Murugan,+91 77076 79800,29-Nov-19,COD,10.767087,79.133369,
+OA0629,Big C Traders,Multi-Yard,Coimbatore,Senthil Babu,7938356009,03/04/2022,COD,11.001414,76.943093,ACTIVE
+OA0630,Anandha Telecom,General Trade,Erode,Ramesh Babu,6213532644,18/06/2024,30 days,11.332173,77.719372,ACTIVE
+OA0631,Chennai Silks Gadgets,General Trade,KARUR,Karthik S,90444-77325,22/05/2021,30,10.970823,78.065476,Hold
+OA0632,Prime Electronics,General Trade,Dindigul,Arun R,0,2021-05-22,COD,10.318735,77.950914,Hold
+OA0633,Chennai Silks Cellpoint,General Trade,Tirunelveli,Ramesh S,8027065317,06/12/2024,,8.757947,77.781641,Inactive
+OA0634,Poorvika Cellpoint,Mobile Specialist,Nellai,Naveen S,,17/11/2022,,8.722022,77.75272,Hold
+OA0635,Kumaran Gadgets,General Trade,Karur,Saravanan Krishnan,9637350376,29/10/2022,COD,,,Active
+OA0636,Poorvika Electronics,General Trade,Salem,Ravi R,917410418137,14/11/2023,45,11.667659,78.120421,Active
+OA0637,Vinayaga Enterprises,Mobile Specialist,SALEM,Bala Krishnan,7326692850,08/01/2021,30,11.691735,78.10291,
+OA0638,Royal Enterprises,General Trade,TIRUNELVELI,Muthu Krishnan,8594923074,08-Apr-25,30,8.703918,77.791486,Active
+OA0639,Mobile World Gadgets,General Trade,SALEM,Vijay M,7923267919,23-Apr-24,30 days,11.708997,78.119404,active
+OA0640,Chennai Silks Agencies,General Trade,chennai,Vijay M,7786595929,02/01/2021,30,13.043724,80.314744,active
+OA0641,Bharath Enterprises,Multi-Yard,Thanjavur,Suresh V,99454-85501,2025-03-16,30,10.808358,79.131759,active
+OA0642,Anandha Telecom,Premium Reseller,ERODE,Muthu R,9198938891,22-Feb-25,,11.325217,77.690522,Active
+OA0643,Sri Krishna Communications,General Trade,TIRUNELVELI,Ramesh V,7328949995,05-Jun-19,,8.686304,77.744828,Hold
+OA0644,Karpagam Enterprises,Premium Reseller,SALEM,Rajesh Babu,9361693807,2025-04-30,,11.651799,78.1321,Dormant
+OA0645,Karpagam Telecom,Mobile Specialist,Karur,Karthik Kumar,7325334271,2022-06-09,30 days,10.992229,78.089653,dormant
+OA0646,Vinayaga Cellpoint,General Trade,THANJAVUR,Hari Nathan,+91 72996 13808,16/01/2021,45,10.763692,79.165268,Active
+OA0647,Devi Infotech,Mobile Specialist,Vellore,Muthu Murugan,+91 75381 31011,03/07/2023,30,12.941882,79.105423,Dormant
+OA0648,Vinayaga Digital,Mobile Specialist,THANJAVUR,Prabhu S,919783870549,23/07/2019,30,10.794406,79.094894,active
+OA0649,Prime Mobile,General Trade,Thanjavur,Arun Nathan,6944746940,10/10/2023,45,10.793715,79.09663,Active
+OA0650,Vinayaga Electronics,General Trade,Trichy,Anand Nathan,72000-33589,01/04/2021,0,10.832359,78.734188,Dormant
+OA0651,iStore Digital,General Trade,Tiruppur,Manoj R,7949442344,14-Jan-25,30,11.14909,77.345388,ACTIVE
+OA0652,Modern Infotech,Mobile Specialist,KARUR,Hari R,918159238050,03/04/2025,0,10.95836,78.080263,ACTIVE
+OA0653,City Communications,Mobile Specialist,erode,Suresh Kumar,+91 71715 81263,2023-10-19,0,11.304326,77.732876,Hold
+OA0654,Anandha Mobiles,Mobile Specialist,VELLORE,Vignesh M,0,2023-11-10,45,,,dormant
+OA0655,Muthu Communications,Mobile Specialist,CBE,Karthik Raj,+91 60084 21610,27/09/2019,15,11.043962,76.944852,ACTIVE
+OA0656,Ram Cellpoint,General Trade,TRICHY,Saravanan Kumar,9412603953,03-Jan-22,45,10.748531,78.713651,Inactive
+OA0657,City Cellpoint,Mobile Specialist,Mdu,Prabhu Krishnan,,2025-06-08,15,9.937416,78.133863,Active
+OA0658,Thangam Traders,General Trade,Tanjore,Anand S,9121529469,2021-04-09,30,10.797667,79.113814,
+OA0659,Thangam Cellpoint,Premium Reseller,Salem,Senthil Babu,9522748435,15/06/2021,COD,11.645219,78.166622,Active
+OA0660,Universal Mobile,Mobile Specialist,Madurai,Vignesh R,7282973467,18/05/2020,30 days,9.923466,78.111774,dormant
+OA0661,Devi Cellpoint,Mobile Specialist,Erode,Naveen Murugan,7141733141,05-Aug-20,30,11.316019,77.736794,dormant
+OA0662,Vinayaga Mobile,Mobile Specialist,Tanjore,Vignesh S,6589139729,20/05/2022,,10.743681,79.137785,Active
+OA0663,New Star Agencies,Mobile Specialist,MADURAI,Hari Krishnan,8043295364,2023-08-05,COD,9.949309,78.158887,Active
+OA0664,New Star Traders,Premium Reseller,MADURAI,Arun Murugan,+91 99885 88491,16-Mar-20,15,,,
+OA0665,Muthu Enterprises,Mobile Specialist,Cbe,Arun V,,2024-05-21,,11.005085,76.925888,active
+OA0666,Anandha Gadgets,Mobile Specialist,ERODE,Naveen S,74005-63872,02-Apr-20,30,11.367931,77.693657,Inactive
+OA0667,Bharath Communications,General Trade,MADURAI,Sathish Babu,9633825910,08-Aug-22,30 days,9.945767,78.139549,Active
+OA0668,Bharath Mobiles,General Trade,tirupur,Anand V,7028307916,07/06/2024,COD,11.135233,77.330963,Active
+OA0669,Bharath Enterprises,Premium Reseller,Tirunelveli,Senthil V,9782682769,01-Feb-21,COD,8.679933,77.730408,Active
+OA0670,Jeyam Digital,General Trade,Tiruppur,Karthik Krishnan,8254548973,13-Aug-19,30,11.120292,77.298521,Active
+OA0671,Vasanth Traders,General Trade,ERODE,Vijay V,9987501187,2019-11-26,0,11.300405,77.724803,ACTIVE
+OA0672,Saravana Cellpoint,Mobile Specialist,Vellore,Anand M,60918-65068,04/11/2023,45,12.959728,79.158151,active
+OA0673,Karpagam Cellpoint,Premium Reseller,Madurai,Ramesh Murugan,9294243989,15/08/2019,30,9.886665,78.133642,
+OA0674,Thangam Enterprises,Mobile Specialist,tirupur,Muthu S,8518732900,08/01/2020,30,11.077481,77.315017,dormant
+OA0675,Jeyam Enterprises,Mobile Specialist,madurai,Saravanan Babu,,26-Sep-21,45,9.94605,78.093803,Hold
+OA0676,Prime Cellpoint,General Trade,KARUR,Anand Babu,9097661323,26/06/2021,30,10.965511,78.075446,Active
+OA0677,Chennai Silks Electronics,General Trade,Mdu,Manoj Babu,7993100817,27/07/2022,30 days,9.912397,78.080802,Hold
+OA0678,Kumaran Electronics,Premium Reseller,Karur,Vijay Krishnan,9550877176,21-Mar-24,30 days,10.992148,78.049303,Dormant
+OA0679,Vasanth Gadgets,Premium Reseller,Tiruppur,Ramesh V,90011-76335,05/07/2020,45,11.123667,77.315641,Active
+OA0680,Karpagam Mobiles,General Trade,KARUR,Gopal M,82669-99253,11/01/2020,30,11.003869,78.035055,dormant
+OA0681,Lakshmi Agencies,General Trade,tirupur,Suresh Nathan,7774661174,06-May-24,15,11.141009,77.345832,Active
+OA0682,Thangam Cellpoint,Mobile Specialist,coimbatore,Bala Babu,7987314163,28-Mar-20,30,11.022194,76.973751,ACTIVE
+OA0683,Lakshmi Telecom,Mobile Specialist,dindigul,Gopal Krishnan,9175894989,08/05/2025,0,10.332388,77.97056,Active
+OA0684,City Digital,General Trade,Madurai,Ramesh Raj,66170-41548,20/08/2022,45,9.910981,78.10867,dormant
+OA0685,Selvam Gadgets,Premium Reseller,tirupur,Ravi S,9055862749,2021-01-27,30,11.097526,77.326233,Inactive
+OA0686,Royal Electronics,General Trade,DINDIGUL,Suresh V,7811972908,2023-02-18,45,10.327747,77.996558,Hold
+OA0687,Bharath Communications,General Trade,Cbe,Manoj Murugan,7677582368,17-Dec-19,45,11.028709,76.93298,ACTIVE
+OA0688,Sri Krishna Mobiles,Premium Reseller,Vellore,Prabhu Krishnan,6082809260,12/08/2024,30 days,12.932151,79.114867,active
+OA0689,Ram Communications,Premium Reseller,Chennai,Suresh Raj,+91 95708 41784,30/05/2021,15,13.047001,80.250871,Active
+OA0690,Sangeetha Mobiles,Mobile Specialist,Tiruchirappalli,Saravanan Nathan,9027555665,20/01/2025,30 days,10.765555,78.714464,ACTIVE
+OA0691,Royal Traders,Mobile Specialist,Madurai,Naveen Krishnan,94420-11508,28/11/2019,15,9.944292,78.162824,Active
+OA0692,Sri Balaji Infotech,General Trade,Cbe,Senthil Babu,7318402302,17-Jun-22,30,11.039081,76.982969,dormant
+OA0693,Poorvika Agencies,Premium Reseller,VELLORE,Bala S,7501360035,20-Nov-22,45,12.906819,79.143003,ACTIVE
+OA0694,Devi Mobile,General Trade,SALEM,Naveen Kumar,8224273700,20/10/2024,30 days,11.682739,78.172635,Active
+OA0695,Ram Cellpoint,Premium Reseller,Mdu,Prabhu V,,2020-09-06,30,9.895132,78.102102,Inactive
+OA0696,Sakthi Cellpoint,Premium Reseller,VELLORE,Arun S,917563778617,06/06/2025,30 days,12.926393,79.132044,Dormant
+OA0697,Modern Cellpoint,General Trade,Nellai,Karthik Raj,6850061957,13/08/2023,45,,,Active
+OA0698,Sri Balaji Gadgets,Mobile Specialist,Salem,Prabhu S,7034618046,08/03/2023,0,11.624126,78.184822,active
+OA0699,Universal Communications,General Trade,Trichy,Anand Raj,85678-27222,2024-04-13,,10.773493,78.693408,ACTIVE
+OA0700,Lakshmi Electronics,Mobile Specialist,erode,Saravanan Kumar,7444644035,07/06/2025,30,,,Active
+OA0701,City Infotech,General Trade,Cbe,Manoj Kumar,916460548064,24-Oct-24,15,11.009656,76.943266,active
+OA0702,Sakthi Infotech,General Trade,TIRUNELVELI,Manoj Murugan,+91 74536 27427,2022-01-08,30,,,Active
+OA0703,Thangam Telecom,General Trade,Tirunelveli,Saravanan Raj,8825778813,24/07/2023,15,8.729735,77.801126,Hold
+OA0704,Royal Infotech,General Trade,Vellore,Vignesh Kumar,9567111542,31/12/2023,30,12.956125,79.093044,
+OA0705,Bharath Agencies,General Trade,MADURAI,Dinesh Babu,+91 93581 00312,2020-08-27,0,9.905744,78.093783,
+OA0706,iStore Infotech,Premium Reseller,VELLORE,Ravi R,6930147552,20/08/2023,30,12.948343,79.121502,Inactive
+OA0707,iStore Enterprises,Mobile Specialist,madurai,Anand Babu,6679439423,29/11/2019,30 days,9.965528,78.133762,dormant
+OA0708,Vinayaga Cellpoint,General Trade,Karur,Dinesh R,916543558152,2022-05-30,COD,10.986607,78.09575,ACTIVE
+OA0709,New Star Mobile,Mobile Specialist,SALEM,Bala Babu,7547193164,05/07/2023,,11.655887,78.153448,Active
+OA0710,Karpagam Agencies,Mobile Specialist,dindigul,Vijay R,7949711390,19-Feb-20,,10.347537,77.962768,Dormant
+OA0711,Devi Electronics,Mobile Specialist,Coimbatore,Rajesh R,7347743433,10/06/2021,,11.052339,76.924882,dormant
+OA0712,Devi Gadgets,General Trade,CHENNAI,Bala M,7589892894,2022-08-26,0,13.052023,80.265385,Active
+OA0713,Ganesh Traders,General Trade,Nellai,Suresh Nathan,+91 89476 36540,13/04/2021,,8.722043,77.716068,Dormant
+OA0714,Karpagam Digital,General Trade,trichy,Manoj S,+91 98686 69212,10-Sep-21,15,,,Hold
+OA0715,Kumaran Electronics,General Trade,Tanjore,Arun M,9013506303,19-May-25,30,10.816778,79.170533,Active
+OA0716,Anandha Communications,Mobile Specialist,Tiruppur,Manoj Krishnan,7428498575,2020-04-29,30 days,11.147951,77.355784,active
+OA0717,Poorvika Traders,Premium Reseller,TIRUNELVELI,Rajesh S,7375821555,2024-09-25,15,,,Hold
+OA0718,Vinayaga Infotech,Premium Reseller,trichy,Prabhu Kumar,9209451920,26-Oct-19,0,10.772251,78.684454,Active
+OA0719,Sakthi Infotech,General Trade,Madurai,Bala R,0,02-Jan-22,COD,9.918348,78.075869,ACTIVE
+OA0720,Sangeetha Traders,General Trade,TIRUNELVELI,Anand Murugan,61329-70001,19-Dec-19,15,8.739463,77.735569,Active
+OA0721,Devi Agencies,Mobile Specialist,Erode,Vignesh Kumar,9481570908,07/12/2019,15,11.326692,77.709367,Hold
+OA0722,Bharath Enterprises,General Trade,VELLORE,Dinesh Nathan,9374219838,2022-11-18,30,12.880268,79.123679,Active
+OA0723,Lakshmi Communications,General Trade,KARUR,Sathish Krishnan,9196884723,25/01/2022,30,10.94174,78.043088,active
+OA0724,New Star Communications,General Trade,Mdu,Rajesh Raj,6165151242,30/08/2019,45,,,Active
+OA0725,Lakshmi Communications,General Trade,TIRUNELVELI,Vijay Nathan,66516-03110,12/08/2023,30,8.677433,77.766944,active
+OA0726,Sri Balaji Traders,General Trade,TIRUNELVELI,Vijay Krishnan,918036738456,2025-06-05,30,8.692671,77.735656,Hold
+OA0727,Royal Electronics,Mobile Specialist,COIMBATORE,Rajesh Babu,6122376046,20-Jan-23,15,,,Hold
+OA0728,Thangam Telecom,Mobile Specialist,Madurai,Bala Babu,+91 67348 68117,11-Apr-23,COD,9.897053,78.161428,active
+OA0729,Amman Gadgets,Mobile Specialist,Salem,Ramesh S,6352237399,2023-08-07,30,11.670652,78.163631,ACTIVE
+OA0730,Saravana Communications,General Trade,CHENNAI,Hari V,,15-Jan-23,0,13.104799,80.235286,Active
+OA0731,Mobile World Gadgets,General Trade,Karur,Gopal R,,16/01/2021,,10.926676,78.109716,dormant
+OA0732,Selvam Agencies,General Trade,Tirupur,Saravanan Kumar,918648532228,10/08/2022,0,11.099282,77.300843,active
+OA0733,New Star Mobile,General Trade,Salem,Vijay M,8410040611,2024-06-02,COD,11.704738,78.136081,active
+OA0734,Lakshmi Traders,Mobile Specialist,THANJAVUR,Hari R,8341314119,17/02/2020,15,10.778404,79.16577,Inactive
+OA0735,Royal Digital,General Trade,erode,Bala Raj,8368843693,30/08/2024,COD,11.379667,77.694188,ACTIVE
+OA0736,Muthu Infotech,Mobile Specialist,CHENNAI,Muthu Murugan,,11-Feb-25,30,13.072945,80.274865,Hold
+OA0737,Vasanth Agencies,Premium Reseller,VELLORE,Bala Krishnan,9215708285,18/03/2021,30,12.917442,79.142558,ACTIVE
+OA0738,Selvam Mobiles,Premium Reseller,VELLORE,Muthu Murugan,9040128328,24/07/2024,,12.947337,79.119637,Inactive
+OA0739,Sangeetha Communications,General Trade,DINDIGUL,Ravi Raj,6273039006,05/07/2022,45,,,Active
+OA0740,New Star Agencies,General Trade,CBE,Manoj Kumar,7972076122,2020-04-14,45,11.051844,76.939526,Hold
+OA0741,Lakshmi Enterprises,Premium Reseller,CHENNAI,Arun S,7154517900,03/02/2024,,13.101273,80.264498,dormant
+OA0742,Lakshmi Enterprises,General Trade,SALEM,Sathish V,+91 93994 87161,01-Jun-23,30 days,11.633513,78.183173,Inactive
+OA0743,Sri Balaji Traders,Premium Reseller,Madras,Sathish Murugan,6140556405,20/11/2024,,13.04342,80.243836,
+OA0744,Jeyam Communications,General Trade,VELLORE,Vijay S,9552186924,2020-03-02,COD,12.901124,79.148636,Active
+OA0745,Thangam Telecom,Premium Reseller,tirupur,Vijay Raj,,06-Sep-24,30,11.120788,77.379981,Inactive
+OA0746,Poorvika Mobiles,General Trade,DINDIGUL,Anand M,6356062033,08-Jun-23,30,10.353663,77.925474,Hold
+OA0747,Jeyam Communications,Mobile Specialist,coimbatore,Hari M,7034206730,30/06/2019,30 days,10.981283,76.986362,active
+OA0748,Ganesh Electronics,Mobile Specialist,Tiruppur,Sathish V,9309208826,02/03/2024,COD,11.132271,77.309031,ACTIVE
+OA0749,Thangam Digital,Premium Reseller,COIMBATORE,Prabhu V,+91 93187 07048,2020-10-26,COD,11.052129,76.945888,Active
+OA0750,Vasanth Cellpoint,Multi-Yard,KARUR,Arun Raj,+91 87757 11898,2024-02-26,30,10.923213,78.069173,active
+OA0751,Ganesh Gadgets,Mobile Specialist,trichy,Anand Nathan,8518587969,25/06/2024,COD,10.812843,78.700724,Hold
+OA0752,Thangam Electronics,General Trade,Madurai,Anand Babu,9784894032,2020-02-01,45,9.952174,78.133597,ACTIVE
+OA0753,Big C Traders,General Trade,Vellore,Manoj Krishnan,0,31/01/2024,45,12.892502,79.09529,Inactive
+OA0754,Thangam Enterprises,General Trade,COIMBATORE,Ravi Murugan,7547820730,31-Jan-25,30,11.019604,76.96826,Active
+OA0755,Poorvika Traders,Mobile Specialist,erode,Dinesh Babu,7658023729,28/08/2022,30,11.344424,77.72413,active
+OA0756,Modern Telecom,General Trade,Dindigul,Suresh Babu,918671933257,2019-12-16,15,10.358665,77.934507,
+OA0757,Universal Enterprises,Mobile Specialist,VELLORE,Ramesh R,8082066321,04/10/2020,30,12.891947,79.172333,Hold
+OA0758,Prime Mobile,Mobile Specialist,Madurai,Rajesh M,9417879291,21-Aug-21,0,9.938167,78.119434,Dormant
+OA0759,Ram Infotech,Multi-Yard,erode,Arun Babu,7444247925,20/03/2021,0,11.299894,77.736981,dormant
+OA0760,Sakthi Infotech,General Trade,CHENNAI,Arun M,9066192367,13/03/2023,,,,Active
+OA0761,Chennai Silks Gadgets,General Trade,Karur,Ravi Kumar,83018-33236,08-Aug-22,15,10.995938,78.046243,Inactive
+OA0762,Sakthi Electronics,General Trade,KARUR,Sathish M,8859138008,2022-12-30,30,10.931593,78.119716,Active
+OA0763,Kumaran Traders,Mobile Specialist,Tiruppur,Gopal S,9655433652,02/05/2025,30 days,11.086119,77.321449,Active
+OA0764,Anandha Infotech,General Trade,salem,Muthu Krishnan,9817622052,03-Sep-20,,11.70321,78.117625,Hold
+OA0765,Amman Cellpoint,General Trade,Madurai,Bala Raj,0,16/07/2022,45,9.946037,78.09555,Active
+OA0766,Vasanth Enterprises,Mobile Specialist,KARUR,Sathish S,9162482578,27-Apr-25,45,10.981068,78.100536,Active
+OA0767,Royal Communications,Mobile Specialist,Tirunelveli,Karthik V,7196586600,03-May-25,45,8.730713,77.79283,Dormant
+OA0768,City Telecom,General Trade,Salem,Naveen Raj,60855-55111,17/12/2022,15,,,Inactive
+OA0769,Sangeetha Telecom,Premium Reseller,Karur,Bala S,8522833528,29/08/2021,30,10.971353,78.047559,Active
+OA0770,Sri Krishna Agencies,Premium Reseller,SALEM,Manoj Murugan,9221087522,23/05/2022,,11.683244,78.156289,
+OA0771,Big C Communications,Mobile Specialist,Coimbatore,Manoj Kumar,,2023-04-23,30,11.028227,76.987463,ACTIVE
+OA0772,Ganesh Cellpoint,General Trade,madurai,Muthu S,7784716745,13/05/2022,30,9.911556,78.141769,
+OA0773,Karpagam Enterprises,Mobile Specialist,coimbatore,Anand S,9349971077,2022-03-03,30,,,Dormant
+OA0774,Meenakshi Agencies,Premium Reseller,madurai,Senthil Kumar,6750876581,16/04/2025,30 days,9.880692,78.092727,Inactive
+OA0775,Prime Digital,Mobile Specialist,dindigul,Hari R,8160553156,13-Jun-22,0,10.401246,77.981102,ACTIVE
+OA0776,Sri Krishna Cellpoint,Mobile Specialist,Dindigul,Dinesh Nathan,,25/10/2023,0,10.375077,77.998938,Active
+OA0777,City Communications,Mobile Specialist,Tirupur,Senthil Krishnan,74174-80276,2025-04-03,0,11.112163,77.297496,
+OA0778,Vasanth Infotech,General Trade,Erode,Sathish Murugan,+91 99174 17841,17/09/2024,,11.347572,77.701988,dormant
+OA0779,Jeyam Agencies,General Trade,Karur,Naveen M,8272915702,2019-09-22,45,10.921715,78.115198,ACTIVE
+OA0780,Devi Infotech,Premium Reseller,Tirupur,Sathish R,,09/11/2024,45,11.15259,77.380907,ACTIVE
+OA0781,City Gadgets,Mobile Specialist,Erode,Sathish V,9814557775,14/09/2021,COD,11.335714,77.753748,Active
+OA0782,City Mobiles,General Trade,Trichy,Muthu R,6626626996,30/06/2022,30,10.776374,78.677988,Dormant
+OA0783,iStore Telecom,General Trade,Nellai,Bala Babu,9194652552,30/04/2020,30,8.747086,77.71512,Active
+OA0784,,General Trade,Madras,Arun Kumar,7749792936,2023-03-24,30,13.064293,80.23101,Active
+OA0785,Prime Traders,General Trade,CBE,Prabhu Babu,917423372027,26/03/2024,0,11.037921,76.927307,Active
+OA0786,Vasanth Electronics,Mobile Specialist,KARUR,Ravi Krishnan,6634489398,2025-03-08,15,,,Active
+OA0787,Ram Mobiles,General Trade,dindigul,Prabhu Krishnan,7280673430,2024-09-29,30,10.348891,77.924785,Active
+OA0788,Chennai Silks Electronics,General Trade,COIMBATORE,Rajesh Krishnan,6721776122,2022-12-11,30 days,11.058795,76.934221,Inactive
+OA0789,Modern Cellpoint,General Trade,TRICHY,Hari R,,02/12/2019,30 days,10.834013,78.669926,dormant
+OA0790,Sangeetha Mobile,General Trade,Dindigul,Ravi V,6842928815,19/08/2023,COD,10.377834,78.003596,Dormant
+OA0791,Modern Telecom,Multi-Yard,CHENNAI,Vijay R,7326670979,2024-06-02,,13.058018,80.292046,Dormant
+OA0792,Devi Mobile,General Trade,SALEM,Hari V,7618495728,31/01/2023,15,11.669258,78.149019,Dormant
+OA0793,Ram Digital,General Trade,Tiruchirappalli,Vijay Murugan,+91 92317 45497,24/03/2020,COD,10.753241,78.737296,Dormant
+OA0794,Muthu Mobiles,General Trade,trichy,Ravi Krishnan,90905-58313,29/01/2021,30,10.817727,78.708851,Dormant
+OA0795,Sri Krishna Digital,General Trade,erode,Manoj Krishnan,7071617559,10/12/2020,,,,Dormant
+OA0796,Saravana Electronics,Mobile Specialist,Madras,Hari R,7985815870,26/12/2020,30 days,13.088473,80.248749,active
+OA0797,Amman Gadgets,General Trade,erode,Vijay V,7681687348,24/08/2019,30,11.29825,77.678691,Active
+OA0798,Anandha Digital ,Mobile Specialist,TIRUNELVELI,Naveen M,6880854055,10/12/2021,,8.738943,77.74083,active
+OA0799,Thangam Cellpoint,Premium Reseller,Salem,Senthil Babu,9522748435,15/06/2021,COD,11.645219,78.166622,Active
+OA0800,MEENAKSHI ENTERPRISES,General Trade,salem,Hari S,+91 75963 03799,2020-04-04,30,,,Active
+OA0801,SANGEETHA DIGITAL,General Trade,Madurai,Ravi Krishnan,+91 68376 18979,18/12/2024,0,,,Active
+OA0802,Mobile World Mobiles,Premium Reseller,CBE,Sathish S,7857132280,2022-09-24,30 days,11.050688,76.937727,Active
+OA0803,Royal Enterprises - Branch,General Trade,salem,Prabhu Murugan,8994816242,06-Oct-22,45,11.645203,78.165846,dormant
+OA0804,Devi Communications ,General Trade,KARUR,Muthu R,7153867707,13/06/2022,30,11.000745,78.109196,
+OA0805,Mobile World Infotech ,General Trade,Vellore,Arun Kumar,7101777919,14/01/2022,30,12.934833,79.146606,Dormant
+OA0806,Modern Communications ,Mobile Specialist,TIRUNELVELI,Manoj R,7944411442,2022-08-07,30 days,8.739713,77.734022,Active
+OA0807,Muthu Digital - Branch,General Trade,COIMBATORE,Gopal Nathan,7421382336,2024-04-25,,11.04218,76.96479,dormant
+OA0808,Sakthi Communications - Branch,Multi-Yard,salem,Hari Murugan,9621159289,29/04/2023,15,11.622201,78.103525,Active
+OA0809,Mobile World Cellpoint,Mobile Specialist,KARUR,Prabhu V,6130797279,22-Nov-21,30 days,10.938615,78.043663,Hold
+OA0810,Amman Cellpoint,General Trade,KARUR,Dinesh Kumar,6091067043,02/03/2025,15,10.968052,78.073425,Active
+OA0811,Big C Agencies ,Mobile Specialist,Erode,Ravi S,9416862938,2020-02-07,30,11.346648,77.735917,
+OA0812,Meenakshi Traders - Branch,Mobile Specialist,MADURAI,Arun Babu,+91 63779 91158,21/08/2020,15,9.886453,78.094188,
+OA0813,Sakthi Electronics - Branch,General Trade,KARUR,Sathish M,8559913948,2022-12-30,30,10.931593,78.119716,Active
+OA0814,Poorvika Traders ,Premium Reseller,TIRUNELVELI,Rajesh S,916464663987,2024-09-25,15,,,Hold
+OA0815,BIG C INFOTECH,Premium Reseller,Madras,Rajesh Babu,,22-Oct-20,0,13.099908,80.308437,Inactive
+OA0816,MUTHU AGENCIES,Premium Reseller,Vellore,Rajesh V,,30/10/2024,30,12.876551,79.108047,Active
+OA0817,ISTORE TELECOM,General Trade,Dindigul,Dinesh S,8448513558,2024-08-07,,10.387602,77.942617,Inactive
+OA0818,Selvam Agencies ,General Trade,madurai,Dinesh S,8359746750,2023-12-31,COD,9.922172,78.075348,Active
+OA0819,RAM COMMUNICATIONS,Premium Reseller,Chennai,Suresh Raj,+91 95708 41784,30/05/2021,15,13.047001,80.250871,Active
+OA0820,Amman Agencies ,General Trade,KARUR,Prabhu Murugan,7639489875,03/10/2024,0,10.922441,78.064675,ACTIVE
