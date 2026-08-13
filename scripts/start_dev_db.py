@@ -46,4 +46,5 @@ import seed
 seed.main()
 
 print("\nDB ready and seeded. Sleeping to stay alive for app testing.", flush=True)
-time.sleep(3000)
+while True:
+    time.sleep(3600)
