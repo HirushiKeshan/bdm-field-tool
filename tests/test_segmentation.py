@@ -100,6 +100,28 @@ def test_zero_value_row_never_counts_as_the_positive_bill():
     assert result.months_since_last_bill == 5
 
 
+def test_valuable_threshold_default_is_reachable_by_dormant_outlets():
+    """Regression: the 75th-percentile default made Dormant-valuable
+    unreachable once a few Core outlets' peaks dominated the top of the
+    distribution -- 0 outlets qualified in the real dataset (492 billing
+    outlets, Core+Slipping were the majority at 59%). Peaks here span the
+    same range for both still-billing and gone-quiet outlets, as in the
+    real data, so the median must be crossable by some dormant outlets
+    without being trivially crossable by all of them."""
+    data = {}
+    for i in range(1, 31):
+        peak = i * 100_000
+        if i % 2 == 0:
+            data[f"CORE{i}"] = rows((WINDOW[-1], peak))  # still billing now
+        else:
+            data[f"DORM{i}"] = rows(("2026-02", peak))  # quiet since month 1
+    results = segment_all(data, WINDOW)
+    dormant_valuable = [c for c, r in results.items() if r.segment == "Dormant-valuable"]
+    dormant_low = [c for c, r in results.items() if r.segment == "Dormant-low"]
+    assert dormant_valuable, "no dormant outlet qualified as valuable -- threshold is set too high to ever be reached"
+    assert dormant_low, "every dormant outlet qualified as valuable -- threshold is set too low to discriminate"
+
+
 def test_valuable_threshold_excludes_never_billed_outlets():
     threshold = compute_valuable_threshold(
         {"A": rows(("2026-07", 100_000)), "B": [], "C": rows(("2026-07", 0))},

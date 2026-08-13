@@ -38,12 +38,21 @@ class SegmentResult:
     avg_positive_value: Optional[float] = None  # mean of all positive-value months, for "used to do X/mo" phrasing
 
 
-def compute_valuable_threshold(all_outlet_rows: dict, window_months: list, percentile: float = 0.75) -> float:
+def compute_valuable_threshold(all_outlet_rows: dict, window_months: list, percentile: float = 0.5) -> float:
     """
     all_outlet_rows: {outlet_code: [{"month": str, "value": float}, ...]}
     Returns the Nth percentile of each billing outlet's peak positive
     month, used to split Dormant into valuable vs low. Outlets that never
     billed a positive value don't contribute a peak and are excluded.
+
+    Default is the median (50th percentile), not the 75th: this pool
+    includes every outlet that has ever billed, and currently-active Core
+    outlets keep growing past what any *dormant* outlet ever peaked at.
+    Benchmarking dormant outlets against the top quartile of everyone
+    (including today's biggest live accounts) made "valuable" unreachable
+    -- 0 outlets qualified in the shipped dataset at 0.75. The median
+    peak is a "was this a typical solid outlet or below" bar instead,
+    which is what "used to matter" should mean. See docs/ai-log.md.
     """
     peaks = []
     for rows in all_outlet_rows.values():
@@ -103,7 +112,7 @@ def segment_outlet(rows: list, window_months: list, valuable_threshold: float) -
     return SegmentResult(segment, months_since, billed_count, peak_value, last_positive["value"], None, limited_history, avg_positive_value=avg_value)
 
 
-def segment_all(all_outlet_rows: dict, window_months: list, percentile: float = 0.75) -> dict:
+def segment_all(all_outlet_rows: dict, window_months: list, percentile: float = 0.5) -> dict:
     """
     all_outlet_rows: {outlet_code: [{"month","value"}, ...]} for every
     outlet the app knows about (include outlets with an empty list).
