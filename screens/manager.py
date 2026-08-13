@@ -1,8 +1,9 @@
 import streamlit as st
 
-from db.manager_queries import (conversation_quality, coverage_gaps, log_integrity,
-                                  recovery_pipeline, time_allocation_by_bdm)
+from db.manager_queries import (conversation_quality, coverage_gaps, insights_summary,
+                                  log_integrity, recovery_pipeline, time_allocation_by_bdm)
 from db.queries import fetch_bdms
+from logic.ai_assistant import ask as ask_ai
 from logic.charts import (build_anomaly_breakdown_figure, build_confidence_mix_figure,
                             build_time_allocation_figure)
 from logic.scoring import format_inr
@@ -98,3 +99,15 @@ def render(conn):
             build_anomaly_breakdown_figure(li["breakdown"]),
             use_container_width=True, config=_CHART_CONFIG, key="anomaly_breakdown_chart",
         )
+
+    st.header("6. Ask about your team")
+    st.caption("Answers only use the numbers already shown above (scoped to your \"View for\" pick) "
+               "-- never invented, never a separate lookup.")
+    question = st.text_input(
+        "Ask a question", key="ai_question",
+        placeholder='e.g. "Which BDM needs the most help?" or "Is coverage getting better or worse?"',
+    )
+    if st.button("Ask", key="ai_ask_btn", type="primary") and question:
+        with st.spinner("Thinking..."):
+            answer = ask_ai(question, insights_summary(conn, bdm_code=bdm_code))
+        st.info(answer)

@@ -196,3 +196,56 @@ def log_integrity(conn, bdm_code: str = None) -> dict:
         "breakdown": dict(breakdown),
         "possible_duplicate_outlet_pairs": duplicate_pairs,
     }
+
+
+def insights_summary(conn, bdm_code: str = None) -> dict:
+    """Compact snapshot of everything the Insights page renders, for the
+    AI question box -- the SAME aggregates the page already shows, not a
+    separate rollup, so the assistant can never answer with a number that
+    isn't visible on screen. Outlet-level lists are capped at 10 -- the
+    scale of the problem (counts, percentages) matters far more to a
+    question-answering model than every individual row."""
+    cov = coverage_gaps(conn, days_threshold=30, bdm_code=bdm_code)
+    alloc = time_allocation_by_bdm(conn)
+    if bdm_code:
+        alloc = [r for r in alloc if r["bdm_code"] == bdm_code]
+    cq = conversation_quality(conn, bdm_code=bdm_code)
+    pipeline = recovery_pipeline(conn, bdm_code=bdm_code)
+    li = log_integrity(conn, bdm_code=bdm_code)
+
+    return {
+        "scope": "all BDMs" if not bdm_code else bdm_code,
+        "coverage": {
+            "billing_outlets": cov["total_billing_outlets"],
+            "not_visited_30d_plus": len(cov["not_visited"]),
+            "worst_gaps": [
+                {"outlet": o["outlet_name"], "bdm": o["bdm_name"], "days_since_visit": o["days_since_last_visit"]}
+                for o in cov["not_visited"][:10]
+            ],
+        },
+        "time_allocation_by_bdm": [
+            {"bdm": r["bdm_name"], "territory": r["territory"],
+             "pct_to_valuable_outlets": r["pct_to_valuable_outlets"], "total_visits": r["total_visits"]}
+            for r in alloc
+        ],
+        "conversation_quality": {
+            "total_visits": cq["total_visits"],
+            "pct_no_outcome": cq["pct_no_outcome"],
+            "confidence_mix": cq["confidence_mix"],
+            "pct_checklist_complete": cq["pct_checklist_complete"],
+        },
+        "recovery_pipeline": {
+            "count": len(pipeline),
+            "top_outlets": [
+                {"outlet": o["outlet_name"], "owner_bdm": o["owner_bdm"], "months_quiet": o["months_quiet"],
+                 "used_to_do_per_month": o["used_to_do_per_month"]}
+                for o in pipeline[:10]
+            ],
+        },
+        "log_integrity": {
+            "flagged_visits": li["flagged_visits"],
+            "pct_flagged": li["pct_flagged"],
+            "possible_duplicate_outlets": li["possible_duplicate_outlet_pairs"],
+            "breakdown": li["breakdown"],
+        },
+    }
