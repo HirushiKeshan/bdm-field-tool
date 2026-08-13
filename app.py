@@ -41,10 +41,15 @@ h1 {{color: {BRAND_NAVY} !important; font-weight: 800 !important;}}
 .brand-header {{display:flex; align-items:center; gap:0.5rem; margin-bottom:0.6rem;}}
 .brand-swoosh {{width:22px; height:22px; border-radius:6px; flex-shrink:0;
     background: conic-gradient(from 200deg, #D6266E, #7B3FA0, #F5821F, #1EBFAE, #D6266E);}}
-.brand-name {{font-weight:800; font-size:1.05rem; color:{BRAND_NAVY}; letter-spacing:0.02em;}}
-.brand-tagline {{font-size:0.78rem; color:#8892a6; margin-left:0.15rem;}}
-.brand-topbar {{height:4px; border-radius:2px; margin:0 0 0.9rem 0;
-    background: linear-gradient(90deg, #D6266E, #7B3FA0, #F5821F, #1EBFAE);}}
+.brand-name {{font-weight:800; font-size:1.1rem; color:#fff; letter-spacing:0.02em;}}
+.brand-tagline {{font-size:0.78rem; color:rgba(255,255,255,0.72); margin-left:0.15rem;}}
+/* Dark navy hero band, echoing it-world.in's own dark hero section --
+   kept to the header only so the outlet list below stays plain white
+   and easy to scan, per the "reduce scroll/complexity" feedback. */
+.brand-band {{margin: -1rem -1rem 0.9rem -1rem; padding: 0.85rem 1rem 0.7rem 1rem;
+    background: radial-gradient(120% 140% at 15% -10%, #163a7a 0%, {BRAND_NAVY} 45%, #061b45 100%);
+    border-bottom: 3px solid transparent;
+    border-image: linear-gradient(90deg, #D6266E, #7B3FA0, #F5821F, #1EBFAE) 1;}}
 
 .beat-card {{border: 1px solid rgba(11,45,107,0.15); border-radius: 10px; padding: 0.9rem;
             margin-bottom: 0.6rem;}}
@@ -73,12 +78,11 @@ st.markdown(MOBILE_CSS, unsafe_allow_html=True)
 
 def render_brand_header():
     st.markdown(
-        '<div class="brand-topbar"></div>'
-        '<div class="brand-header">'
+        '<div class="brand-band"><div class="brand-header">'
         '<div class="brand-swoosh"></div>'
         '<span class="brand-name">IT WORLD</span>'
         '<span class="brand-tagline">Field Sales</span>'
-        '</div>',
+        '</div></div>',
         unsafe_allow_html=True,
     )
 
