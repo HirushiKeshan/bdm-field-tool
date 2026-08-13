@@ -93,6 +93,16 @@ def render(conn, bdm_code, outlet_code):
         acc_note = f' (±{cap_acc:.0f}m)' if cap_acc else ""
         st.success(f"📍 Location captured{acc_note}. This confirms roughly where your phone was, "
                    f"not which of two adjacent counters you were in — that's still the outlet code below.")
+        maps_url = f"https://www.google.com/maps?q={cap_lat},{cap_lon}"
+        st.markdown(
+            f'<div style="font-size:0.85rem; color:#555; margin-top:-0.6rem; margin-bottom:0.6rem;">'
+            f'{cap_lat:.5f}, {cap_lon:.5f} &nbsp;·&nbsp; <a href="{maps_url}" target="_blank">View on map ↗</a></div>',
+            unsafe_allow_html=True,
+        )
+        if st.button("Recapture location", key="recapture_gps"):
+            for key in ("captured_lat", "captured_lon", "captured_acc"):
+                st.session_state.pop(key, None)
+            st.rerun()
     else:
         components.html(_GPS_CAPTURE_HTML, height=80)
         st.caption("Optional, like the photo — it strengthens the audit trail but never blocks a submission.")
