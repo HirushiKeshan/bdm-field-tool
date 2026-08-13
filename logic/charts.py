@@ -24,6 +24,9 @@ from logic.scoring import format_inr
 NAVY = "#0B2D6B"
 ACCENT = "#D6266E"
 GREY = "#b6bcc9"
+LOW = "#D6266E"    # needs attention
+MID = "#F5821F"
+HIGH = "#1EBFAE"   # solid
 
 
 def build_trend_figure(trend: list) -> go.Figure:
@@ -78,5 +81,94 @@ def build_trend_figure(trend: list) -> go.Figure:
         paper_bgcolor="rgba(0,0,0,0)",
         hovermode="closest",
         dragmode=False,
+    )
+    return fig
+
+
+_SORT_KEYS = {
+    "lowest": lambda r: r["pct_to_valuable_outlets"],
+    "highest": lambda r: -r["pct_to_valuable_outlets"],
+    "az": lambda r: r["bdm_name"],
+}
+
+
+def build_time_allocation_figure(alloc: list, sort_by: str = "lowest", highlight_bdm_code: Optional[str] = None) -> go.Figure:
+    """alloc: [{"bdm_code", "bdm_name", "territory", "total_visits", "pct_to_valuable_outlets"}, ...]
+    One horizontal bar per BDM instead of 12 stacked st.progress rows --
+    same numbers, scannable in one glance. Color bands (not a continuous
+    scale) so a manager can spot who needs attention without reading
+    every label. highlight_bdm_code outlines one bar (e.g. from the
+    Insights "View for" filter) without hiding the rest -- this section
+    is inherently a comparison, so filtering it down to one bar would
+    remove the context that makes the number meaningful."""
+    rows = sorted(alloc, key=_SORT_KEYS.get(sort_by, _SORT_KEYS["lowest"]))
+    labels = [f'{r["bdm_name"]} ({r["territory"]})' for r in rows]
+    values = [r["pct_to_valuable_outlets"] for r in rows]
+    hover = [f'{r["bdm_name"]} ({r["territory"]}): {r["pct_to_valuable_outlets"]}% of '
+             f'{r["total_visits"]} visits to outlets that matter' for r in rows]
+    colors = [LOW if v < 30 else MID if v < 45 else HIGH for v in values]
+    is_highlighted = [highlight_bdm_code is not None and r.get("bdm_code") == highlight_bdm_code for r in rows]
+    line_colors = [NAVY if h else "rgba(0,0,0,0)" for h in is_highlighted]
+    line_widths = [3 if h else 0 for h in is_highlighted]
+
+    fig = go.Figure(go.Bar(
+        x=values, y=labels, orientation="h",
+        marker=dict(color=colors, line=dict(color=line_colors, width=line_widths)),
+        hovertext=hover, hoverinfo="text",
+    ))
+    fig.update_layout(
+        height=max(220, 34 * len(rows)),
+        margin=dict(l=8, r=8, t=8, b=8),
+        xaxis=dict(range=[0, 100], ticksuffix="%", showgrid=True, gridcolor="rgba(0,0,0,0.06)"),
+        yaxis=dict(autorange="reversed"),
+        plot_bgcolor="rgba(0,0,0,0)",
+        paper_bgcolor="rgba(0,0,0,0)",
+        showlegend=False,
+    )
+    return fig
+
+
+def build_confidence_mix_figure(mix: dict) -> go.Figure:
+    """mix: {"Verified": n, "Partial": n, "Unverified": n} (any subset)."""
+    order = ["Verified", "Partial", "Unverified"]
+    colors = {"Verified": HIGH, "Partial": MID, "Unverified": GREY}
+    keys = [k for k in order if k in mix] + [k for k in mix if k not in order]
+    values = [mix[k] for k in keys]
+
+    fig = go.Figure(go.Bar(
+        x=values, y=keys, orientation="h",
+        marker=dict(color=[colors.get(k, GREY) for k in keys]),
+        text=values, textposition="outside",
+    ))
+    fig.update_layout(
+        height=max(140, 44 * len(keys)),
+        margin=dict(l=8, r=8, t=8, b=8),
+        xaxis=dict(visible=False),
+        yaxis=dict(autorange="reversed"),
+        plot_bgcolor="rgba(0,0,0,0)",
+        paper_bgcolor="rgba(0,0,0,0)",
+        showlegend=False,
+    )
+    return fig
+
+
+def build_anomaly_breakdown_figure(breakdown: dict) -> go.Figure:
+    """breakdown: {"reason label": count, ...}"""
+    items = sorted(breakdown.items(), key=lambda x: x[1])
+    labels = [k for k, _ in items]
+    values = [v for _, v in items]
+
+    fig = go.Figure(go.Bar(
+        x=values, y=labels, orientation="h",
+        marker=dict(color=ACCENT),
+        text=values, textposition="outside",
+    ))
+    fig.update_layout(
+        height=max(140, 44 * len(labels)),
+        margin=dict(l=8, r=8, t=8, b=8),
+        xaxis=dict(visible=False),
+        plot_bgcolor="rgba(0,0,0,0)",
+        paper_bgcolor="rgba(0,0,0,0)",
+        showlegend=False,
     )
     return fig

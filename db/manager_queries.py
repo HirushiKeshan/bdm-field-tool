@@ -22,10 +22,23 @@ def _all_segments(conn):
     return outlets, segments
 
 
-def coverage_gaps(conn, days_threshold: int = 30) -> dict:
+def _bdm_territory(conn, bdm_code):
+    if not bdm_code:
+        return None
+    for b in fetch_bdms(conn):
+        if b["bdm_code"] == bdm_code:
+            return b["territory"]
+    return None
+
+
+def coverage_gaps(conn, days_threshold: int = 30, bdm_code: str = None) -> dict:
     outlets, segments = _all_segments(conn)
     recency = fetch_visit_recency(conn)
     bdm_by_territory = {b["territory"]: b["name"] for b in fetch_bdms(conn)}
+
+    territory = _bdm_territory(conn, bdm_code)
+    if territory:
+        outlets = [o for o in outlets if o["territory"] == territory]
 
     billing_outlets = [o for o in outlets if segments[o["outlet_code"]].segment != "New/Never"]
     not_visited, visited_recently = [], []
@@ -78,26 +91,31 @@ def time_allocation_by_bdm(conn) -> list:
         bucket = per_bdm.get(bdm_code, {"total": 0, "valuable": 0, "low_value": 0})
         pct_valuable = (bucket["valuable"] / bucket["total"] * 100) if bucket["total"] else 0.0
         result.append({
-            "bdm_name": b["name"], "territory": b["territory"], "total_visits": bucket["total"],
-            "pct_to_valuable_outlets": round(pct_valuable, 1),
+            "bdm_code": bdm_code, "bdm_name": b["name"], "territory": b["territory"],
+            "total_visits": bucket["total"], "pct_to_valuable_outlets": round(pct_valuable, 1),
         })
     result.sort(key=lambda x: x["pct_to_valuable_outlets"])
     return result
 
 
-def conversation_quality(conn) -> dict:
+def conversation_quality(conn, bdm_code: str = None) -> dict:
+    where = "WHERE bdm_code = %s" if bdm_code else ""
+    params = (bdm_code,) if bdm_code else ()
+    and_where = "AND bdm_code = %s" if bdm_code else ""
     with conn.cursor() as cur:
-        cur.execute("SELECT confidence, COUNT(*) FROM visits GROUP BY confidence")
+        cur.execute(f"SELECT confidence, COUNT(*) FROM visits {where} GROUP BY confidence", params)
         confidence_mix = dict(cur.fetchall())
-        cur.execute("SELECT COUNT(*) FROM visits")
+        cur.execute(f"SELECT COUNT(*) FROM visits {where}", params)
         total = cur.fetchone()[0]
-        cur.execute("SELECT COUNT(*) FROM visits WHERE remarks IS NULL AND (purpose IS NULL OR purpose NOT IN ('Order','Collection'))")
+        cur.execute(f"SELECT COUNT(*) FROM visits WHERE remarks IS NULL AND "
+                    f"(purpose IS NULL OR purpose NOT IN ('Order','Collection')) {and_where}", params)
         no_outcome = cur.fetchone()[0]
         # Checklist completion only means something for visits that went
         # through this app's checklist -- historical rows are seeded with
         # is_complete=True as "a finished log entry", which would read as a
         # meaningless 100% otherwise. See docs/ai-log.md.
-        cur.execute("SELECT COUNT(*), COUNT(*) FILTER (WHERE is_complete) FROM visits WHERE source = 'app'")
+        cur.execute(f"SELECT COUNT(*), COUNT(*) FILTER (WHERE is_complete) FROM visits "
+                    f"WHERE source = 'app' {and_where}", params)
         app_total, app_complete = cur.fetchone()
     return {
         "total_visits": total,
@@ -108,10 +126,14 @@ def conversation_quality(conn) -> dict:
     }
 
 
-def recovery_pipeline(conn) -> list:
+def recovery_pipeline(conn, bdm_code: str = None) -> list:
     outlets, segments = _all_segments(conn)
     recency = fetch_visit_recency(conn)
     bdm_by_territory = {b["territory"]: b["name"] for b in fetch_bdms(conn)}
+
+    territory = _bdm_territory(conn, bdm_code)
+    if territory:
+        outlets = [o for o in outlets if o["territory"] == territory]
 
     pipeline = []
     for o in outlets:
@@ -147,13 +169,20 @@ def _classify_anomaly(reason: str) -> str:
     return "Other"
 
 
-def log_integrity(conn) -> dict:
+def log_integrity(conn, bdm_code: str = None) -> dict:
+    and_where = "AND bdm_code = %s" if bdm_code else ""
+    params = (bdm_code,) if bdm_code else ()
+    territory = _bdm_territory(conn, bdm_code)
     with conn.cursor() as cur:
-        cur.execute("SELECT gps_anomaly FROM visits WHERE gps_anomaly IS NOT NULL")
+        cur.execute(f"SELECT gps_anomaly FROM visits WHERE gps_anomaly IS NOT NULL {and_where}", params)
         reasons = [r[0] for r in cur.fetchall()]
-        cur.execute("SELECT COUNT(*) FROM visits")
+        cur.execute(f"SELECT COUNT(*) FROM visits WHERE 1=1 {and_where}", params)
         total = cur.fetchone()[0]
-        cur.execute("SELECT COUNT(*) FROM outlets WHERE possible_duplicate_of IS NOT NULL")
+        if territory:
+            cur.execute("SELECT COUNT(*) FROM outlets WHERE possible_duplicate_of IS NOT NULL AND territory = %s",
+                        (territory,))
+        else:
+            cur.execute("SELECT COUNT(*) FROM outlets WHERE possible_duplicate_of IS NOT NULL")
         duplicate_pairs = cur.fetchone()[0]
 
     breakdown = defaultdict(int)
