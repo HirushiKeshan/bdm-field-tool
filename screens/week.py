@@ -5,7 +5,7 @@ from logic.scoring import format_inr
 
 
 def render(conn, bdm_code):
-    st.title("My Week")
+    st.title("This Week")
     st.caption("Last 7 days.")
 
     summary = fetch_week_summary(conn, bdm_code, days=7)
@@ -27,4 +27,4 @@ def render(conn, bdm_code):
         st.caption("Nothing open — every agreed action has been closed out.")
 
     if summary["visit_count"] == 0:
-        st.info("No visits logged in the last 7 days yet. This fills in as you submit visits from My Beat.")
+        st.info("No visits logged in the last 7 days yet. This fills in as you submit visits from My Visits.")

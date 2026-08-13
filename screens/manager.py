@@ -6,8 +6,8 @@ from logic.scoring import format_inr
 
 
 def render(conn):
-    st.title("Manager view")
-    st.caption("Every number here traces back to the same outlets/billing/visit tables the BDM app reads "
+    st.title("Insights")
+    st.caption("Every number here traces back to the same outlets/billing/visit tables the field app reads "
                "-- nothing here is a separate rollup.")
 
     st.header("1. Coverage")

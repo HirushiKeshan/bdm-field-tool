@@ -21,7 +21,7 @@ def render(conn, bdm_code, outlet_code):
         st.error("Outlet not found.")
         return
 
-    if st.button("← Back to my beat"):
+    if st.button("← Back to My Visits"):
         st.session_state.screen = "beat"
         st.session_state.selected_outlet = None
         st.rerun()

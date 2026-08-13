@@ -12,7 +12,7 @@ SEGMENT_BADGE = {
 
 
 def render(conn, bdm_code):
-    st.title("My Beat")
+    st.title("My Visits")
 
     area_filter = st.session_state.get("beat_area_filter", "All areas")
     data = build_beat(conn, bdm_code, area=None if area_filter == "All areas" else area_filter)

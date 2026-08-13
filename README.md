@@ -1,12 +1,14 @@
-# BDM Field Tool
+# IT WORLD Field Sales
 
-A field-sales tool for an iPhone distributor's 12 BDMs and ~800 outlets across Tamil Nadu. It ranks each BDM's beat by what actually needs attention, gives them the outlet's numbers and last agreed action before they open their mouth at the counter, and turns the checklist outcome into the manager's evidence for whether a visit really happened. Built for the BDM first — every number the manager sees traces back to the same data the BDM screens already use, not a separate rollup.
+A field-sales tool for IT WORLD's field executives and the outlets they cover. It ranks each rep's visit list by what actually needs attention, gives them the outlet's numbers and last agreed action before they open their mouth at the counter, and turns the checklist outcome into evidence for whether a visit really happened. Built for the rep first — every number in Insights traces back to the same data the rep screens already use, not a separate rollup. Colors and wordmark are drawn from [it-world.in](https://it-world.in)'s public brand (navy, magenta accent).
 
-**A note on scope, for anyone comparing this against the original brief**: that brief argued the manager view should be a low-key, secondary link rather than an equal navigation tab ("manager visibility is a byproduct... never the primary design goal"). It shipped that way initially. It was then explicitly promoted to a full tab alongside My Beat and My Week at the requester's direction, after that tradeoff was flagged — logged here for anyone auditing the decision trail, not as a disagreement with the reasoning.
+**Live**: https://bdm-field-tool-v5yti45munds6hvgsytfzt.streamlit.app/
+
+**A note on scope, for anyone comparing this against the original brief**: that brief argued the manager-facing view should be a low-key, secondary link rather than an equal navigation tab ("manager visibility is a byproduct... never the primary design goal"). It shipped that way initially. It was then explicitly promoted to a full tab (**Insights**, alongside **My Visits** and **This Week**) at the requester's direction, after that tradeoff was flagged — logged here for anyone auditing the decision trail, not as a disagreement with the reasoning.
 
 ## Run it in under 15 minutes
 
-There is no hosted live link — provisioning Supabase and Streamlit Community Cloud both require creating accounts on your behalf, which I didn't do without you in the loop. Both are one click away once you're ready (see "Deploying it live" below). In the meantime, both paths below were tested end-to-end on a clean checkout.
+The live link above is already running against a seeded database — open it and pick any name from the dropdown. To run your own copy:
 
 ### Option A — Docker (recommended, ~3 minutes)
 
@@ -43,7 +45,7 @@ pytest
 
 ## Who this is for
 
-The BDM opening it on their phone before a counter visit, and — only because that BDM is now actually using it — the manager who couldn't previously tell who was visited, whether the conversation happened, or which of three outlets on the same street a visit log entry actually meant.
+The field executive opening it on their phone before a counter visit, and — only because that rep is now actually using it — the manager who couldn't previously tell who was visited, whether the conversation happened, or which of three outlets on the same street a visit log entry actually meant.
 
 ## What I assumed
 
@@ -54,7 +56,7 @@ Every one of these is a real inference the source data forced, not a guess made 
 - **The outlet-side verification code is generated, not sourced.** Nothing in `outlets.csv` is a printable counter-card code. `seed.py` derives a stable 4-digit code per outlet from a hash of its outlet code. In production this would be a printed card at the counter (or reuse an existing outlet code/QR the client already has); the mechanism (owner reads it, BDM types it, code match drives confidence) is the real design, the specific 4 digits are a placeholder.
 - **"Area" inside a beat is a derived quadrant, not a real locality.** Town collapses 1:1 onto Territory, so there's no finer geography in the source to filter a day's beat by. Outlets with coordinates get bucketed into a North/South/East/West quadrant relative to their territory's centroid, labelled honestly in the UI as derived, not a real place name.
 - **Dues are manual-entry only.** No dues/outstanding/receivables field exists anywhere in the four files (confirmed, not inferred — see `docs/data-notes.md` Q6). The Counter Conversation screen has a plain number field labelled "Dues not tracked from source data," stored per-visit, and the last value entered shows up next time as a starting point — it is never computed.
-- **"This week" in My Week is the last 7 real calendar days**, not a slice of the historical May–July 2026 log. New app-submitted visits use the real current date, so My Week is empty until you actually submit a visit through the app — that's intentional, not a bug.
+- **"This Week" is the last 7 real calendar days**, not a slice of the historical May–July 2026 log. New app-submitted visits use the real current date, so This Week is empty until you actually submit a visit through the app — that's intentional, not a bug.
 
 ## What I left out and why
 
@@ -102,8 +104,8 @@ logic/                                                       pure, DB-free busin
   confidence.py        Verified/Partial/Unverified
   checklist.py, geo.py
 checklists.yaml                                              per-outlet-type checklist config
-app.py, screens/                                              Streamlit app (My Beat, Counter
-                                                               Conversation, My Week, Manager)
+app.py, screens/                                              Streamlit app (My Visits, Counter
+                                                               Conversation, This Week, Insights)
 tests/                                                        38 tests, no DB required
 docs/
   data-notes.md         Phase 0 findings, full null-classification table
