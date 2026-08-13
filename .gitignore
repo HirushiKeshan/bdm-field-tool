@@ -6,3 +6,5 @@ venv/
 *.pkl
 .streamlit/secrets.toml
 .pytest_cache/
+scripts/_pgdata*/
+

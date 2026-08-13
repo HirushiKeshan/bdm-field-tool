@@ -9,6 +9,9 @@ from pathlib import Path
 
 import psycopg2
 import psycopg2.extras
+from dotenv import load_dotenv
+
+load_dotenv()
 
 _SCHEMA_PATH = Path(__file__).parent / "schema.sql"
 

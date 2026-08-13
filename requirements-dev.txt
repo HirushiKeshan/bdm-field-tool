@@ -1,0 +1,8 @@
+# Optional, dev-only. Not needed for docker-compose or Supabase.
+#
+# scripts/start_dev_db.py, scripts/dev_seed_test.py, and
+# scripts/dev_verify_writes.py use pgserver to run a real embedded
+# Postgres with no Docker daemon required, purely so the app and seed.py
+# could be exercised end-to-end during development (see docs/ai-log.md
+# for what that testing caught). The shipped app never imports pgserver.
+pgserver==0.1.2

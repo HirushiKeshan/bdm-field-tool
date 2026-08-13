@@ -1,0 +1,30 @@
+import streamlit as st
+
+from db.queries import fetch_week_summary
+from logic.scoring import format_inr
+
+
+def render(conn, bdm_code):
+    st.title("My Week")
+    st.caption("Last 7 days.")
+
+    summary = fetch_week_summary(conn, bdm_code, days=7)
+
+    c1, c2 = st.columns(2)
+    c1.metric("Outlets covered", f'{summary["distinct_outlets_visited"]} / {summary["territory_outlet_count"]}')
+    c2.metric("Visits logged", summary["visit_count"])
+
+    c3, c4 = st.columns(2)
+    c3.metric("Collected", format_inr(summary["collected"]))
+    c4.metric("Orders taken", format_inr(summary["ordered"]))
+
+    st.markdown('<div class="section-label">Open actions carrying over</div>', unsafe_allow_html=True)
+    if summary["open_actions"]:
+        for a in summary["open_actions"]:
+            name = a["outlet_name"] or f'Unnamed outlet ({a["outlet_code"]})'
+            st.markdown(f'- **{name}**: {a["action_text"]}  \n  _agreed {a["created_at"]:%d %b}_')
+    else:
+        st.caption("Nothing open — every agreed action has been closed out.")
+
+    if summary["visit_count"] == 0:
+        st.info("No visits logged in the last 7 days yet. This fills in as you submit visits from My Beat.")

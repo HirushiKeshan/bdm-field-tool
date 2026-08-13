@@ -1,0 +1,40 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: bdm
+      POSTGRES_PASSWORD: bdm
+      POSTGRES_DB: bdm_tool
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U bdm -d bdm_tool"]
+      interval: 3s
+      timeout: 3s
+      retries: 10
+
+  seed:
+    build: .
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      DATABASE_URL: postgresql://bdm:bdm@postgres:5432/bdm_tool
+    command: ["python", "seed.py"]
+    volumes:
+      - ./docs:/app/docs
+
+  app:
+    build: .
+    depends_on:
+      seed:
+        condition: service_completed_successfully
+    environment:
+      DATABASE_URL: postgresql://bdm:bdm@postgres:5432/bdm_tool
+    ports:
+      - "8501:8501"
+
+volumes:
+  pgdata:
