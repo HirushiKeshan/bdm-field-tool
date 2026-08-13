@@ -72,7 +72,7 @@ def normalize_status(raw: str) -> Result:
     if canonical is None:
         return Result(None, "rejected", f"Unrecognized status: {raw!r}")
     status = "ok" if canonical == raw else "coerced"
-    return Result(canonical, status)
+    return Result(canonical, status, "" if status == "ok" else f"{raw!r} -> {canonical}")
 
 
 def normalize_type(raw: str) -> Result:
@@ -132,7 +132,7 @@ def normalize_purpose(raw: str) -> Result:
     if canonical is None:
         return Result(None, "rejected", f"Unrecognized visit purpose: {raw!r}")
     status = "ok" if canonical == raw else "coerced"
-    return Result(canonical, status)
+    return Result(canonical, status, "" if status == "ok" else f"{raw!r} -> {canonical}")
 
 
 def normalize_remarks(raw: str) -> Result:

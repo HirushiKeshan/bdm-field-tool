@@ -1,0 +1,70 @@
+# Per-outlet-type counter conversation checklist. Max 5 items per type --
+# enforced in code (logic/checklist.py), not just by convention here.
+#
+# Every type gets the same 3 universal items (order, collection, agreed
+# action -- the core of the brief's "collect dues, take next order, agree
+# what happens next") plus 2 items specific to what actually goes wrong
+# for that kind of shop. Edit this file to change what BDMs are asked --
+# no code change needed.
+#
+# item types:
+#   order      - captures a rupee value (order taken this visit)
+#   collection - captures a rupee amount (payment collected this visit)
+#   blocker    - a short pick-list of what's wrong, optional free-text note
+#   action     - free text: what was agreed for next visit
+
+universal_items:
+  - key: order_taken
+    label: "Order taken this visit?"
+    type: order
+  - key: collection_taken
+    label: "Payment collected this visit?"
+    type: collection
+  - key: agreed_action
+    label: "What did you agree to do before the next visit?"
+    type: action
+
+outlet_types:
+  General Trade:
+    items:
+      - key: stock_availability
+        label: "Fully stocked on our top models?"
+        type: blocker
+        options: ["Yes - stocked", "No - lost a sale", "Partial - some models missing"]
+      - key: shelf_visibility
+        label: "Is our display / POP material visible?"
+        type: blocker
+        options: ["Yes", "No - hidden or removed", "No - never installed"]
+
+  Mobile Specialist:
+    items:
+      - key: competitor_pressure
+        label: "Is a competitor brand being pushed harder here?"
+        type: blocker
+        options: ["No", "Yes - on pricing", "Yes - on margin", "Yes - has a demo unit, we don't"]
+      - key: demo_unit_status
+        label: "Is our demo/display unit working and present?"
+        type: blocker
+        options: ["Yes", "No - damaged", "No - missing"]
+
+  Premium Reseller:
+    items:
+      - key: display_compliance
+        label: "Does the store meet brand display guidelines?"
+        type: blocker
+        options: ["Yes", "No - signage", "No - layout", "No - lighting"]
+      - key: staff_training
+        label: "Does staff need a product training refresh?"
+        type: blocker
+        options: ["No", "Yes - new model", "Yes - general refresher"]
+
+  Multi-Yard:
+    items:
+      - key: stock_rotation
+        label: "Any slow-moving stock to push, return, or rotate?"
+        type: blocker
+        options: ["No", "Yes - flagged for return", "Yes - needs a promo push"]
+      - key: sub_dealer_reach
+        label: "Are they servicing their own sub-dealers properly?"
+        type: blocker
+        options: ["Yes", "No - complaints raised", "Unknown - ask next visit"]
