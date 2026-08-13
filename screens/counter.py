@@ -4,7 +4,7 @@ import streamlit as st
 import streamlit.components.v1 as components
 
 from db.queries import get_outlet_counter_context, submit_visit
-from logic.charts import render_trend_sparkline
+from logic.charts import build_trend_figure
 from logic.scoring import format_inr
 
 _GPS_CAPTURE_HTML = """
@@ -118,18 +118,34 @@ def render(conn, bdm_code, outlet_code):
         components.html(_GPS_CAPTURE_HTML, height=80)
         st.caption("Optional, like the photo — it strengthens the audit trail but never blocks a submission.")
 
+    st.markdown('<div class="section-label">Photo</div>', unsafe_allow_html=True)
+    want_photo = st.checkbox("📷 Add a photo of the counter (optional)", key="want_photo")
+    if want_photo:
+        st.camera_input("Optional: photo of the counter", key="photo_input", label_visibility="collapsed")
+    else:
+        # Not mounted at all until opted in -- st.camera_input activates the
+        # device camera as soon as it renders, and the brief calls for the
+        # camera to stay off until the BDM explicitly asks for it.
+        st.session_state.pop("photo_input", None)
+        st.caption("Camera stays off until you tap the box above.")
+
     # --- give before you ask ---
     st.markdown('<div class="section-label">This month vs last month</div>', unsafe_allow_html=True)
     latest, prior = ctx["latest_value"], ctx["prior_value"]
     c1, c2 = st.columns(2)
     c1.metric("This month", format_inr(latest) if latest is not None else "No record")
     c2.metric("Last month", format_inr(prior) if prior is not None else "No record")
-    st.markdown(render_trend_sparkline(ctx["trend"]), unsafe_allow_html=True)
+    st.plotly_chart(
+        build_trend_figure(ctx["trend"]), use_container_width=True,
+        config={"displayModeBar": False, "staticPlot": False},
+        key=f"trend_{outlet_code}",
+    )
     st.markdown(
-        '<div style="font-size:0.72rem; color:#98a0b3; margin-top:-0.3rem;">'
+        '<div style="font-size:0.72rem; color:#98a0b3; margin-top:-0.6rem;">'
         '<span style="color:#0B2D6B;">●</span> billed &nbsp; '
         '<span style="color:#D6266E;">●</span> billed nothing &nbsp; '
-        '<span style="color:#b6bcc9;">○</span> no record</div>',
+        '<span style="color:#b6bcc9;">○</span> no record &nbsp; '
+        '<em>(tap a point for the exact figure)</em></div>',
         unsafe_allow_html=True,
     )
 
@@ -183,7 +199,8 @@ def render(conn, bdm_code, outlet_code):
         st.markdown('<div class="section-label">Verification</div>', unsafe_allow_html=True)
         st.caption("Ask the owner to read the code off the card at the counter.")
         entered_code = st.text_input("Outlet code (4 digits, from the counter card)", max_chars=4, key="entered_code")
-        photo = st.camera_input("Optional: photo of the counter", key="photo_input")
+        if st.session_state.get("photo_input") is not None:
+            st.caption("✅ Photo attached.")
 
         col_a, col_b = st.columns(2)
         save_partial = col_a.form_submit_button("Save partial")
@@ -203,7 +220,7 @@ def render(conn, bdm_code, outlet_code):
                 collection_amount=collection_amount or None,
                 agreed_action_text=agreed_action_text,
                 dues_amount=dues_amount_input or None,
-                photo_taken=photo is not None,
+                photo_taken=st.session_state.get("photo_input") is not None,
                 captured_latitude=cap_lat, captured_longitude=cap_lon, captured_accuracy=cap_acc,
                 is_complete=bool(submit_full),
             )

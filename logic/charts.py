@@ -1,81 +1,82 @@
 """
-A small inline-SVG sparkline for the 6-month billing trend on the Counter
-Conversation screen. Deliberately not a generic chart widget: it has to
-keep the three-way null distinction from docs/data-notes.md visible in
-the chart itself, not just in a text caption --
+An interactive Plotly line chart for the 6-month billing trend on the
+Counter Conversation screen. Not decoration -- it has to keep the
+three-way null distinction from docs/data-notes.md visible and hoverable,
+not just present in a static image:
 
-  - a real billed month  -> solid navy dot, connected by a line
-  - an explicit zero bill -> solid pink/accent dot, still on the baseline
-  - no record that month -> hollow dashed circle, breaks the line
+  - a real billed month  -> solid navy point, connected by a line
+  - an explicit zero bill -> solid accent-pink point, still connected
+    (it's a real record, just a bad month)
+  - no record that month -> hollow grey marker sitting at the baseline,
+    with a genuine gap in the line on either side (Plotly's
+    connectgaps=False), and its own "no record" hover label
 
-A generic line-chart widget (st.line_chart, a stray fillna(0)) would
-collapse "no record" into "zero" and silently misrepresent the data --
-exactly what docs/data-notes.md's null-handling rules forbid.
+A generic chart built by feeding raw values straight into st.line_chart
+(or any fillna(0)) would collapse "no record" into "zero" -- exactly what
+docs/data-notes.md's null-handling rules forbid.
 """
 from typing import Optional
+
+import plotly.graph_objects as go
+
+from logic.scoring import format_inr
 
 NAVY = "#0B2D6B"
 ACCENT = "#D6266E"
 GREY = "#b6bcc9"
 
 
-def render_trend_sparkline(trend: list, width: int = 320, height: int = 78) -> str:
-    """trend: [{"month": "YYYY-MM", "value": float|None, "has_record": bool}, ...]
-    Returns a standalone <svg> string, safe to pass to st.markdown(unsafe_allow_html=True)."""
-    n = len(trend)
-    if n == 0:
-        return "<svg></svg>"
+def build_trend_figure(trend: list) -> go.Figure:
+    """trend: [{"month": "YYYY-MM", "value": float|None, "has_record": bool}, ...]"""
+    x = [t["month"] for t in trend]
+    y_line, marker_colors, hover_text = [], [], []
+    no_record_x, no_record_hover = [], []
 
-    pad_x, pad_top, pad_bottom = 10, 10, 16
-    plot_w = width - 2 * pad_x
-    plot_h = height - pad_top - pad_bottom
-    xs = [pad_x + i * (plot_w / (n - 1)) for i in range(n)] if n > 1 else [width / 2]
-
-    positive_values = [t["value"] for t in trend if t.get("has_record") and t.get("value") and t["value"] > 0]
-    max_val = max(positive_values) if positive_values else 1
-    baseline_y = pad_top + plot_h
-
-    def y_for(value: Optional[float]) -> float:
-        if not value:
-            return baseline_y
-        return pad_top + plot_h - (value / max_val) * plot_h
-
-    segments, points, labels = [], [], []
-    prev_has_record = False
-    prev_x = prev_y = None
-
-    for i, t in enumerate(trend):
-        x = xs[i]
-        has_record = bool(t.get("has_record"))
-        value = t.get("value")
-        if has_record:
-            y = y_for(value)
-            color = ACCENT if not value else NAVY
-            points.append(f'<circle cx="{x:.1f}" cy="{y:.1f}" r="4" fill="{color}" />')
-            if prev_has_record and prev_x is not None:
-                segments.append(
-                    f'<line x1="{prev_x:.1f}" y1="{prev_y:.1f}" x2="{x:.1f}" y2="{y:.1f}" '
-                    f'stroke="{NAVY}" stroke-width="2" stroke-linecap="round" />'
-                )
-            prev_x, prev_y, prev_has_record = x, y, True
+    for t in trend:
+        if t.get("has_record"):
+            value = t.get("value") or 0
+            y_line.append(value)
+            if value == 0:
+                marker_colors.append(ACCENT)
+                hover_text.append(f"{t['month']}: ₹0 -- billed nothing")
+            else:
+                marker_colors.append(NAVY)
+                hover_text.append(f"{t['month']}: {format_inr(value)}")
         else:
-            points.append(
-                f'<circle cx="{x:.1f}" cy="{baseline_y:.1f}" r="3.5" fill="none" '
-                f'stroke="{GREY}" stroke-width="1.5" stroke-dasharray="2,2" />'
-            )
-            prev_has_record = False
+            y_line.append(None)  # a real gap -- connectgaps=False breaks the line here
+            marker_colors.append(GREY)
+            hover_text.append(f"{t['month']}: no record")
+            no_record_x.append(t["month"])
+            no_record_hover.append(f"{t['month']}: no record")
 
-        labels.append(
-            f'<text x="{x:.1f}" y="{height - 3}" font-size="9" fill="#98a0b3" '
-            f'text-anchor="middle" font-family="sans-serif">{t["month"][-2:]}</text>'
-        )
+    fig = go.Figure()
+    fig.add_trace(go.Scatter(
+        x=x, y=y_line, mode="lines+markers",
+        line=dict(color=NAVY, width=2, shape="spline", smoothing=0.3),
+        marker=dict(color=marker_colors, size=10, line=dict(width=1, color="white")),
+        hovertext=hover_text, hoverinfo="text",
+        connectgaps=False,
+        showlegend=False,
+    ))
+    if no_record_x:
+        # A no-record month has no y-value on the line trace above (by
+        # design, to keep the gap real) -- overlay a hollow marker at the
+        # baseline just so it's not simply invisible on the chart.
+        fig.add_trace(go.Scatter(
+            x=no_record_x, y=[0] * len(no_record_x), mode="markers",
+            marker=dict(symbol="circle-open", color=GREY, size=10, line=dict(width=2, color=GREY)),
+            hovertext=no_record_hover, hoverinfo="text",
+            showlegend=False,
+        ))
 
-    svg = (
-        f'<svg width="{width}" height="{height}" viewBox="0 0 {width} {height}" '
-        f'xmlns="http://www.w3.org/2000/svg">'
-        f'<line x1="{pad_x}" y1="{baseline_y:.1f}" x2="{width - pad_x}" y2="{baseline_y:.1f}" '
-        f'stroke="#eceef2" stroke-width="1" />'
-        + "".join(segments) + "".join(points) + "".join(labels) +
-        "</svg>"
+    fig.update_layout(
+        height=190,
+        margin=dict(l=8, r=8, t=8, b=8),
+        xaxis=dict(showgrid=False, tickfont=dict(size=11, color="#8892a6")),
+        yaxis=dict(visible=False, rangemode="tozero"),
+        plot_bgcolor="rgba(0,0,0,0)",
+        paper_bgcolor="rgba(0,0,0,0)",
+        hovermode="closest",
+        dragmode=False,
     )
-    return svg
+    return fig
