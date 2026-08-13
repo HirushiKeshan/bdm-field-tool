@@ -32,7 +32,12 @@ def get_database_url() -> str:
 
 
 def get_connection():
-    return psycopg2.connect(get_database_url())
+    # connect_timeout is not optional: without it, a slow/unreachable
+    # database (a stalled pooler, a connection-limit queue) hangs this
+    # call forever with no error -- and since app.py's connection is
+    # cached for the whole process, that hang blocks every session on
+    # the app, not just the one that triggered it. Fail fast instead.
+    return psycopg2.connect(get_database_url(), connect_timeout=10)
 
 
 def dict_cursor(conn):
