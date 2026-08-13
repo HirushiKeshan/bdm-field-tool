@@ -1,0 +1,25 @@
+# AI usage
+
+## Tools and what each did
+
+**Claude Code (Sonnet 5)** did essentially the entire build — this was a single long session, driven turn by turn rather than one big prompt. Breakdown by phase:
+
+- **Phase 0 (data exploration).** Wrote and ran a raw-string CSV profiler (`scripts/explore.py`) and a series of targeted pandas/haversine checks directly in the terminal — null/blank counts per column, date-format detection, town-spelling clustering, revenue concentration, visit-log pacing anomalies, and the Madurai coordinate search. All numbers in `docs/data-notes.md` came from these scripts actually running against the four CSVs, not from summarizing the files by eye.
+- **Phase 1 (data layer).** Wrote `db/schema.sql`, `seed.py`, and the pure-logic modules (`logic/segmentation.py`, `logic/scoring.py`, `logic/normalize.py`, `logic/confidence.py`, `logic/checklist.py`) plus their pytest suites test-first where practical (segmentation edge cases were written and passing before the DB layer existed).
+- **Phase 2-4 (app).** Wrote the Streamlit app (`app.py`, `screens/*.py`, `db/queries.py`, `db/manager_queries.py`) and checklists.yaml.
+- **Verification.** Used a locally embedded Postgres (`pgserver`, a pip-installable Postgres binary — see `requirements-dev.txt`) to actually run `seed.py` and the full app end-to-end during the build, since no Docker daemon was available in the dev sandbox. Used the Claude Code browser tool to load the running app at a 390px mobile viewport and read its live rendered output. Where the browser's click/screenshot actions were unavailable in this environment, verified the same screens and the write path (`submit_visit`, confidence computation, manager queries) with direct scripted calls against the seeded database instead of by clicking through manually — `scripts/dev_verify_writes.py` is that script, kept in the repo.
+
+No other AI tool was used — no separate code-completion model, no image generation, no external API calls.
+
+## Where the AI was wrong, and how it was caught
+
+Full detail, with the actual error messages and fixes, is in **[`docs/ai-log.md`](docs/ai-log.md)**, kept from the first commit onward rather than reconstructed afterward. Six real instances, in build order:
+
+1. **A wrong first read of the Madurai finding.** The brief's "three shops share a wall" framing led to an initial assumption that the coordinate data would contain a literal same-city triplet a few metres apart. It doesn't — checked directly with a haversine pass, and the actual finding (20 duplicate-registration pairs, a different bug with the same visible symptom) is reported instead of forcing the data into the brief's narrative.
+2. **An ambiguous SQL column** (`created_at` exists on two joined tables) that Postgres rejected — caught only by actually loading the Counter Conversation screen in a browser, not by reading the query or by the unit test suite. It also revealed a second, independent problem: the app's cached DB connection stayed poisoned for every later query once one query failed.
+3. **A timestamp used as a unique ID** that collided under Windows' actual clock resolution (~15ms, not the microsecond the code assumed) — caught by a scripted test that fired three writes back-to-back.
+4. **A segmentation threshold that was mathematically unreachable.** `Dormant-valuable` used the 75th percentile of peak billing value across all outlets, but currently-thriving outlets dominate that distribution, so zero outlets could ever cross it. Caught by treating a suspiciously-round zero in a smoke test as a bug to investigate, not a fact to report.
+5. **The "today" used for every days-since-last-visit calculation silently jumped 13+ days the instant any BDM submitted their first real visit anywhere in the app**, reshuffling every other outlet's urgency score and every BDM's coverage numbers as a side effect of one unrelated write. My own testing never caught this because I only ever checked state right after seeding, never compared the same unrelated outlet's numbers before and after an unconnected write.
+6. **A checklist radio button's default selection was silently treated as a real answer**, meaning a BDM could submit a visit having touched nothing on the checklist and still have it register as `Partial` confidence instead of `Unverified` — directly undermining the one feature (verification confidence) the whole tool exists to get right.
+
+\#5 and #6 were not self-caught — I asked a second, independent agent with no memory of the build to review the finished repo cold and actually exercise it, specifically because I'd already caught four bugs myself and had reason to distrust my own read of code I'd just written. It found these two by comparing state across an action (before vs. after an unrelated write; a real click-through vs. an empty one) rather than reading the code in isolation, which is exactly the class of bug a single-author build tends to miss. If I had to pick the strongest entry: **#6**, because the code ran without any error at all and looked completely correct in isolation — it only failed the one thing the feature was actually for.
