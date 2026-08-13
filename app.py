@@ -183,21 +183,29 @@ def main():
             week.render(conn, st.session_state.bdm_code)
         else:
             beat.render(conn, st.session_state.bdm_code)
-    except psycopg2.InterfaceError:
-        # "connection already closed" -- the pooled connection died
-        # server-side (Supabase's Session pooler recycling an idle
-        # connection is the common case) since it was last cached.
-        # conn.rollback() on an already-dead connection raises this exact
-        # same error again, so don't call it; drop the cache and retry
-        # once with a fresh connection instead of crashing the session.
-        _make_conn.clear()
-        st.rerun()
     except psycopg2.Error:
         # The connection is cached and reused across reruns (st.cache_resource) --
         # without this, one bad query leaves every later query on this
         # connection failing with "current transaction is aborted" until the
         # process restarts. Roll back so the next rerun starts clean.
-        conn.rollback()
+        #
+        # But a server-terminated connection (Supabase's pooler recycling
+        # an idle one) does NOT reliably surface as psycopg2.InterfaceError
+        # at the point of failure -- catching that type specifically was
+        # my first attempt and it was wrong: the actual error a dead
+        # socket raises is psycopg2.OperationalError, which .rollback()
+        # itself then turns into InterfaceError, an unhandled *second*
+        # crash. Verified by killing the connection's backend directly
+        # (pg_terminate_backend) and reproducing locally -- see
+        # docs/ai-log.md. So: try the rollback, and if THAT itself fails,
+        # that's the real signal the connection is dead, not just the
+        # transaction -- drop the cache and retry fresh instead of
+        # cascading into a crash.
+        try:
+            conn.rollback()
+        except psycopg2.Error:
+            _make_conn.clear()
+            st.rerun()
         raise
 
 
