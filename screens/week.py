@@ -2,6 +2,7 @@ import streamlit as st
 
 from db.queries import fetch_week_summary
 from logic.scoring import format_inr
+from logic.time_utils import to_ist
 
 
 def render(conn, bdm_code):
@@ -22,7 +23,7 @@ def render(conn, bdm_code):
     if summary["open_actions"]:
         for a in summary["open_actions"]:
             name = a["outlet_name"] or f'Unnamed outlet ({a["outlet_code"]})'
-            st.markdown(f'- **{name}**: {a["action_text"]}  \n  _agreed {a["created_at"]:%d %b}_')
+            st.markdown(f'- **{name}**: {a["action_text"]}  \n  _agreed {to_ist(a["created_at"]):%d %b}_')
     else:
         st.caption("Nothing open — every agreed action has been closed out.")
 
@@ -30,6 +31,6 @@ def render(conn, bdm_code):
     if summary["visits"]:
         for v in summary["visits"]:
             name = v["outlet_name"] or f'Unnamed outlet ({v["outlet_code"]})'
-            st.markdown(f'- **{name}** — {v["created_at"]:%d %b, %I:%M %p} · {v["confidence"]}')
+            st.markdown(f'- **{name}** — {to_ist(v["created_at"]):%d %b, %I:%M %p} · {v["confidence"]}')
     else:
         st.info("No visits logged in the last 7 days yet. This fills in as you submit visits from My Visits.")

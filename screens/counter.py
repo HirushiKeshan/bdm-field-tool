@@ -6,6 +6,7 @@ from db.queries import get_outlet_counter_context, submit_visit
 from logic.ai_assistant import transcribe
 from logic.charts import build_trend_figure
 from logic.scoring import format_inr
+from logic.time_utils import to_ist
 
 _VOICE_NOTE_KEYS = ("want_voice_note", "voice_note_audio", "voice_note_hash", "voice_note_last_transcript")
 
@@ -76,7 +77,7 @@ def render(conn, bdm_code, outlet_code):
 
     st.markdown('<div class="section-label">Outstanding dues</div>', unsafe_allow_html=True)
     if ctx["dues"]:
-        st.write(f'₹{ctx["dues"]["amount"]} as of last visit ({ctx["dues"]["updated_at"]:%d %b})')
+        st.write(f'₹{ctx["dues"]["amount"]} as of last visit ({to_ist(ctx["dues"]["updated_at"]):%d %b})')
     else:
         st.caption("Dues not tracked from source data — enter what the owner tells you below.")
     dues_amount_input = st.number_input("Dues owed right now (₹, optional)", min_value=0, step=500, key="dues_input")
@@ -84,7 +85,7 @@ def render(conn, bdm_code, outlet_code):
     st.markdown('<div class="section-label">Last time, we agreed to...</div>', unsafe_allow_html=True)
     if ctx["agreed_action"]:
         aa = ctx["agreed_action"]
-        st.info(f'{aa["action_text"]}  \n_{aa["status"]} · agreed {aa["created_at"]:%d %b}_')
+        st.info(f'{aa["action_text"]}  \n_{aa["status"]} · agreed {to_ist(aa["created_at"]):%d %b}_')
     else:
         st.caption("No agreed action on file from a previous visit.")
 

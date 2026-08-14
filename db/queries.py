@@ -13,6 +13,7 @@ from logic.checklist import get_checklist_for_type, load_checklist_config
 from logic.confidence import compute_confidence, flag_location_mismatch, flag_outside_territory
 from logic.geo import assign_area, compute_centroids
 from logic.segmentation import compute_valuable_threshold, segment_outlet
+from logic.time_utils import now_ist
 
 DUES_ITEM_KEY = "dues_manual_entry"
 
@@ -260,15 +261,22 @@ def submit_visit(conn, *, bdm_code, outlet_code, entered_code, responses, order_
     # collided in testing -- see docs/ai-log.md.
     visit_id = f"APP-{uuid.uuid4().hex[:16]}-{outlet_code}"
 
+    # Computed in Python, not CURRENT_DATE/CURRENT_TIME: those are plain
+    # DATE/TIME columns evaluated in the Postgres server's own timezone
+    # (UTC on both Supabase and the local dev server), which recorded the
+    # wrong calendar date for visits made between midnight and 5:30am IST.
+    visit_moment = now_ist()
+
     with conn.cursor() as cur:
         cur.execute("""
             INSERT INTO visits (visit_id, bdm_code, outlet_code, visit_date, check_in_time, source,
                                  entered_code, code_match, photo_taken, latitude, longitude,
                                  location_accuracy_m, location_source,
                                  gps_anomaly, confidence, is_complete)
-            VALUES (%s, %s, %s, CURRENT_DATE, CURRENT_TIME, 'app', %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
-        """, (visit_id, bdm_code, outlet_code, entered_code, code_match, photo_taken,
-              stored_lat, stored_lon, captured_accuracy, location_source, gps_anomaly, confidence.level, is_complete))
+            VALUES (%s, %s, %s, %s, %s, 'app', %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+        """, (visit_id, bdm_code, outlet_code, visit_moment.date(), visit_moment.time(), entered_code, code_match,
+              photo_taken, stored_lat, stored_lon, captured_accuracy, location_source, gps_anomaly,
+              confidence.level, is_complete))
 
         for r in responses:
             cur.execute("""
