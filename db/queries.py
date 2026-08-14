@@ -179,7 +179,8 @@ def build_beat(conn, bdm_code: str, area: str = None) -> dict:
 
 def get_outlet_counter_context(conn, outlet_code: str) -> dict:
     """Everything the Counter Conversation screen shows 'before you ask'."""
-    outlets = {o["outlet_code"]: o for o in fetch_outlets(conn)}
+    all_outlets = fetch_outlets(conn)
+    outlets = {o["outlet_code"]: o for o in all_outlets}
     outlet = outlets.get(outlet_code)
     billing = fetch_billing_rows(conn).get(outlet_code, [])
     window_months = fetch_window_months(conn)
@@ -194,8 +195,14 @@ def get_outlet_counter_context(conn, outlet_code: str) -> dict:
     dues = fetch_manual_dues(conn, outlet_code)
     checklist = get_checklist_for_type(outlet.get("outlet_type") if outlet else None, load_checklist_config())
 
+    area = None
+    if outlet:
+        centroids = compute_centroids(all_outlets)
+        area = assign_area(outlet["latitude"], outlet["longitude"], centroids.get(outlet["territory"]))
+
     return {
         "outlet": outlet,
+        "area": area,
         "trend": trend,
         "latest_value": latest_value,
         "prior_value": prior_value,
@@ -213,13 +220,17 @@ def submit_visit(conn, *, bdm_code, outlet_code, entered_code, responses, order_
                   captured_accuracy, is_complete) -> str:
     """responses: list of {item_key, item_label, response_type, response_value}
 
-    captured_latitude/longitude/accuracy come from the BDM's own phone via
-    the browser geolocation capture on the Counter Conversation screen
-    (logic.confidence.flag_location_mismatch is what this feeds). This is
-    an anomaly/audit signal only -- it is never used to decide which of
-    two nearby outlets a visit was at (see README "The Madurai decision"):
-    typical phone GPS error (10-50m) is larger than the gap between two
-    adjacent counters (3-5m), so no threshold here can safely do that.
+    captured_latitude/longitude/accuracy would come from the BDM's own
+    phone via a browser geolocation capture -- the Counter Conversation
+    screen no longer offers that (see docs/ai-log.md for why), so these
+    are always None from the current UI and the code below falls back
+    to the outlet's own registered coordinates. The parameters are kept
+    so this function still works unchanged if device capture is ever
+    added back. Either way, location is an anomaly/audit signal only --
+    never used to decide which of two nearby outlets a visit was at
+    (see README "The Madurai decision"): typical phone GPS error
+    (10-50m) is larger than the gap between two adjacent counters
+    (3-5m), so no threshold here can safely do that.
     """
     with conn.cursor() as cur:
         cur.execute("SELECT visit_code, territory, latitude, longitude FROM outlets WHERE outlet_code = %s", (outlet_code,))
@@ -321,6 +332,19 @@ def fetch_week_summary(conn, bdm_code: str, days: int = 7) -> dict:
                      (bdm_code,))
         territory_outlet_count = cur.fetchone()[0]
 
+        # created_at, not visit_date -- visit_date is just a calendar day,
+        # created_at is the real moment the BDM actually hit submit, which
+        # is what "what time did he visit" actually means here.
+        cur.execute("""
+            SELECT v.outlet_code, o.outlet_name, v.created_at, v.confidence
+            FROM visits v
+            LEFT JOIN outlets o ON o.outlet_code = v.outlet_code
+            WHERE v.bdm_code = %s AND v.visit_date >= CURRENT_DATE - %s
+            ORDER BY v.created_at DESC
+        """, (bdm_code, days))
+        cols = [c.name for c in cur.description]
+        visits = [dict(zip(cols, row)) for row in cur.fetchall()]
+
     return {
         "distinct_outlets_visited": distinct_outlets or 0,
         "visit_count": visit_count or 0,
@@ -328,6 +352,7 @@ def fetch_week_summary(conn, bdm_code: str, days: int = 7) -> dict:
         "ordered": float(ordered or 0),
         "open_actions": open_actions,
         "territory_outlet_count": territory_outlet_count or 0,
+        "visits": visits,
     }
 
 

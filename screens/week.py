@@ -26,5 +26,10 @@ def render(conn, bdm_code):
     else:
         st.caption("Nothing open — every agreed action has been closed out.")
 
-    if summary["visit_count"] == 0:
+    st.markdown('<div class="section-label">Visits this week</div>', unsafe_allow_html=True)
+    if summary["visits"]:
+        for v in summary["visits"]:
+            name = v["outlet_name"] or f'Unnamed outlet ({v["outlet_code"]})'
+            st.markdown(f'- **{name}** — {v["created_at"]:%d %b, %I:%M %p} · {v["confidence"]}')
+    else:
         st.info("No visits logged in the last 7 days yet. This fills in as you submit visits from My Visits.")
