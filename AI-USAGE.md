@@ -11,7 +11,16 @@ Roughly how the work broke down:
 - **Built the app.** The Streamlit screens (My Visits, Counter Conversation, This Week, Insights).
 - **Tested it for real.** Ran the app locally against a real Postgres database and clicked through every screen in a browser before each deploy, instead of just trusting that the code looked right.
 
-No other AI tool was used — no image generation, no separate code-completion tool.
+No other AI tool was used to build the app — no image generation, no separate code-completion tool. (**Groq** is used *inside* the finished app itself — see below — which is a different thing from a tool used to build it.)
+
+## AI features built into the app
+
+Two small, optional features, both using **Groq** (`llama-3.3-70b-versatile` for text, `whisper-large-v3-turbo` for speech):
+
+- **Ask about your team** (Insights) — a plain-English question box. The model is only ever given the exact same numbers already shown on the page and told to answer from that alone, or say the data doesn't cover it — never to invent or calculate a new figure on its own. Checked this directly: asked it something the data genuinely doesn't have (quarterly revenue), and it correctly said so instead of making up a number.
+- **Voice notes** (Counter Conversation) — a rep can speak the agreed action instead of typing it; Groq's Whisper transcribes it into the same text field, editable before submitting. Checked with a real spoken sentence (via Windows text-to-speech, since no live microphone was available to test with) — it came back nearly word-for-word correct.
+
+Both are optional — the app works the same without a Groq key, the two features just say so instead of doing anything.
 
 ## Where the AI got things wrong
 

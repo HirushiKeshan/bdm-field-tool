@@ -11,9 +11,18 @@ It tells each rep which shops need a visit first, shows the shop's numbers befor
 ## What's inside
 
 - **My Visits** — every shop assigned to a rep, grouped by urgency (Slipping, Dormant, Core, New, Dormant-valuable).
-- **Counter Conversation** — the screen a rep uses during a visit: this month vs last month, a 6-month trend chart, dues, last agreed action, a short checklist, an optional photo, and a code the shop owner reads out to confirm the visit really happened.
+- **Counter Conversation** — the screen a rep uses during a visit: this month vs last month, an interactive 6-month trend chart, dues, last agreed action, a short checklist, an optional photo, an optional voice note (speak the agreed action instead of typing it), and a code the shop owner reads out to confirm the visit really happened.
 - **This Week** — a rep's own weekly summary: shops covered, money collected, orders taken, open follow-ups.
-- **Insights** — one page for the manager: coverage gaps, how reps spend their time, checklist quality, dormant shops that used to be valuable, and how trustworthy the visit data is.
+- **Insights** — one page for the manager: coverage gaps, how reps spend their time (with a per-rep filter), checklist quality, dormant shops that used to be valuable, how trustworthy the visit data is, and a plain-English question box that answers using only the numbers already on the page.
+
+## The two AI features
+
+Both are powered by [Groq](https://groq.com) and are optional — the app works fully without them, they just say so if the key isn't set.
+
+- **Ask about your team** (Insights) — type a question like "which BDM needs the most help?" and get an answer. The model only ever sees the same numbers already shown on the page and is told to say "the data doesn't cover that" rather than guess — it's never allowed to invent a figure.
+- **Voice notes** (Counter Conversation) — a rep can speak the agreed action instead of typing it. Groq's Whisper turns it into text that drops into the same field, editable before submitting — a misheard word is a quick fix, never a wrong record.
+
+To turn these on, set `GROQ_API_KEY` — in `.env` locally, or Streamlit Cloud's Secrets in production. Get a free key at [console.groq.com](https://console.groq.com).
 
 ## Run it yourself
 
@@ -41,7 +50,7 @@ The app loads the CSVs into the database automatically the first time it runs.
 pytest
 ```
 
-55 tests, no database needed — they test the logic directly (segmentation, scoring, checklist rules, charts, confidence).
+69 tests, no database needed — they test the logic directly (segmentation, scoring, checklist rules, charts, confidence, the AI features with the network calls mocked out).
 
 ### Deploying it
 
@@ -98,6 +107,7 @@ outlets.csv, bdms.csv, billing-monthly.csv, visit-log.csv   the 4 source files
 db/                    database schema and queries
 seed.py                loads the CSVs into Postgres
 logic/                 all the business rules (segmentation, scoring, checklist, confidence)
+logic/ai_assistant.py  the two optional Groq features (question box, voice notes)
 checklists.yaml        per-shop-type checklist questions
 app.py, screens/       the Streamlit app itself
 tests/                 55 tests, no database needed
