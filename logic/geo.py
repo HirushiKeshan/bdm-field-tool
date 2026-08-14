@@ -43,3 +43,16 @@ def assign_area(latitude, longitude, centroid: tuple) -> str:
     ns = "North" if latitude >= clat else "South"
     ew = "East" if longitude >= clon else "West"
     return f"{ns}-{ew}"
+
+
+def resolve_live_location(latitude, longitude, centroids: dict) -> dict:
+    """Best-effort 'where is the BDM right now' from a live GPS fix, with no
+    geocoding service available: territory names in this dataset are real
+    town names (see docs/data-notes.md), so the nearest territory centroid
+    stands in for district, and the direction from that centroid stands in
+    for area -- the same quadrant logic assign_area already uses for an
+    outlet's own registered coordinates."""
+    if latitude is None or longitude is None or not centroids:
+        return {"area": "Area unknown", "district": None}
+    nearest = min(centroids, key=lambda t: haversine_meters(latitude, longitude, *centroids[t]))
+    return {"area": assign_area(latitude, longitude, centroids[nearest]), "district": nearest}

@@ -11,7 +11,7 @@ from datetime import date
 from logic import scoring
 from logic.checklist import get_checklist_for_type, load_checklist_config
 from logic.confidence import compute_confidence, flag_location_mismatch, flag_outside_territory
-from logic.geo import assign_area, compute_centroids
+from logic.geo import assign_area, compute_centroids, resolve_live_location
 from logic.segmentation import compute_valuable_threshold, segment_outlet
 from logic.time_utils import now_ist
 
@@ -178,8 +178,13 @@ def build_beat(conn, bdm_code: str, area: str = None) -> dict:
     return {"bdm": bdm, "outlets": beat, "areas": areas}
 
 
-def get_outlet_counter_context(conn, outlet_code: str) -> dict:
-    """Everything the Counter Conversation screen shows 'before you ask'."""
+def get_outlet_counter_context(conn, outlet_code: str, captured_latitude=None, captured_longitude=None) -> dict:
+    """Everything the Counter Conversation screen shows 'before you ask'.
+
+    captured_latitude/longitude, when given, come from the BDM's own phone
+    (a live GPS fix taken this visit) and take priority over the outlet's
+    own registered address for Area/District -- see screens/counter.py for
+    how that fix gets captured."""
     all_outlets = fetch_outlets(conn)
     outlets = {o["outlet_code"]: o for o in all_outlets}
     outlet = outlets.get(outlet_code)
@@ -196,14 +201,21 @@ def get_outlet_counter_context(conn, outlet_code: str) -> dict:
     dues = fetch_manual_dues(conn, outlet_code)
     checklist = get_checklist_for_type(outlet.get("outlet_type") if outlet else None, load_checklist_config())
 
-    area = None
+    area, district, location_is_live = None, None, False
     if outlet:
         centroids = compute_centroids(all_outlets)
-        area = assign_area(outlet["latitude"], outlet["longitude"], centroids.get(outlet["territory"]))
+        if captured_latitude is not None and captured_longitude is not None:
+            live = resolve_live_location(captured_latitude, captured_longitude, centroids)
+            area, district, location_is_live = live["area"], live["district"], True
+        else:
+            area = assign_area(outlet["latitude"], outlet["longitude"], centroids.get(outlet["territory"]))
+            district = outlet["territory"]
 
     return {
         "outlet": outlet,
         "area": area,
+        "district": district,
+        "location_is_live": location_is_live,
         "trend": trend,
         "latest_value": latest_value,
         "prior_value": prior_value,
@@ -216,18 +228,16 @@ def get_outlet_counter_context(conn, outlet_code: str) -> dict:
 
 # --- writes ---
 
-def submit_visit(conn, *, bdm_code, outlet_code, entered_code, responses, order_value, collection_amount,
-                  agreed_action_text, dues_amount, photo_taken, captured_latitude, captured_longitude,
-                  captured_accuracy, is_complete) -> str:
+def submit_visit(conn, *, bdm_code, outlet_code, entered_code, responses, order_value, order_quantity,
+                  collection_amount, agreed_action_text, dues_amount, photo_taken, captured_latitude,
+                  captured_longitude, captured_accuracy, is_complete) -> str:
     """responses: list of {item_key, item_label, response_type, response_value}
 
-    captured_latitude/longitude/accuracy would come from the BDM's own
-    phone via a browser geolocation capture -- the Counter Conversation
-    screen no longer offers that (see docs/ai-log.md for why), so these
-    are always None from the current UI and the code below falls back
-    to the outlet's own registered coordinates. The parameters are kept
-    so this function still works unchanged if device capture is ever
-    added back. Either way, location is an anomaly/audit signal only --
+    captured_latitude/longitude/accuracy come from the BDM's own phone via
+    a browser geolocation capture (see screens/counter.py); None if the
+    BDM never granted permission or the browser doesn't support it, in
+    which case the code below falls back to the outlet's own registered
+    coordinates. Either way, location is an anomaly/audit signal only --
     never used to decide which of two nearby outlets a visit was at
     (see README "The Madurai decision"): typical phone GPS error
     (10-50m) is larger than the gap between two adjacent counters
@@ -284,9 +294,9 @@ def submit_visit(conn, *, bdm_code, outlet_code, entered_code, responses, order_
                 VALUES (%s, %s, %s, %s, %s)
             """, (visit_id, r["item_key"], r["item_label"], r["response_type"], r["response_value"]))
 
-        if order_value:
-            cur.execute("INSERT INTO orders (visit_id, outlet_code, value) VALUES (%s, %s, %s)",
-                        (visit_id, outlet_code, order_value))
+        if order_value or order_quantity:
+            cur.execute("INSERT INTO orders (visit_id, outlet_code, value, quantity) VALUES (%s, %s, %s, %s)",
+                        (visit_id, outlet_code, order_value or 0, order_quantity))
         if collection_amount:
             cur.execute("INSERT INTO collections (visit_id, outlet_code, amount) VALUES (%s, %s, %s)",
                         (visit_id, outlet_code, collection_amount))
@@ -320,10 +330,11 @@ def fetch_week_summary(conn, bdm_code: str, days: int = 7) -> dict:
         collected = cur.fetchone()[0]
 
         cur.execute("""
-            SELECT COALESCE(SUM(o.value), 0) FROM orders o JOIN visits v ON v.visit_id = o.visit_id
+            SELECT COALESCE(SUM(o.value), 0), COALESCE(SUM(o.quantity), 0)
+            FROM orders o JOIN visits v ON v.visit_id = o.visit_id
             WHERE v.bdm_code = %s AND v.visit_date >= CURRENT_DATE - %s
         """, (bdm_code, days))
-        ordered = cur.fetchone()[0]
+        ordered, units_ordered = cur.fetchone()
 
         cur.execute("""
             SELECT aa.outlet_code, o.outlet_name, aa.action_text, aa.created_at
@@ -358,6 +369,7 @@ def fetch_week_summary(conn, bdm_code: str, days: int = 7) -> dict:
         "visit_count": visit_count or 0,
         "collected": float(collected or 0),
         "ordered": float(ordered or 0),
+        "units_ordered": int(units_ordered or 0),
         "open_actions": open_actions,
         "territory_outlet_count": territory_outlet_count or 0,
         "visits": visits,

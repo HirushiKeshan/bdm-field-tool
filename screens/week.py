@@ -17,7 +17,8 @@ def render(conn, bdm_code):
 
     c3, c4 = st.columns(2)
     c3.metric("Collected", format_inr(summary["collected"]))
-    c4.metric("Orders taken", format_inr(summary["ordered"]))
+    c4.metric("Orders taken", format_inr(summary["ordered"]),
+              f'{summary["units_ordered"]} units' if summary["units_ordered"] else None, delta_color="off")
 
     st.markdown('<div class="section-label">Open actions carrying over</div>', unsafe_allow_html=True)
     if summary["open_actions"]:

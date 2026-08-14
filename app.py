@@ -83,6 +83,12 @@ div[data-testid="stExpander"] summary {{font-weight: 600; color: {BRAND_NAVY};}}
                  color:#888; margin-top:0.8rem; margin-bottom:0.2rem;}}
 footer {{visibility: hidden;}}
 
+/* Marks the two Groq-powered features (voice notes, the Insights question
+   box) so a rep or reviewer spots them as AI at a glance, not just text. */
+.ai-badge {{display:inline-block; padding:0.1rem 0.5rem; border-radius:999px; font-size:0.7rem;
+    font-weight:700; letter-spacing:0.02em; margin-left:0.4rem; vertical-align:middle;
+    background:linear-gradient(90deg, #D6266E, #7B3FA0); color:#fff;}}
+
 /* Equal-weight tab bar: My Visits / This Week / Insights. The active tab
    uses the brand accent (primaryColor in .streamlit/config.toml); the
    other two are ghost/outline via kind=secondary. */

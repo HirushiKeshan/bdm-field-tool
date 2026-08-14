@@ -100,7 +100,7 @@ def render(conn):
             use_container_width=True, config=_CHART_CONFIG, key="anomaly_breakdown_chart",
         )
 
-    st.header("6. Ask about your team")
+    st.markdown('## 6. Ask about your team <span class="ai-badge">✨ AI</span>', unsafe_allow_html=True)
     st.caption("Answers only use the numbers already shown above (scoped to your \"View for\" pick) "
                "-- never invented, never a separate lookup.")
     question = st.text_input(

@@ -11,7 +11,7 @@ It tells each rep which shops need a visit first, shows the shop's numbers befor
 ## What's inside
 
 - **My Visits** — every shop assigned to a rep, grouped by urgency (Slipping, Dormant, Core, New, Dormant-valuable).
-- **Counter Conversation** — the screen a rep uses during a visit: this month vs last month, an interactive 6-month trend chart, dues, last agreed action, a short checklist, an optional photo, an optional voice note (speak the agreed action instead of typing it), and a code the shop owner reads out to confirm the visit really happened.
+- **Counter Conversation** — the screen a rep uses during a visit: the rep's own current area/district (live GPS if granted, the shop's address otherwise), this month vs last month, an interactive 6-month trend chart, dues, last agreed action, a short checklist, order value and units ordered, an optional photo, an optional voice note (speak the agreed action instead of typing it), and a code the shop owner reads out to confirm the visit really happened.
 - **This Week** — a rep's own weekly summary: shops covered, money collected, orders taken, open follow-ups.
 - **Insights** — one page for the manager: coverage gaps, how reps spend their time (with a per-rep filter), checklist quality, dormant shops that used to be valuable, how trustworthy the visit data is, and a plain-English question box that answers using only the numbers already on the page.
 
@@ -50,7 +50,7 @@ The app loads the CSVs into the database automatically the first time it runs.
 pytest
 ```
 
-69 tests, no database needed — they test the logic directly (segmentation, scoring, checklist rules, charts, confidence, the AI features with the network calls mocked out).
+76 tests, no database needed — they test the logic directly (segmentation, scoring, checklist rules, charts, confidence, the AI features with the network calls mocked out).
 
 ### Deploying it
 
@@ -110,7 +110,7 @@ logic/                 all the business rules (segmentation, scoring, checklist,
 logic/ai_assistant.py  the two optional Groq features (question box, voice notes)
 checklists.yaml        per-shop-type checklist questions
 app.py, screens/       the Streamlit app itself
-tests/                 55 tests, no database needed
+tests/                 76 tests, no database needed
 docs/
   data-notes.md          Phase 0 findings on the source data
   ai-log.md              a log of bugs found while building this, and how they were fixed

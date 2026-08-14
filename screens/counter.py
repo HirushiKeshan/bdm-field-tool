@@ -1,6 +1,7 @@
 import hashlib
 
 import streamlit as st
+import streamlit.components.v1 as components
 
 from db.queries import get_outlet_counter_context, submit_visit
 from logic.ai_assistant import transcribe
@@ -9,6 +10,55 @@ from logic.scoring import format_inr
 from logic.time_utils import to_ist
 
 _VOICE_NOTE_KEYS = ("want_voice_note", "voice_note_audio", "voice_note_hash", "voice_note_last_transcript")
+
+# The forced navigation below must land back on target="_parent", not
+# target="_top": Streamlit Cloud wraps the app in its own outer iframe, so
+# _top overshoots past the app to that wrapper and the app never sees the
+# coordinates. _parent lands exactly one level up, on the app itself.
+# Proved with a 3-level nested-iframe test harness before shipping -- see
+# docs/ai-log.md. (This screen's GPS capture was removed once already
+# because of that exact bug; this is the fix, not a retry of the same code.)
+_GPS_CAPTURE_HTML = """
+<div style="font-family: 'Source Sans Pro', sans-serif;">
+  <button id="gps-btn" style="width:100%; padding:0.5rem; border-radius:8px; border:1px solid #0B2D6B;
+    background:#0B2D6B; color:#fff; font-size:0.92rem; font-weight:600; cursor:pointer;">
+    📍 Use my current location
+  </button>
+  <div id="gps-status" style="font-size:0.78rem; color:#888; margin-top:0.3rem;"></div>
+</div>
+<script>
+(function () {
+  var btn = document.getElementById('gps-btn');
+  var status = document.getElementById('gps-status');
+  btn.addEventListener('click', function () {
+    if (!navigator.geolocation) {
+      status.textContent = "This browser can't share your location.";
+      return;
+    }
+    btn.disabled = true;
+    status.textContent = 'Getting your location…';
+    navigator.geolocation.getCurrentPosition(
+      function (pos) {
+        var url = new URL(window.parent.location.href);
+        url.searchParams.set('cap_lat', pos.coords.latitude);
+        url.searchParams.set('cap_lon', pos.coords.longitude);
+        url.searchParams.set('cap_acc', pos.coords.accuracy);
+        var a = document.createElement('a');
+        a.href = url.toString();
+        a.target = '_parent';
+        document.body.appendChild(a);
+        a.click();
+      },
+      function (err) {
+        btn.disabled = false;
+        status.textContent = "Couldn't get your location (" + err.message + ") — showing the shop's address instead.";
+      },
+      {enableHighAccuracy: true, timeout: 10000}
+    );
+  });
+})();
+</script>
+"""
 
 
 def _reset_voice_note_if_new_outlet(outlet_code):
@@ -20,8 +70,32 @@ def _reset_voice_note_if_new_outlet(outlet_code):
         st.session_state.voice_note_outlet = outlet_code
 
 
+def _read_captured_location(outlet_code):
+    """A components.html iframe can't hand a value back to Python directly
+    -- the GPS button instead forces a real navigation with the fix
+    appended to the URL, and this reads it back out on the rerun that
+    follows. Scoped to outlet_code so a fix taken at one shop is never
+    reused at the next one."""
+    lat, lon, acc = st.query_params.get("cap_lat"), st.query_params.get("cap_lon"), st.query_params.get("cap_acc")
+    if lat is not None and lon is not None:
+        st.session_state.captured_location = {
+            "outlet_code": outlet_code,
+            "latitude": float(lat),
+            "longitude": float(lon),
+            "accuracy": float(acc) if acc is not None else None,
+        }
+        for key in ("cap_lat", "cap_lon", "cap_acc"):
+            st.query_params.pop(key, None)
+
+    loc = st.session_state.get("captured_location")
+    if loc and loc["outlet_code"] == outlet_code:
+        return loc["latitude"], loc["longitude"], loc["accuracy"]
+    return None, None, None
+
+
 def render(conn, bdm_code, outlet_code):
-    ctx = get_outlet_counter_context(conn, outlet_code)
+    captured_lat, captured_lon, captured_acc = _read_captured_location(outlet_code)
+    ctx = get_outlet_counter_context(conn, outlet_code, captured_latitude=captured_lat, captured_longitude=captured_lon)
     outlet = ctx["outlet"]
     if outlet is None:
         st.error("Outlet not found.")
@@ -40,9 +114,24 @@ def render(conn, bdm_code, outlet_code):
 
     _reset_voice_note_if_new_outlet(outlet_code)
     st.markdown('<div class="section-label">Location</div>', unsafe_allow_html=True)
-    area = ctx.get("area") or "Area unknown"
-    district = outlet.get("territory") or "Not recorded"
+    area = ctx["area"] or "Area unknown"
+    district = ctx["district"] or "Not recorded"
     st.write(f"**Area:** {area}  \n**District:** {district}")
+    if ctx["location_is_live"]:
+        acc_note = f" (±{captured_acc:.0f}m)" if captured_acc else ""
+        st.caption(f"📍 Your current location{acc_note}.")
+    else:
+        st.caption("Shop's registered address — tap below to use your current location instead.")
+        # Mirrored into the URL so the forced navigation the button below
+        # triggers can restore this exact screen afterward; a plain
+        # st.rerun() never changes the URL, but a real browser navigation
+        # (which this is) starts a brand-new Streamlit session that has to
+        # be told where to land.
+        if bdm_code:
+            st.query_params["bdm"] = bdm_code
+        st.query_params["screen"] = "counter"
+        st.query_params["outlet"] = outlet_code
+        components.html(_GPS_CAPTURE_HTML, height=64)
 
     st.markdown('<div class="section-label">Photo</div>', unsafe_allow_html=True)
     want_photo = st.checkbox("📷 Add a photo of the counter (optional)", key="want_photo")
@@ -89,7 +178,7 @@ def render(conn, bdm_code, outlet_code):
     else:
         st.caption("No agreed action on file from a previous visit.")
 
-    st.markdown('<div class="section-label">Voice note</div>', unsafe_allow_html=True)
+    st.markdown('<div class="section-label">Voice note <span class="ai-badge">✨ AI</span></div>', unsafe_allow_html=True)
     want_voice = st.checkbox("🎤 Speak your agreed action instead of typing it", key="want_voice_note")
     if want_voice:
         audio = st.audio_input("Record what you agreed to do next", key="voice_note_audio",
@@ -120,7 +209,9 @@ def render(conn, bdm_code, outlet_code):
 
     with st.form("visit_form", clear_on_submit=False):
         responses = []
-        order_value = st.number_input("Order taken today (₹, 0 if none)", min_value=0, step=1000, key="order_val")
+        oc1, oc2 = st.columns(2)
+        order_value = oc1.number_input("Order value today (₹, 0 if none)", min_value=0, step=1000, key="order_val")
+        order_quantity = oc2.number_input("Units ordered (0 if none)", min_value=0, step=1, key="order_qty")
         collection_amount = st.number_input("Collected today (₹, 0 if none)", min_value=0, step=500, key="collect_val")
 
         for item in ctx["checklist"]:
@@ -168,11 +259,12 @@ def render(conn, bdm_code, outlet_code):
                 entered_code=entered_code or None,
                 responses=[r for r in responses if r["response_value"]],
                 order_value=order_value or None,
+                order_quantity=order_quantity or None,
                 collection_amount=collection_amount or None,
                 agreed_action_text=agreed_action_text,
                 dues_amount=dues_amount_input or None,
                 photo_taken=st.session_state.get("photo_input") is not None,
-                captured_latitude=None, captured_longitude=None, captured_accuracy=None,
+                captured_latitude=captured_lat, captured_longitude=captured_lon, captured_accuracy=captured_acc,
                 is_complete=bool(submit_full),
             )
             if submit_full:

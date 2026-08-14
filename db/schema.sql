@@ -81,6 +81,7 @@ CREATE TABLE IF NOT EXISTS orders (
     value        NUMERIC(12, 2) NOT NULL,
     created_at   TIMESTAMPTZ NOT NULL DEFAULT now()
 );
+ALTER TABLE orders ADD COLUMN IF NOT EXISTS quantity INT;  -- units ordered, NULL for pre-existing rows
 
 CREATE TABLE IF NOT EXISTS collections (
     id           SERIAL PRIMARY KEY,
