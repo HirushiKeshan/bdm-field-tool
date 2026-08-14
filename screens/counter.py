@@ -1,11 +1,15 @@
+import hashlib
 from datetime import datetime
 
 import streamlit as st
 import streamlit.components.v1 as components
 
 from db.queries import get_outlet_counter_context, submit_visit
+from logic.ai_assistant import transcribe
 from logic.charts import build_trend_figure
 from logic.scoring import format_inr
+
+_VOICE_NOTE_KEYS = ("want_voice_note", "voice_note_audio", "voice_note_hash", "voice_note_last_transcript")
 
 _GPS_CAPTURE_HTML = """
 <div style="font-family:sans-serif;">
@@ -80,6 +84,16 @@ def _read_captured_location(outlet_code):
     )
 
 
+def _reset_voice_note_if_new_outlet(outlet_code):
+    """Same reasoning as _read_captured_location -- a recording (or its
+    transcript) from a previously-viewed outlet must never leak onto
+    this one."""
+    if st.session_state.get("voice_note_outlet") != outlet_code:
+        for key in _VOICE_NOTE_KEYS:
+            st.session_state.pop(key, None)
+        st.session_state.voice_note_outlet = outlet_code
+
+
 def render(conn, bdm_code, outlet_code):
     ctx = get_outlet_counter_context(conn, outlet_code)
     outlet = ctx["outlet"]
@@ -98,6 +112,7 @@ def render(conn, bdm_code, outlet_code):
         st.warning(f'⚠ Possible duplicate of outlet {outlet["possible_duplicate_of"]} — same location, similar name. '
                    f'Verify with the owner before treating this as a separate account.')
 
+    _reset_voice_note_if_new_outlet(outlet_code)
     cap_lat, cap_lon, cap_acc = _read_captured_location(outlet_code)
     st.markdown('<div class="section-label">Location</div>', unsafe_allow_html=True)
     if cap_lat is not None:
@@ -162,6 +177,31 @@ def render(conn, bdm_code, outlet_code):
         st.info(f'{aa["action_text"]}  \n_{aa["status"]} · agreed {aa["created_at"]:%d %b}_')
     else:
         st.caption("No agreed action on file from a previous visit.")
+
+    st.markdown('<div class="section-label">Voice note</div>', unsafe_allow_html=True)
+    want_voice = st.checkbox("🎤 Speak your agreed action instead of typing it", key="want_voice_note")
+    if want_voice:
+        audio = st.audio_input("Record what you agreed to do next", key="voice_note_audio",
+                                label_visibility="collapsed")
+        if audio is not None:
+            audio_bytes = audio.getvalue()
+            audio_hash = hashlib.md5(audio_bytes).hexdigest()
+            if st.session_state.get("voice_note_hash") != audio_hash:
+                st.session_state.voice_note_hash = audio_hash
+                with st.spinner("Transcribing..."):
+                    transcript = transcribe(audio_bytes)
+                st.session_state.voice_note_last_transcript = transcript or None
+                if transcript:
+                    st.session_state["item_agreed_action"] = transcript
+                st.rerun()
+        last = st.session_state.get("voice_note_last_transcript")
+        if last:
+            st.caption(f'Heard: "{last}" — it\'s been dropped into "What did you agree to do" below; edit it there if needed.')
+        elif st.session_state.get("voice_note_hash"):
+            st.caption("Couldn't make that out — type it into the field below instead.")
+    else:
+        for key in ("voice_note_audio", "voice_note_hash", "voice_note_last_transcript"):
+            st.session_state.pop(key, None)
 
     st.divider()
     st.markdown("### Today's conversation")

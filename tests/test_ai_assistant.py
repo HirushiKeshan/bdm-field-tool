@@ -46,3 +46,36 @@ def test_api_failure_returns_a_message_instead_of_raising():
 
     assert "rate limited" in result
     assert "unaffected" in result
+
+
+def test_transcribe_without_api_key_returns_empty_string_and_makes_no_network_call():
+    with patch.object(ai_assistant, "get_api_key", return_value=None), \
+         patch("logic.ai_assistant.Groq") as mock_groq:
+        result = ai_assistant.transcribe(b"fake-wav-bytes")
+    assert result == ""
+    mock_groq.assert_not_called()
+
+
+def test_transcribe_returns_stripped_text():
+    mock_client = MagicMock()
+    mock_client.audio.transcriptions.create.return_value = "  will restock after Diwali  "
+
+    with patch.object(ai_assistant, "get_api_key", return_value="fake-key"), \
+         patch("logic.ai_assistant.Groq", return_value=mock_client):
+        result = ai_assistant.transcribe(b"fake-wav-bytes", filename="note.wav")
+
+    assert result == "will restock after Diwali"
+    call_kwargs = mock_client.audio.transcriptions.create.call_args.kwargs
+    assert call_kwargs["model"] == ai_assistant.TRANSCRIBE_MODEL
+    assert call_kwargs["file"] == ("note.wav", b"fake-wav-bytes")
+
+
+def test_transcribe_failure_returns_empty_string_instead_of_raising():
+    mock_client = MagicMock()
+    mock_client.audio.transcriptions.create.side_effect = RuntimeError("network error")
+
+    with patch.object(ai_assistant, "get_api_key", return_value="fake-key"), \
+         patch("logic.ai_assistant.Groq", return_value=mock_client):
+        result = ai_assistant.transcribe(b"fake-wav-bytes")
+
+    assert result == ""
